@@ -12,8 +12,7 @@ const Footer = () => {
                     <h3 className="text-2xl font-bold">My Portfolio</h3>
                 </div>
                 <p className="text-neutral-300 mb-4 max-w-md">
-                Building amazing digital experiences with cutting-edge technology. 
-                We help businesses grow through innovative web solutions.
+                Building better worlds.
                 </p>
                 <div className="flex space-x-4">
                 <a href="#" className="text-neutral-400 hover:text-white transition-colors">
@@ -71,7 +70,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-8 pt-8 border-t border-neutral-800 md:flex md:items-center md:justify-between">
             <div className="text-neutral-400 text-sm">
-                <p>&copy; {new Date().getFullYear()}COPYRIGHT LOLOLOL</p>
+                <p>&copy; {new Date().getFullYear()} COPYRIGHT LOLOLOL</p>
             </div>
             <div className="mt-4 md:mt-0">
                 <p className="text-neutral-400 text-sm">

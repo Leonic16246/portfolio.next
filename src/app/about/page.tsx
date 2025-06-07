@@ -45,19 +45,6 @@ export default function About() {
 
     return (
         <div className={`min-h-screen transition-all duration-300 ${darkMode ? 'bg-gradient-to-br from-slate-900 to-slate-800' : 'bg-gradient-to-br from-slate-50 to-blue-50'}`}>
-            {/* Dark Mode Toggle */}
-            <div className="fixed top-4 right-4 z-50">
-                <button
-                    onClick={() => setDarkMode(!darkMode)}
-                    className={`p-3 rounded-full transition-all duration-300 shadow-lg ${
-                        darkMode 
-                            ? 'bg-slate-700 text-yellow-400 hover:bg-slate-600' 
-                            : 'bg-white text-slate-700 hover:bg-slate-100'
-                    }`}
-                >
-                    {darkMode ? '☀️' : '🌙'}
-                </button>
-            </div>
 
             {/* Hero Section */}
             <div className="container mx-auto px-6 py-16">
