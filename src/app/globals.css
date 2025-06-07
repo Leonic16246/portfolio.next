@@ -2,13 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
-/* Optional: Add some custom dark mode transition effects */
-* {
-  transition: background-color 0.3s ease, color 0.3s ease;
+@import "tailwindcss";
+
+@theme {
+  --font-roboto: "Roboto", sans-serif; 
 }
 
-/* Make sure dark mode is properly applied to the html element */
-.dark {
-  color-scheme: dark;
-}
