@@ -1,0 +1,33 @@
+{
+    "project" : [
+
+        {
+            "title": "The Battle of Hamburg-err",
+            "imgsrc": "images/TBoHE.png",
+            "desc": "Unity Tower Defense Game",
+            "skills": ["Unity", "C#", "Agile Scrum"],
+            "source": "https://github.com/Leonic16246/Battle-of-Hamburg-Err"
+        },
+        {
+            "title": "Speed Website",
+            "imgsrc": "images/Speed.png",
+            "desc": "Next.js Website With MongoDB",
+            "skills": ["Next.js", "MongoDB"],
+            "source": "https://github.com/leo-r-jia/SPEED"
+        },
+        {
+            "title": "This Website",
+            "imgsrc": "images/CherryTreeZoom.png",
+            "desc": "Personal React Website",
+            "skills": ["Next.js", "Tailwind CSS"],
+            "source": ""
+        },
+        {
+            "title": "Pet Game",
+            "imgsrc": "images/PetGame.png",
+            "desc": "Java Game with Swing GUI And JDBC Integration",
+            "skills": ["Java", "Swing", "JDBC"],
+            "source": "https://github.com/Leonic16246/Pet-Game-GUI"
+        }
+    ]
+}
