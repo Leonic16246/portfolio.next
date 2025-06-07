@@ -1,25 +1,22 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import logo from '/public/CherryTreeGlyph.png'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import {AiOutlineMenu} from 'react-icons/ai'
 
-export default function Navbar() {
+export default function Header() {
 
 
   return (
-    <nav className="bg-black w-full px-4 py-3 relative border-b-3 border-neutral-200">
+    <header className="bg-black w-full p-3 border-b-3 border-neutral-300">
 
       <div className="flex justify-between items-center h-full w-full">
 
-        <div className="flex justify-start w-1/8 list-none text-white">
+        <div className="flex justify-start w-1/8">
           <Link href={"/"}>
             <Image
                 src={logo}
@@ -32,7 +29,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="flex justify-evenly w-4/8 list-none text-neutral-200">
+        <div className="flex justify-evenly w-3/8 list-none text-neutral-200">
             <li className="hover:underline hover:text-white">
                 <Link href="/about" className="no-underline text-inherit font-semibold">
                   About
@@ -66,7 +63,7 @@ export default function Navbar() {
             href="https://github.com/Leonic16246"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-white "
+            className="hover:text-white"
             aria-label="GitHub"
           >
             <FontAwesomeIcon icon={faGithub} size="xl" />
@@ -84,6 +81,6 @@ export default function Navbar() {
         </div>
 
       </div>
-    </nav>
+    </header>
   )
 }
