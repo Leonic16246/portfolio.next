@@ -21,7 +21,7 @@ export default function PC() {
 
   useEffect(() => {
     // Fetch the JSON data
-    fetch('/PC.json')
+    fetch('/data/PC.json')
       .then((response) => response.json())
       .then((data: { Users: PCItem[] }) => {
         setData(data.Users);

@@ -12,15 +12,15 @@
             "title": "Speed Website",
             "imgsrc": "images/Speed.png",
             "desc": "Next.js Website With MongoDB",
-            "skills": ["Next.js", "MongoDB"],
+            "skills": ["Next.js", "MongoDB", "Agile Scrum"],
             "source": "https://github.com/leo-r-jia/SPEED"
         },
         {
             "title": "This Website",
             "imgsrc": "images/CherryTreeZoom.png",
-            "desc": "Personal React Website",
+            "desc": "Personal Next.js Website",
             "skills": ["Next.js", "Tailwind CSS"],
-            "source": ""
+            "source": "https://github.com/Leonic16246/portfolio.next"
         },
         {
             "title": "Pet Game",

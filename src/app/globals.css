@@ -8,5 +8,16 @@
 
 @theme {
   --font-roboto: "Roboto", sans-serif; 
+
+
+
+}
+
+@theme {
+  --color-midnight: #121063;
+  --color-tahiti: #3ab7bf;
+  --color-bermuda: #78dcca;
+  --color-gold: #D4AF37;
+  --color-slate: #1d1d1d;
 }
 

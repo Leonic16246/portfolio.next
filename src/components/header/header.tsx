@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import logo from '/public/CherryTreeGlyph.png'
+import logo from '/public/images/CherryTreeGlyph.png'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -12,7 +12,7 @@ export default function Header() {
 
 
   return (
-    <header className="bg-black w-full p-3 border-b-3 border-neutral-300">
+    <header className="bg-black w-full p-3 border-b-3 border-neutral-500">
 
       <div className="flex justify-between items-center h-full w-full">
 

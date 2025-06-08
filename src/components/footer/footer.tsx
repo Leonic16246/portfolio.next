@@ -1,8 +1,13 @@
 import Link from 'next/link';
 
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Image from 'next/image'
+import next from '/public/next.svg'
+
 const Footer = () => {
   return (
-    <footer className="bg-black text-neutral-200 p-8 border-t-3 border-neutral-300">
+    <footer className="bg-slate text-neutral-200 p-8 border-t-3 border-neutral-300">
 
         <div className="grid grid-cols-3 gap-80">
 
@@ -14,12 +19,28 @@ const Footer = () => {
                 <p className="text-neutral-300 mb-4 max-w-md">
                 Building better worlds.
                 </p>
-                <div className="flex space-x-4">
-                <a href="#" className="text-neutral-400 hover:text-white transition-colors">
-
-                </a>
-                </div>
+            <div className="flex space-x-4">
+              <a
+                href="https://github.com/Leonic16246"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white"
+                aria-label="GitHub"
+              >
+                <FontAwesomeIcon icon={faGithub} size="lg" />
+              </a>
+              
+              <a
+                href="https://www.linkedin.com/in/leonic-lee"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white"
+                aria-label="LinkedIn"
+              >
+                <FontAwesomeIcon icon={faLinkedin} size="lg" />
+              </a>
             </div>
+          </div>
 
             {/* Quick Links */}
             <div>
@@ -74,8 +95,20 @@ const Footer = () => {
             </div>
             <div className="mt-4 md:mt-0">
                 <p className="text-neutral-400 text-sm">
-                    Made using Next.js and Tailwind CSS
+                    Made using
+                    <Image
+                    src={next}
+                    alt="Logo"
+                    width={40}
+                    height={40}
+                    className="cursor-pointer dark:invert"
+                    unoptimized
+                    
+                    />
+                    
+                     and Tailwind CSS
                 </p>
+                
             </div>
         </div>
 
