@@ -31,16 +31,14 @@ export default function About() {
     const skills = [
         { name: "Java" },
         { name: "Python" },
-        { name: "JavaScript" },
-        { name: "SQL" },
-        { name: "Teamwork" }
+        { name: "JavaScript" }
     ];
 
     const interests = [
         { icon: "🔒", title: "Penetration Testing", desc: "Security assessment and vulnerability analysis" },
-        { icon: "📱", title: "App Development", desc: "Building mobile and web applications" },
+        { icon: "📱", title: "App Development", desc: "Mobile and web applications" },
         { icon: "🌐", title: "Web Technologies", desc: "Modern frameworks and full-stack development" },
-        { icon: "🔧", title: "Software Solutions", desc: "Creating practical tools and systems" }
+        { icon: "🔧", title: "Software Solutions", desc: "Impactful tools and systems" }
     ];
 
     return (
@@ -85,11 +83,6 @@ export default function About() {
                                         Being open-minded to many aspects of technology, from <span className={`font-medium ${darkMode ? 'text-white' : 'text-slate-800'}`}>penetration testing to app development</span>, I am eager to contribute to innovative software solutions.
                                     </p>
                                     
-                                    <div className="pt-6">
-                                        <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                                            Get In Touch
-                                        </button>
-                                    </div>
                                 </div>
                                 
                                 {/* Profile Card */}
@@ -139,7 +132,7 @@ export default function About() {
                             ? 'bg-slate-800/70 backdrop-blur-sm border-slate-700/50' 
                             : 'bg-white/70 backdrop-blur-sm border-white/20'
                     }`}>
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
                             {skills.map((skill, index) => (
                                 <div key={index} className={`p-4 rounded-lg text-center transition-all duration-300 hover:scale-105 ${
                                     darkMode 
