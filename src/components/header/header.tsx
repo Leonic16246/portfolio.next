@@ -29,7 +29,7 @@ export default function Header() {
           </Link>
         </div>
 
-        <div className="flex justify-evenly w-3/8 list-none text-neutral-200">
+        <div className="flex justify-evenly min-w-1/8 w-3/8 list-none text-neutral-200">
             <li className="hover:underline hover:text-white">
                 <Link href="/about" className="no-underline text-inherit font-semibold">
                   About

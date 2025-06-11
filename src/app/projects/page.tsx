@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface ProjectsData {
   project: ProjectType[];
@@ -15,31 +15,25 @@ interface ProjectType {
 }
 
 export default function Projects() {
-  const [animationReady, setAnimationReady] = useState(false);
   const [projectsData, setProjectsData] = useState<ProjectsData | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const loadProjects = async () => {
-      try {
-        const response = await fetch('/data/projects.json');
-        const data = await response.json();
-        setProjectsData(data);
-      } catch (error) {
-        console.error('Error loading projects:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const loadProjects = async () => {
+    try {
+      const response = await fetch('/data/projects.json');
+      const data = await response.json();
+      setProjectsData(data);
+    } catch (error) {
+      console.error('Error loading projects:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  // Load projects on first render
+  if (loading && !projectsData) {
     loadProjects();
-
-    const timer = setTimeout(() => {
-      setAnimationReady(true);
-    }, 2500);
-    
-    return () => clearTimeout(timer);
-  }, []);
+  }
 
   if (loading) {
     return (
@@ -65,21 +59,8 @@ export default function Projects() {
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 p-8">
       <div className="max-w-6xl mx-auto">
         <section className="mb-12">
-          <h1 className={`text-5xl font-bold mb-6 transition-all duration-1000 ${
-            animationReady ? 'opacity-100 transform-none' : 'opacity-0 -translate-y-4'
-          }`}>
-            {"Projects".split('').map((char, index) => (
-              <span 
-                key={index}
-                className="inline-block hover:text-blue-600 transition-colors cursor-default"
-                style={{ 
-                  animationDelay: `${index * 150}ms`,
-                  animation: animationReady ? 'none' : 'fadeInUp 0.8s ease-out forwards'
-                }}
-              >
-                {char}
-              </span>
-            ))}
+          <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent pb-2">
+            Projects
           </h1>
           
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
@@ -140,19 +121,6 @@ export default function Projects() {
           </div>
         </section>
       </div>
-
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </div>
   );
 }
