@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface ProjectsData {
   project: ProjectType[];
@@ -17,39 +17,78 @@ interface ProjectType {
 export default function Projects() {
   const [projectsData, setProjectsData] = useState<ProjectsData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const loadProjects = async () => {
     try {
-      const response = await fetch('/data/projects.json');
+      setLoading(true);
+      setError(null);
+      
+      const response = await fetch('/api/projects', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const data = await response.json();
       setProjectsData(data);
     } catch (error) {
       console.error('Error loading projects:', error);
+      setError(error instanceof Error ? error.message : 'Failed to load projects');
     } finally {
       setLoading(false);
     }
   };
 
-  // Load projects on first render
-  if (loading && !projectsData) {
+  // Load projects on component mount
+  useEffect(() => {
     loadProjects();
-  }
+  }, []);
 
   if (loading) {
     return (
       <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center">
-        <div className="text-xl font-medium text-neutral-600 dark:text-neutral-400">
-          Loading projects...
+        <div className="text-center">
+          <div className="text-xl font-medium text-neutral-600 dark:text-neutral-400 mb-4">
+            Loading projects...
+          </div>
+          <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
         </div>
       </div>
     );
   }
 
-  if (!projectsData) {
+  if (error) {
     return (
       <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center">
-        <div className="text-xl font-medium text-red-600 dark:text-red-400">
-          Error loading projects
+        <div className="text-center">
+          <div className="text-xl font-medium text-red-600 dark:text-red-400 mb-4">
+            Error loading projects
+          </div>
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">{error}</p>
+          <button 
+            onClick={loadProjects}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!projectsData || !projectsData.project || projectsData.project.length === 0) {
+    return (
+      <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-xl font-medium text-neutral-600 dark:text-neutral-400 mb-4">
+            No projects found
+          </div>
         </div>
       </div>
     );
