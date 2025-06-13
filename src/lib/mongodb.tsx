@@ -2,7 +2,7 @@
 import { MongoClient, Db } from 'mongodb';
 
 if (!process.env.MONGODB_URI) {
-  throw new Error('Please add your Mongo URI to .env.local');
+  throw new Error('Please add your MongoDB URI to .env.local');
 }
 
 const uri: string = process.env.MONGODB_URI;
@@ -12,8 +12,8 @@ let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
 if (process.env.NODE_ENV === 'development') {
-  // In development mode, use a global variable to preserve the value
-  // across module reloads caused by HMR (Hot Module Replacement).
+  // In development mode, use a global variable so that the value
+  // is preserved across module reloads caused by HMR (Hot Module Replacement).
   let globalWithMongo = global as typeof globalThis & {
     _mongoClientPromise?: Promise<MongoClient>;
   };
@@ -29,28 +29,10 @@ if (process.env.NODE_ENV === 'development') {
   clientPromise = client.connect();
 }
 
-// Export a module-scoped MongoClient promise
 export default clientPromise;
 
 // Helper function to get database
-export async function getDatabase(): Promise<Db> {
+export async function getDatabase(dbName: string = 'portfolio'): Promise<Db> {
   const client = await clientPromise;
-  return client.db(); // Uses database from connection string
-}
-
-// Type definitions for your collections
-export interface User {
-  _id?: string;
-  name: string;
-  email: string;
-  createdAt: Date;
-}
-
-export interface Product {
-  _id?: string;
-  name: string;
-  price: number;
-  description: string;
-  category: string;
-  createdAt: Date;
+  return client.db(dbName);
 }

@@ -5,13 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
 import next from '/public/next.svg'
 
-const Footer = () => {
+export default function Footer() {
   return (
     <footer className="bg-slate text-neutral-200 p-8 border-t-3 border-neutral-300">
 
         <div className="grid grid-cols-3 gap-80">
 
-            {/* Company Info */}
             <div className="col-span-1 lg:col-span-2">
                 <div className="flex items-center mb-4">
                     <h3 className="text-2xl font-bold">My Portfolio</h3>
@@ -94,8 +93,9 @@ const Footer = () => {
                 <p>&copy; {new Date().getFullYear()} COPYRIGHT LOLOLOL</p>
             </div>
             <div className="mt-4 md:mt-0">
-                <p className="text-neutral-400 text-sm">
-                    Made using
+                <p className="text-neutral-400 text-sm inline">
+                    Made using 
+                    <Link href="https://nextjs.org" className="ml-1">
                     <Image
                     src={next}
                     alt="Logo"
@@ -103,12 +103,11 @@ const Footer = () => {
                     height={40}
                     className="cursor-pointer dark:invert"
                     unoptimized
-                    
                     />
-                    
-                     and Tailwind CSS
+                    </Link>
+                     
                 </p>
-                
+                <p className='text-neutral-400 text-sm'>and Tailwind CSS</p>
             </div>
         </div>
 
@@ -116,4 +115,3 @@ const Footer = () => {
   );
 };
 
-export default Footer;
