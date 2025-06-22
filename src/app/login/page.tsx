@@ -1,4 +1,4 @@
-import { login, signup } from './actions'
+import { login } from './actions'
 import Image from 'next/image'
 import logo from '/public/images/CherryTreeGlyph.png'
 
@@ -11,7 +11,7 @@ export default function LoginPage() {
           <div className="flex-1">
             <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Welcome</h1>
             <h2 className="mt-3 text-4xl font-semibold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Back</h2>
-            <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-300">Sign in/Sign up</p>
+            <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-300">Log in</p>
             
             <form className="mt-8 space-y-6">
               <div className="space-y-4">
@@ -49,15 +49,9 @@ export default function LoginPage() {
                   formAction={login}
                   className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-purple-700 hover:to-blue-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-neutral-800 transition-all duration-200 shadow-lg hover:shadow-xl"
                 >
-                  Sign In
+                  Login
                 </button>
                 
-                <button 
-                  formAction={signup}
-                  className="flex-1 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 font-semibold py-3 px-6 rounded-lg border border-neutral-300 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-800 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-neutral-800 transition-all duration-200"
-                >
-                  Sign Up
-                </button>
               </div>
             </form>
           </div>

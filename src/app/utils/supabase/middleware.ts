@@ -37,12 +37,12 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  // Check if user is trying to access login/auth pages
-  const isAuthPage = request.nextUrl.pathname.startsWith('/login') || 
+  // Check if user is trying to access auth pages
+  const isAuthPage = request.nextUrl.pathname.startsWith('/login') || request.nextUrl.pathname.startsWith('/signup')
                      request.nextUrl.pathname.startsWith('/auth')
 
   if (user && isAuthPage) {
-    // User is logged in but trying to access login page - redirect to home
+    // User is logged in but trying to access - redirect to home
     const url = request.nextUrl.clone()
     url.pathname = '/'
     return NextResponse.redirect(url)
