@@ -22,7 +22,7 @@ type EditingItem = {
   gpu: string;
 };
 
-export default function PC() {
+export default function EditPC() {
   const [data, setData] = useState<PCItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -91,7 +91,7 @@ export default function PC() {
 
   const handleInsert = () => {
     if (!user) {
-      setError('You must be logged in to add new PC components');
+      setError('You must be logged in');
       return;
     }
     
@@ -237,13 +237,13 @@ export default function PC() {
       <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center">
         <div className="text-center">
           <p className="text-neutral-600 dark:text-neutral-300 mb-4">
-            Please log in to manage PC components
+            Please log in
           </p>
           <button
             onClick={() => window.location.href = '/login'}
             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
           >
-            Go to Login
+            Login
           </button>
         </div>
       </div>
@@ -271,7 +271,7 @@ export default function PC() {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8 flex justify-between items-center">
           <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-200">
-            PC Components Admin
+            Edit PC Components 
           </h1>
           <button
             onClick={handleInsert}

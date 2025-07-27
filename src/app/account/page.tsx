@@ -90,16 +90,13 @@ export default function Account() {
             <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 p-6 flex items-center justify-center">
                 <div className="text-center">
                     <h1 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">
-                        Access Denied
+                        Not Logged In.
                     </h1>
-                    <p className="text-neutral-600 dark:text-neutral-400 mb-6">
-                        Please log in to view your account.
-                    </p>
                     <button
                         onClick={() => router.push('/login')}
                         className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
                     >
-                        Go to Login
+                        Login
                     </button>
                 </div>
             </div>
