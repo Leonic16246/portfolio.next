@@ -1,18 +1,17 @@
 "use client";
 
 import { useEffect, useState } from 'react';
+import { createBrowserClient } from '@supabase/ssr';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
+const supabase = createBrowserClient(supabaseUrl, supabaseKey);
 
 type PCItem = {
-  Name: string;
-  CPU: string;
-  GPU: string;
-  RAM: string;
-  Motherboard: string;
-  Storage: string;
-  Cooler: string;
-  PSU: string;
-  Case: string;
-  Note: string;
+  id: string;
+  name: string;
+  cpu: string;
+  gpu: string;
 };
 
 export default function PC() {
@@ -27,14 +26,18 @@ export default function PC() {
   const fetchPCData = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/pc');
       
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      // Query Supabase for PC data, selecting only the fields we want to display
+      const { data: pcData, error: supabaseError } = await supabase
+        .from('pc')
+        .select('id, name, cpu, gpu')
+        .order('id', { ascending: true });
+
+      if (supabaseError) {
+        throw new Error(`Supabase error: ${supabaseError.message}`);
       }
-      
-      const result = await response.json();
-      setData(result.user || []);
+
+      setData(pcData || []);
       setError(null);
     } catch (err) {
       console.error('Error loading PC data:', err);
@@ -92,67 +95,22 @@ export default function PC() {
                   <th className="px-6 py-4 text-left text-sm font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
                     GPU
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
-                    RAM
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
-                    Motherboard
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
-                    Storage
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
-                    Cooler
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
-                    PSU
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
-                    Case
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
-                    Note
-                  </th>
-
                 </tr>
               </thead>
               <tbody className="divide-y divide-neutral-200 dark:divide-neutral-600">
-                {data.map((item, index) => (
+                {data.map((item) => (
                   <tr 
-                    key={index} 
+                    key={item.id} 
                     className="hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors duration-150"
                   >
                     <td className="px-6 py-4 text-sm font-medium text-neutral-900 dark:text-neutral-100">
-                      {item.Name || '-'}
+                      {item.name || '-'}
                     </td>
                     <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
-                      {item.CPU || '-'}
+                      {item.cpu || '-'}
                     </td>
                     <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
-                      {item.GPU || '-'}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
-                      {item.RAM || '-'}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
-                      {item.Motherboard || '-'}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
-                      {item.Storage || '-'}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
-                      {item.Cooler || '-'}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
-                      {item.PSU || '-'}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
-                      {item.Case || '-'}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
-                      {item.Note || '-'}
-                    </td>
-                    <td className="px-6 py-4 text-sm">
+                      {item.gpu || '-'}
                     </td>
                   </tr>
                 ))}
@@ -160,7 +118,31 @@ export default function PC() {
             </table>
           </div>
 
-         
+          {/* Mobile Cards */}
+          <div className="lg:hidden">
+            {data.map((item) => (
+              <div key={item.id} className="p-6 border-b border-neutral-200 dark:border-neutral-600 last:border-b-0">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+                      {item.name || 'Unnamed PC'}
+                    </h3>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 gap-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="font-medium text-neutral-700 dark:text-neutral-300">CPU:</span>
+                      <span className="text-neutral-600 dark:text-neutral-400">{item.cpu || '-'}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="font-medium text-neutral-700 dark:text-neutral-300">GPU:</span>
+                      <span className="text-neutral-600 dark:text-neutral-400">{item.gpu || '-'}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {data.length === 0 && (
