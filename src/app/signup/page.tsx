@@ -4,13 +4,11 @@ import { signup } from './actions'
 import Image from 'next/image'
 import logo from '/public/images/CherryTreeGlyph.png'
 import { useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+
 
 export default function LoginPage() {
   const [password, setPassword] = useState('')
   const [showRequirements, setShowRequirements] = useState(false)
-  const searchParams = useSearchParams()
-  const error = searchParams.get('error')
 
   // Password validation checks
   const hasMinLength = password.length >= 8
