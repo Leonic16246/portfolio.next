@@ -1,20 +1,10 @@
 'use client'
 
-import { useEffect } from 'react'
-import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import logo from '/public/images/CherryTreeGlyph.png'
 
 export default function ConfirmEmail() {
-
-  const searchParams = useSearchParams()
-  
-  useEffect(() => {
-    if (searchParams.get('scrollToTop') || window.location.hash === '#top') {
-      window.scrollTo(0, 0)
-    }
-  }, [searchParams])
 
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 p-6">
@@ -23,7 +13,7 @@ export default function ConfirmEmail() {
           
           <div className="flex-1">
             <h1 className="text-6xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent pb-2">Confirm Email</h1>
-            <h2 className="mt-3 text-4xl font-semibold text-neutral-700 dark:text-neutral-300 bg-clip-text text-transparent">We've sent you an email confirmation</h2>
+            <h2 className="mt-3 text-4xl font-semibold dark:text-neutral-300 bg-clip-text text-transparent">We've sent you an email confirmation</h2>
 
             <div className="mt-8 flex gap-4">
               <Link 
