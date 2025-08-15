@@ -5,6 +5,7 @@ import Image from 'next/image'
 import logo from '/public/images/CherryTreeGlyph.png'
 import { useState } from 'react'
 
+export const dynamic = 'force-dynamic'
 
 export default function LoginPage() {
   const [password, setPassword] = useState('')
