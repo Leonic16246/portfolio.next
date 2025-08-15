@@ -1,37 +1,10 @@
 'use client'
 
-import { useState, useRef } from 'react';
-import emailjs from '@emailjs/browser';
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Contact() {
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const form = useRef<HTMLFormElement>(null);
-
-    const sendEmail = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-
-        try {
-            await emailjs.sendForm(
-                'service_8l092lb', 
-                'template_7e5vn16', 
-                form.current!, 
-                {
-                    publicKey: 'J6V2VlkRA9yKeOqt7',
-                }
-            );
-            
-            console.log('SUCCESS!');
-            alert('Message successfully sent!');
-            form.current?.reset();
-        } catch (error: any) {
-            console.log('FAILED...', error.text);
-            alert('Failed to send message, please try again!');
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
-
     const AnimatedText = ({ text, className }: { text: string; className?: string }) => {
         return (
             <span className={className}>
@@ -49,88 +22,58 @@ export default function Contact() {
                         <h1 className="text-5xl font-bold text-neutral-900 dark:text-white mb-6">
                             <AnimatedText text="Contact me" className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent" />
                         </h1>
-                        <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-                            Feel free to contact me if you have any inquiries. I'll get back to you as soon as possible.
+                        <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto mb-12">
+                            Feel free to reach out to me through any of the following platforms.
                         </p>
                     </div>
 
-                    {/* Contact Form */}
-                    <div className="max-w-2xl mx-auto">
-                        <form ref={form} onSubmit={sendEmail} className="space-y-6">
-                            {/* Name and Email Row */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="relative">
-                                    <input
-                                        name="name"
-                                        type="text"
-                                        placeholder="Your Name"
-                                        required
-                                        className="w-full px-4 py-3 bg-neutral-50 dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
-                                    />
-                                </div>
-                                <div className="relative">
-                                    <input
-                                        name="email"
-                                        type="email"
-                                        placeholder="Your Email"
-                                        required
-                                        className="w-full px-4 py-3 bg-neutral-50 dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
-                                    />
-                                </div>
-                            </div>
+                    {/* Contact Links */}
+                    <div className="flex justify-center items-center space-x-8">
+                        <a
+                            href="mailto:leonic16246@gmail.com"
+                            className="flex flex-col items-center p-6 bg-neutral-50 dark:bg-neutral-700 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-600 transition-all duration-200 hover:shadow-lg group"
+                            aria-label="Email"
+                        >
+                            <FontAwesomeIcon 
+                                icon={faEnvelope} 
+                                className="text-4xl text-neutral-700 dark:text-neutral-200 group-hover:text-red-600 transition-colors duration-200 mb-3" 
+                            />
+                            <span className="text-lg font-semibold text-neutral-700 dark:text-neutral-200 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-200">
+                                Email
+                            </span>
+                        </a>
 
-                            {/* Subject */}
-                            <div className="relative">
-                                <input
-                                    name="subject"
-                                    type="text"
-                                    placeholder="Subject"
-                                    required
-                                    className="w-full px-4 py-3 bg-neutral-50 dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
-                                />
-                            </div>
+                        <a
+                            href="https://github.com/Leonic16246"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex flex-col items-center p-6 bg-neutral-50 dark:bg-neutral-700 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-600 transition-all duration-200 hover:shadow-lg group"
+                            aria-label="GitHub"
+                        >
+                            <FontAwesomeIcon 
+                                icon={faGithub} 
+                                className="text-4xl text-neutral-700 dark:text-neutral-200 group-hover:text-black dark:group-hover:text-white transition-colors duration-200 mb-3" 
+                            />
+                            <span className="text-lg font-semibold text-neutral-700 dark:text-neutral-200 group-hover:text-black dark:group-hover:text-white transition-colors duration-200">
+                                GitHub
+                            </span>
+                        </a>
 
-                            {/* Message */}
-                            <div className="relative">
-                                <textarea
-                                    name="message"
-                                    placeholder="Your Message"
-                                    required
-                                    rows={6}
-                                    className="w-full px-4 py-3 bg-neutral-50 dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400 resize-none"
-                                />
-                            </div>
-
-                            {/* Submit Button */}
-                            <div className="flex justify-center pt-4">
-                                <button
-                                    type="submit"
-                                    disabled={isSubmitting}
-                                    className="relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none min-w-[140px]"
-                                >
-                                    {isSubmitting ? (
-                                        <div className="flex items-center justify-center">
-                                            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                                            Sending...
-                                        </div>
-                                    ) : (
-                                        'Send Message'
-                                    )}
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-
-                    {/* Additional Info */}
-                    <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-700">
-                        <div className="text-center">
-                            <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
-                                Let's Connect
-                            </h3>
-                            <p className="text-neutral-600 dark:text-neutral-400">
-                                I'm always interested in hearing about new opportunities and collaborations.
-                            </p>
-                        </div>
+                        <a
+                            href="https://www.linkedin.com/in/leonic-lee"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex flex-col items-center p-6 bg-neutral-50 dark:bg-neutral-700 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-600 transition-all duration-200 hover:shadow-lg group"
+                            aria-label="LinkedIn"
+                        >
+                            <FontAwesomeIcon 
+                                icon={faLinkedin} 
+                                className="text-4xl text-neutral-700 dark:text-neutral-200 group-hover:text-blue-600 transition-colors duration-200 mb-3" 
+                            />
+                            <span className="text-lg font-semibold text-neutral-700 dark:text-neutral-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+                                LinkedIn
+                            </span>
+                        </a>
                     </div>
                 </div>
             </div>
