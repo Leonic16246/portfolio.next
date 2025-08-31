@@ -7,7 +7,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <body className="bg-neutral-800 dark:bg-black text-neutral-900 dark:text-neutral-200">
         <Header />
-          <main>{children}</main> 
+          <main className="min-h-screen">{children}</main> 
         <Footer />
       </body>
     </html>

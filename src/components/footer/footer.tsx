@@ -2,12 +2,10 @@ import Link from 'next/link';
 
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Image from 'next/image'
-import next from '/public/next.svg'
 
 export default function Footer() {
   return (
-    <footer className="bg-slate text-neutral-200 p-8 border-t-3 border-neutral-300">
+    <footer className="bg-neutral text-neutral-200 p-8 border-t-3 border-neutral-300">
 
         <div className="grid grid-cols-3 gap-80">
 
@@ -93,21 +91,7 @@ export default function Footer() {
                 <p>&copy; {new Date().getFullYear()} COPYRIGHT LOLOLOL</p>
             </div>
             <div className="mt-4 md:mt-0">
-                <p className="text-neutral-400 text-sm inline">
-                    Made using 
-                    <Link href="https://nextjs.org" className="ml-1">
-                    <Image
-                    src={next}
-                    alt="Logo"
-                    width={40}
-                    height={40}
-                    className="cursor-pointer dark:invert"
-                    unoptimized
-                    />
-                    </Link>
-                     
-                </p>
-                <p className='text-neutral-400 text-sm'>and Tailwind CSS</p>
+                <p className='text-neutral-400 text-sm'>Made using Next.js, Tailwind CSS, MongoDB, & Supabase</p>
             </div>
         </div>
 

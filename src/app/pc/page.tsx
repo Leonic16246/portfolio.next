@@ -8,10 +8,11 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
 const supabase = createBrowserClient(supabaseUrl, supabaseKey);
 
 type PCItem = {
-  id: string;
+  pc_id: string;
   name: string;
   cpu: string;
   gpu: string;
+  note: string;
 };
 
 export default function PC() {
@@ -27,11 +28,11 @@ export default function PC() {
     try {
       setLoading(true);
       
-      // Query Supabase for PC data, selecting only the fields we want to display
+      // Query Supabase for PC data
       const { data: pcData, error: supabaseError } = await supabase
         .from('pc')
-        .select('id, name, cpu, gpu')
-        .order('id', { ascending: true });
+        .select('pc_id, name, cpu, gpu, note')
+        .order('pc_id', { ascending: true });
 
       if (supabaseError) {
         throw new Error(`Supabase error: ${supabaseError.message}`);
@@ -48,11 +49,16 @@ export default function PC() {
   };
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center">
-        <div className="text-neutral-600 dark:text-neutral-300">Loading PC components...</div>
-      </div>
-    );
+      return (
+          <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center">
+              <div className="text-center">
+                  <div className="text-xl font-medium text-neutral-600 dark:text-neutral-400 mb-4">
+                      Loading...
+                  </div>
+                  <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
+              </div>
+          </div>
+      );
   }
 
   if (error) {
@@ -95,12 +101,15 @@ export default function PC() {
                   <th className="px-6 py-4 text-left text-sm font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
                     GPU
                   </th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
+                    Note
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-neutral-200 dark:divide-neutral-600">
                 {data.map((item) => (
                   <tr 
-                    key={item.id} 
+                    key={item.pc_id} 
                     className="hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors duration-150"
                   >
                     <td className="px-6 py-4 text-sm font-medium text-neutral-900 dark:text-neutral-100">
@@ -112,6 +121,9 @@ export default function PC() {
                     <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
                       {item.gpu || '-'}
                     </td>
+                    <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
+                      {item.note || '-'}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -121,7 +133,7 @@ export default function PC() {
           {/* Mobile Cards */}
           <div className="lg:hidden">
             {data.map((item) => (
-              <div key={item.id} className="p-6 border-b border-neutral-200 dark:border-neutral-600 last:border-b-0">
+              <div key={item.pc_id} className="p-6 border-b border-neutral-200 dark:border-neutral-600 last:border-b-0">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">

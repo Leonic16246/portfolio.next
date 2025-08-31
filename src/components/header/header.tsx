@@ -59,7 +59,7 @@ export default function Header() {
   }, [])
 
   return (
-    <header className="bg-black w-full p-3 border-b-3 border-neutral-500">
+    <header className="bg-neutral w-full p-3 border-b-3 border-neutral-500">
       <div className="flex justify-between items-center h-full w-full">
         <div className="flex justify-start w-1/8">
           <Link href="/">
