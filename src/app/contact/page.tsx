@@ -14,9 +14,9 @@ export default function Contact() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 p-6">
+        <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-900 p-6">
             <div className="max-w-4xl mx-auto">
-                <div className="bg-white dark:bg-neutral-800 rounded-2xl px-8 py-12 ring-1 ring-neutral-900/5 dark:ring-neutral-700/50 shadow-2xl backdrop-blur-sm">
+                <div className="bg-white dark:bg-neutral-800 rounded-2xl px-8 py-16 ring-1 ring-neutral-900/5 dark:ring-neutral-700/50 shadow-2xl backdrop-blur-sm">
                     {/* Header Section */}
                     <div className="text-center mb-8">
                         <h1 className="text-5xl font-bold text-neutral-900 dark:text-white mb-6">

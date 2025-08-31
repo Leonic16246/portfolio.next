@@ -8,23 +8,17 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
 const supabase = createBrowserClient(supabaseUrl, supabaseKey);
 
-type PCItem = {
-  user_id: string;
-  name: string;
-  cpu: string;
-  gpu: string;
-};
 
 export default function SubmitPC() {
     const router = useRouter();
     const [user, setUser] = useState<any>(null);
-    const [loading, setLoading] = useState(false);
-    const [isLoading, setIsLoading] = useState(true); // Add this line
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [formData, setFormData] = useState({
         name: '',
         cpu: '',
-        gpu: ''
+        gpu: '',
+        note: ''
     });
 
     useEffect(() => {
@@ -34,7 +28,7 @@ export default function SubmitPC() {
                 const { data: { user } } = await supabase.auth.getUser();
                 setUser(user);
             } finally {
-                setIsLoading(false);
+                setLoading(false);
             }
         };
 
@@ -43,7 +37,7 @@ export default function SubmitPC() {
         // Listen for auth changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
             setUser(session?.user || null);
-            setIsLoading(false);
+            setLoading(false);
         });
 
         return () => subscription.unsubscribe();
@@ -72,7 +66,8 @@ export default function SubmitPC() {
                     user_id: user.id,
                     name: formData.name.trim(),
                     cpu: formData.cpu.trim() || null,
-                    gpu: formData.gpu.trim() || null
+                    gpu: formData.gpu.trim() || null,
+                    note: "N/A"
                 }])
                 .select();
 
@@ -99,9 +94,9 @@ export default function SubmitPC() {
     };
 
     
-    if (isLoading) {
+    if (loading) {
         return (
-            <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 flex items-center justify-center">
+            <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center">
                 <div className="text-center">
                     <div className="text-xl font-medium text-neutral-600 dark:text-neutral-400 mb-4">
                         Loading...
@@ -112,23 +107,23 @@ export default function SubmitPC() {
         );
     }
 
-    if (!user) {
-        return (
-            <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 p-6 flex items-center justify-center">
-                <div className="text-center">
-                    <h1 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">
-                        Please log in to submit
-                    </h1>
-                    <button
-                        onClick={() => router.push('/login')}
-                        className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
-                    >
-                        Login
-                    </button>
-                </div>
-            </div>
-        );
-    }
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-neutral-600 dark:text-neutral-300 mb-4">
+            Please log in
+          </p>
+          <button
+            onClick={() => window.location.href = '/login'}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            Login
+          </button>
+        </div>
+      </div>
+    );
+  }
 
     return (
         <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 p-6">
@@ -160,7 +155,7 @@ export default function SubmitPC() {
                                 value={formData.name}
                                 onChange={(e) => handleInputChange('name', e.target.value)}
                                 className="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100"
-                                placeholder="Enter Name"
+                                placeholder="Name"
                                 required
                             />
                         </div>
@@ -175,7 +170,7 @@ export default function SubmitPC() {
                                 value={formData.cpu}
                                 onChange={(e) => handleInputChange('cpu', e.target.value)}
                                 className="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100"
-                                placeholder="Enter CPU model"
+                                placeholder="CPU model"
                             />
                         </div>
 
@@ -189,7 +184,7 @@ export default function SubmitPC() {
                                 value={formData.gpu}
                                 onChange={(e) => handleInputChange('gpu', e.target.value)}
                                 className="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100"
-                                placeholder="Enter GPU model"
+                                placeholder="GPU model"
                             />
                         </div>
 

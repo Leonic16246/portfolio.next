@@ -8,7 +8,7 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
 const supabase = createBrowserClient(supabaseUrl, supabaseKey);
 
 type PCItem = {
-  id: number;
+  pc_id: number;
   user_id: string;
   name: string;
   cpu: string;
@@ -16,7 +16,7 @@ type PCItem = {
 };
 
 type EditingItem = {
-  id: number | '';
+  pc_id: number | '';
   name: string;
   cpu: string;
   gpu: string;
@@ -55,8 +55,8 @@ export default function EditPC() {
       
       const { data: pcData, error: supabaseError } = await supabase
         .from('pc')
-        .select('id, user_id, name, cpu, gpu')
-        .order('id', { ascending: true });
+        .select('pc_id, user_id, name, cpu, gpu')
+        .order('pc_id', { ascending: true });
 
       if (supabaseError) {
         throw new Error(`Supabase error: ${supabaseError.message}`);
@@ -81,7 +81,7 @@ export default function EditPC() {
 
   const handleEdit = (item: PCItem) => {
     setEditingItem({
-      id: item.id,
+      pc_id: item.pc_id,
       name: item.name,
       cpu: item.cpu,
       gpu: item.gpu
@@ -96,7 +96,7 @@ export default function EditPC() {
     }
     
     setEditingItem({
-      id: '',
+      pc_id: '',
       name: '',
       cpu: '',
       gpu: ''
@@ -154,7 +154,7 @@ export default function EditPC() {
         const { data: updatedData, error: updateError } = await supabase
           .from('pc')
           .update(updateData)
-          .eq('id', editingItem.id)
+          .eq('pc_id', editingItem.pc_id)
           .select(); // Return the updated data
 
         if (updateError) {
@@ -194,7 +194,7 @@ export default function EditPC() {
       const { error: deleteError } = await supabase
         .from('pc')
         .delete()
-        .eq('id', id)
+        .eq('pc_id', id)
 
       if (deleteError) {
         throw new Error(`Delete error: ${deleteError.message}`);
@@ -225,11 +225,16 @@ export default function EditPC() {
   };
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center">
-        <div className="text-neutral-600 dark:text-neutral-300">Loading PC components...</div>
-      </div>
-    );
+      return (
+          <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center">
+              <div className="text-center">
+                  <div className="text-xl font-medium text-neutral-600 dark:text-neutral-400 mb-4">
+                      Loading...
+                  </div>
+                  <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
+              </div>
+          </div>
+      );
   }
 
   if (!user) {
@@ -357,13 +362,13 @@ export default function EditPC() {
                 {/* Data Rows */}
                 {data.map((item) => (
                   <tr 
-                    key={item.id} 
+                    key={item.pc_id} 
                     className={`hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors duration-150 ${
-                      editingItem?.id === item.id ? 'bg-yellow-50 dark:bg-yellow-900/20' : ''
+                      editingItem?.pc_id === item.pc_id ? 'bg-yellow-50 dark:bg-yellow-900/20' : ''
                     }`}
                   >
                     <td className="px-6 py-4 text-sm font-medium text-neutral-900 dark:text-neutral-100">
-                      {editingItem?.id === item.id ? (
+                      {editingItem?.pc_id === item.pc_id ? (
                         <input
                           type="text"
                           value={editingItem.name}
@@ -375,7 +380,7 @@ export default function EditPC() {
                       )}
                     </td>
                     <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
-                      {editingItem?.id === item.id ? (
+                      {editingItem?.pc_id === item.pc_id ? (
                         <input
                           type="text"
                           value={editingItem.cpu}
@@ -387,7 +392,7 @@ export default function EditPC() {
                       )}
                     </td>
                     <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
-                      {editingItem?.id === item.id ? (
+                      {editingItem?.pc_id === item.pc_id ? (
                         <input
                           type="text"
                           value={editingItem.gpu}
@@ -399,7 +404,7 @@ export default function EditPC() {
                       )}
                     </td>
                     <td className="px-6 py-4">
-                      {editingItem?.id === item.id ? (
+                      {editingItem?.pc_id === item.pc_id ? (
                         <div className="flex space-x-2">
                           <button
                             onClick={handleSave}
@@ -426,7 +431,7 @@ export default function EditPC() {
                             Edit
                           </button>
                           <button
-                            onClick={() => handleDelete(item.id)}
+                            onClick={() => handleDelete(item.pc_id)}
                             disabled={editingItem !== null || operationLoading}
                             className="px-3 py-1 bg-red-500 text-white rounded text-sm hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed"
                           >
@@ -513,15 +518,15 @@ export default function EditPC() {
             {/* Data Cards */}
             {data.map((item) => (
               <div 
-                key={item.id} 
+                key={item.pc_id} 
                 className={`p-6 border-b border-neutral-200 dark:border-neutral-600 last:border-b-0 ${
-                  editingItem?.id === item.id ? 'bg-yellow-50 dark:bg-yellow-900/20' : ''
+                  editingItem?.pc_id === item.pc_id ? 'bg-yellow-50 dark:bg-yellow-900/20' : ''
                 }`}
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-                      {editingItem?.id === item.id ? (
+                      {editingItem?.pc_id === item.pc_id ? (
                         <input
                           type="text"
                           value={editingItem.name}
@@ -538,7 +543,7 @@ export default function EditPC() {
                     <div>
                       <span className="font-medium text-neutral-700 dark:text-neutral-300">CPU:</span>
                       <div className="mt-1">
-                        {editingItem?.id === item.id ? (
+                        {editingItem?.pc_id === item.pc_id ? (
                           <input
                             type="text"
                             value={editingItem.cpu}
@@ -553,7 +558,7 @@ export default function EditPC() {
                     <div>
                       <span className="font-medium text-neutral-700 dark:text-neutral-300">GPU:</span>
                       <div className="mt-1">
-                        {editingItem?.id === item.id ? (
+                        {editingItem?.pc_id === item.pc_id ? (
                           <input
                             type="text"
                             value={editingItem.gpu}
@@ -568,7 +573,7 @@ export default function EditPC() {
                   </div>
                   
                   <div className="flex space-x-2">
-                    {editingItem?.id === item.id ? (
+                    {editingItem?.pc_id === item.pc_id ? (
                       <>
                         <button
                           onClick={handleSave}
@@ -595,7 +600,7 @@ export default function EditPC() {
                           Edit
                         </button>
                         <button
-                          onClick={() => handleDelete(item.id)}
+                          onClick={() => handleDelete(item.pc_id)}
                           disabled={editingItem !== null || operationLoading}
                           className="px-4 py-2 bg-red-500 text-white rounded text-sm hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
