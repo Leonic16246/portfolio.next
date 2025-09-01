@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Footer() {
   return (
-    <footer className="bg-neutral text-neutral-200 p-8 border-t-3 border-neutral-300">
+    <footer className="bg-neutral text-neutral-200 p-6 border-t-4 border-neutral-400">
 
         <div className="grid grid-cols-3 gap-80">
 

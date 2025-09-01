@@ -12,6 +12,8 @@ import { createBrowserClient } from '@supabase/ssr'
 export default function Header() {
   const [email, setEmail] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
 
   useEffect(() => {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string
@@ -58,8 +60,49 @@ export default function Header() {
     }
   }, [])
 
+  // Scroll detection effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      
+      // Show header when at top of page
+      if (currentScrollY < 10) {
+        setIsVisible(true)
+      }
+      // Show header when scrolling up, hide when scrolling down
+      else if (currentScrollY < lastScrollY) {
+        setIsVisible(true)
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false)
+      }
+      
+      setLastScrollY(currentScrollY)
+    }
+
+    // Add throttling to improve performance
+    let timeoutId: NodeJS.Timeout | null = null
+    const throttledHandleScroll = () => {
+      if (timeoutId) clearTimeout(timeoutId)
+      timeoutId = setTimeout(handleScroll, 10)
+    }
+
+    window.addEventListener('scroll', throttledHandleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', throttledHandleScroll)
+      if (timeoutId) clearTimeout(timeoutId)
+    }
+  }, [lastScrollY])
+
   return (
-    <header className="bg-neutral w-full p-3 border-b-3 border-neutral-500">
+    <header 
+      className={`
+        bg-black w-full p-3 border-b-3 border-neutral-500 
+        fixed top-0 left-0 right-0 z-50
+        transition-transform duration-300 ease-in-out
+        ${isVisible ? 'translate-y-0' : '-translate-y-full'}
+      `}
+    >
       <div className="flex justify-between items-center h-full w-full">
         <div className="flex justify-start w-1/8">
           <Link href="/">
