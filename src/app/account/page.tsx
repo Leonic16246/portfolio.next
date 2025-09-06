@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { createBrowserClient } from '@supabase/ssr';
+import { createClient } from '@/lib/supabase';
 import { User } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 
@@ -12,9 +12,7 @@ export default function Account() {
     const router = useRouter();
 
     useEffect(() => {
-        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
-        const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
-        const supabase = createBrowserClient(supabaseUrl, supabaseKey);
+        const supabase = createClient();
 
         const getUser = async () => {
             const { data, error } = await supabase.auth.getUser();
@@ -53,9 +51,7 @@ export default function Account() {
     const handleLogout = async () => {
         setIsLoggingOut(true);
         try {
-            const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
-            const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
-            const supabase = createBrowserClient(supabaseUrl, supabaseKey);
+            const supabase = createClient();
             
             await supabase.auth.signOut();
             // The auth state listener will handle the redirect

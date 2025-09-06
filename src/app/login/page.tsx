@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { createBrowserClient } from '@supabase/ssr'
+import { createClient } from '@/lib/supabase';
 import Image from 'next/image'
 import logo from '/public/images/CherryTreeGlyph.png'
 
@@ -18,9 +18,7 @@ export default function LoginPage() {
     setLoading(true)
     setError('')
 
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string
-    const supabase = createBrowserClient(supabaseUrl, supabaseKey)
+    const supabase = createClient();
 
     const { error } = await supabase.auth.signInWithPassword({
       email,
