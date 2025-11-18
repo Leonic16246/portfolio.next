@@ -1,29 +1,28 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getDatabase } from '@/lib/mongodb';
+import { NextResponse } from 'next/server';
+import { createClient } from '@/lib/supabase';
 
-// GET /api/pc
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    const db = await getDatabase('PortfolioDB');
-    const collection = db.collection('PC');
+    const supabase = createClient();
     
-    const document = await collection.findOne({}, { projection: { _id: 0, user: 1 } });
-    
-    if (!document || !document.user) {
+    const { data: pcData, error: supabaseError } = await supabase
+      .from('pc')
+      .select('pc_id, name, cpu, gpu, note')
+      .order('pc_id', { ascending: true });
+
+    if (supabaseError) {
+      console.error('Supabase error:', supabaseError);
       return NextResponse.json(
-        { user: [] },
-        { status: 200 }
+        { error: 'Database query failed', details: supabaseError.message },
+        { status: 500 }
       );
     }
-    
-    return NextResponse.json(
-      { user: document.user },
-      { status: 200 }
-    );
+
+    return NextResponse.json(pcData || [], { status: 200 });
   } catch (error) {
-    console.error('Error fetching users:', error);
+    console.error('API error:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch users' },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }

@@ -1,9 +1,6 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { createClient } from '@/lib/supabase';
-
-const supabase = createClient();
 
 type PCItem = {
   pc_id: string;
@@ -22,29 +19,33 @@ export default function PC() {
     fetchPCData();
   }, []);
 
-  const fetchPCData = async () => {
-    try {
-      setLoading(true);
-      
-      // Query Supabase for PC data
-      const { data: pcData, error: supabaseError } = await supabase
-        .from('pc')
-        .select('pc_id, name, cpu, gpu, note')
-        .order('pc_id', { ascending: true });
+const fetchPCData = async () => {
+  try {
+    setLoading(true);
 
-      if (supabaseError) {
-        throw new Error(`Supabase error: ${supabaseError.message}`);
-      }
+    const response = await fetch('/api/pc', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-      setData(pcData || []);
-      setError(null);
-    } catch (err) {
-      console.error('Error loading PC data:', err);
-      setError('Failed to load PC data');
-    } finally {
-      setLoading(false);
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
     }
-  };
+
+    const result: PCItem[] = await response.json();
+
+    setData(result || []);
+    setError(null);
+  } catch (err) {
+    console.error('Error loading PC data:', err);
+    setError('Failed to load PC data');
+    setData([]); 
+  } finally {
+    setLoading(false);
+  }
+};
 
   if (loading) {
       return (
