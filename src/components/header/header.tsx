@@ -7,7 +7,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
-import { createClient } from '@/lib/supabase';
+import { createBrowserClient } from '@supabase/ssr'
 
 export default function Header() {
   const [email, setEmail] = useState<string | null>(null)
@@ -16,8 +16,9 @@ export default function Header() {
   const [lastScrollY, setLastScrollY] = useState(0)
 
   useEffect(() => {
-
-  const supabase = createClient();
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string
+    const supabase = createBrowserClient(supabaseUrl, supabaseKey)
 
     const getUser = async () => {
       const { data, error } = await supabase.auth.getUser()
@@ -181,7 +182,7 @@ export default function Header() {
                       onClick={async () => {
                         const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
                         const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
-                        const supabase = createClient();
+                        const supabase = createBrowserClient(supabaseUrl, supabaseKey);
                         await supabase.auth.signOut();
                         // The auth state listener will handle updating the UI
                       }}
