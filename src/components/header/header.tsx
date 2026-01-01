@@ -7,59 +7,84 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
 import { createBrowserClient } from '@supabase/ssr'
 
 export default function Header() {
   const [email, setEmail] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
+  const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string
     const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string
     const supabase = createBrowserClient(supabaseUrl, supabaseKey)
 
-    const getUser = async () => {
-      const { data, error } = await supabase.auth.getUser()
-      if (data?.user?.email) {
-        setEmail(data.user.email)
-      } else {
-        setEmail(null)
-      }
+    // Fetch user whenever pathname changes
+    const fetchUser = async () => {
+      setLoading(true)
+      const { data: { user } } = await supabase.auth.getUser()
+      setEmail(user?.email || null)
       setLoading(false)
     }
 
-    // Get initial user
-    getUser()
+    fetchUser()
+  }, [pathname]) // Re-fetch when route changes
 
-    // Listen for auth state changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        console.log('Auth state changed:', event, session?.user?.email) // Debug log
-        if (session?.user?.email) {
-          setEmail(session.user.email)
-        } else {
-          setEmail(null)
-        }
-        setLoading(false)
+  // Scroll detection effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      
+      if (currentScrollY < 10) {
+        setIsVisible(true)
       }
-    )
-
-    // Also listen for page focus to check auth state
-    const handleFocus = () => {
-      getUser()
+      else if (currentScrollY < lastScrollY) {
+        setIsVisible(true)
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false)
+      }
+      
+      setLastScrollY(currentScrollY)
     }
 
-    window.addEventListener('focus', handleFocus)
+    let timeoutId: NodeJS.Timeout | null = null
+    const throttledHandleScroll = () => {
+      if (timeoutId) clearTimeout(timeoutId)
+      timeoutId = setTimeout(handleScroll, 10)
+    }
 
-    // Cleanup subscription on unmount
+    window.addEventListener('scroll', throttledHandleScroll)
+
     return () => {
-      subscription?.unsubscribe()
-      window.removeEventListener('focus', handleFocus)
+      window.removeEventListener('scroll', throttledHandleScroll)
+      if (timeoutId) clearTimeout(timeoutId)
     }
-  }, [])
+  }, [lastScrollY])
+
+  const handleLogout = async () => {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string
+    const supabase = createBrowserClient(supabaseUrl, supabaseKey)
+    
+    await supabase.auth.signOut()
+    setEmail(null)
+    router.push('/')
+    router.refresh()
+  }
 
   return (
-    <header className="bg-neutral w-full p-3 border-b-3 border-neutral-500">
+    <header 
+      className={`
+        bg-black w-full p-3 border-b-3 border-neutral-500 
+        fixed top-0 left-0 right-0 z-50
+        transition-transform duration-300 ease-in-out
+        ${isVisible ? 'translate-y-0' : '-translate-y-full'}
+      `}
+    >
       <div className="flex justify-between items-center h-full w-full">
         <div className="flex justify-start w-1/8">
           <Link href="/">
@@ -136,13 +161,7 @@ export default function Header() {
                   </li>
                   <li>
                     <button
-                      onClick={async () => {
-                        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
-                        const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
-                        const supabase = createBrowserClient(supabaseUrl, supabaseKey);
-                        await supabase.auth.signOut();
-                        // The auth state listener will handle updating the UI
-                      }}
+                      onClick={handleLogout}
                       className="block w-full text-left px-4 py-2 hover:bg-neutral-800"
                     >
                       Log out

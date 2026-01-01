@@ -1,38 +1,32 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { createBrowserClient } from '@supabase/ssr'
+import { login } from './actions'
 import Image from 'next/image'
 import logo from '/public/images/CherryTreeGlyph.png'
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const router = useRouter()
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
     setError('')
 
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string
-    const supabase = createBrowserClient(supabaseUrl, supabaseKey)
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
-
-    if (error) {
-      setError(error.message)
+    const formData = new FormData(e.currentTarget)
+    
+    try {
+      const result = await login(formData)
+      
+      if (result?.error) {
+        setError(result.error)
+        setLoading(false)
+      }
+      // If successful, the server action redirects automatically
+    } catch (err) {
+      setError('An unexpected error occurred')
       setLoading(false)
-    } else {
-      router.push('/')
-      router.refresh() // This ensures the page refreshes to update the header
     }
   }
 
@@ -63,8 +57,6 @@ export default function LoginPage() {
                     name="email" 
                     type="email" 
                     required 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
                     className="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 dark:placeholder-neutral-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
                     placeholder="Enter your email"
                   />
@@ -79,8 +71,6 @@ export default function LoginPage() {
                     name="password" 
                     type="password" 
                     required 
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
                     className="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 dark:placeholder-neutral-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
                     placeholder="Enter your password"
                   />

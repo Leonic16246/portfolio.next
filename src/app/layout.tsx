@@ -5,7 +5,7 @@ import "./globals.css";
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-neutral-800 dark:bg-black text-neutral-900 dark:text-neutral-200">
+      <body className="bg-neutral-800 dark:bg-black text-neutral-900 dark:text-neutral-200 pt-17">
         <Header />
           <main className="min-h-screen">{children}</main> 
         <Footer />
