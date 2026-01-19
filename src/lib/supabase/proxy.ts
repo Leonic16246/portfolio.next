@@ -42,7 +42,8 @@ export async function updateSession(request: NextRequest) {
 
   const isLoggedInPage = 
     request.nextUrl.pathname.startsWith('/private') ||
-    request.nextUrl.pathname.startsWith('/account')
+    request.nextUrl.pathname.startsWith('/account') ||
+    request.nextUrl.pathname.startsWith('/admin')
 
   if (user && isAuthPage) {
     // User is logged in but trying to access auth pages - redirect to home

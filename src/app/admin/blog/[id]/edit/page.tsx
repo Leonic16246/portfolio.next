@@ -1,17 +1,35 @@
-"use client";
+import { createClient } from '@/lib/supabase/server'
+import { notFound, redirect } from 'next/navigation'
+import PostForm from '@/components/admin/postform'
 
-import { useEffect, useState } from 'react';
-import { createBrowserClient } from '@supabase/ssr';
+interface PageProps {
+  params: Promise<{ id: string }>
+}
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
-const supabase = createBrowserClient(supabaseUrl, supabaseKey);
+export default async function AdminEditPost({ params }: PageProps) {
+  const { id } = await params
+  const supabase = await createClient()
+  
+  const { data: { user } } = await supabase.auth.getUser()
+  
+  if (!user) {
+    redirect('/login')
+  }
 
-export default function AdminEdit() {
+  const { data: post, error } = await supabase
+    .from('posts')
+    .select('*')
+    .eq('id', id)
+    .single()
 
-    return(
-        <h1>TODO</h1>
-        // for posting/editing blogs, will integrate with other services later
-    )
+  if (error || !post) {
+    notFound()
+  }
 
+  return (
+    <div className="px-4 sm:px-0">
+      <h1 className="text-3xl font-bold text-neutral-900 mb-8">Edit Post</h1>
+      <PostForm userId={user.id} post={post} />
+    </div>
+  )
 }

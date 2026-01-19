@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import remarkBreaks from 'remark-breaks'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
@@ -47,7 +48,7 @@ export default async function BlogPost({ params }: PageProps) {
   }
 
   return (
-    <article className="container mx-auto px-4 py-12 max-w-4xl">
+    <article className="container mx-auto px-4 py-12 max-w-4xl bg-neutral-900">
       <header className="mb-8">
         <h1 className="text-5xl font-bold mb-4">{post.title}</h1>
         {post.excerpt && (
@@ -64,7 +65,7 @@ export default async function BlogPost({ params }: PageProps) {
 
       <div className="prose prose-lg max-w-none">
         <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
+          remarkPlugins={[remarkGfm, remarkBreaks]}
           components={{
             code(props) {
               const { children, className, ...rest } = props

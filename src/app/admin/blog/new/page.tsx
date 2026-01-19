@@ -1,17 +1,20 @@
-"use client";
+import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
+import PostForm from '@/components/admin/postform'
 
-import { useEffect, useState } from 'react';
-import { createBrowserClient } from '@supabase/ssr';
+export default async function NewPostPage() {
+  const supabase = await createClient()
+  
+  const { data: { user } } = await supabase.auth.getUser()
+  
+  if (!user) {
+    redirect('/login')
+  }
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
-const supabase = createBrowserClient(supabaseUrl, supabaseKey);
-
-export default function BlogNew() {
-
-    return(
-        <h1>TODO</h1>
-        // for posting/editing blogs, will integrate with other services later
-    )
-
+  return (
+    <div className="px-4 sm:px-0">
+      <h1 className="text-3xl font-bold text-gray-900 mb-8">Create New Post</h1>
+      <PostForm userId={user.id} />
+    </div>
+  )
 }
