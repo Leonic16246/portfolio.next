@@ -1,6 +1,4 @@
-import Link from 'next/link'
 import Image from 'next/image'
-import logo from '/public/images/CherryTreeGlyph.png'
 
 export default function Home() {
   return (
@@ -16,7 +14,7 @@ export default function Home() {
           </div>
 
           <Image
-            src={logo}
+            src="/images/CherryTreeGlyph.png"
             alt="Logo"
             width={500}
             height={500}

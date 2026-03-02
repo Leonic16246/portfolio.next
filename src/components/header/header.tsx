@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import logo from '/public/images/CherryTreeGlyph.png'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -89,7 +88,7 @@ export default function Header() {
         <div className="flex justify-start w-1/8">
           <Link href="/">
             <Image
-              src={logo}
+              src="/images/CherryTreeGlyph.png"
               alt="Logo"
               width={40}
               height={40}
