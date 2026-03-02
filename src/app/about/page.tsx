@@ -3,96 +3,120 @@
 import React from "react";
 
 export default function About() {
-    const skills = [
-        { name: "Java" },
-        { name: "Python" },
-        { name: "JavaScript" }
-    ];
+  const experience = [
+    {
+      role: "Assembly Technician",
+      company: "PB Tech",
+      period: "Jan 2025 – Present",
+      desc: "Disassembly, diagnosing, erasing, testing, building, and setup/enrollment of OS and devices for customers and clients.",
+    },
+  ];
 
-    const interests = [
-        { icon: "🔒", title: "Penetration Testing", desc: "Security assessment and vulnerability analysis" },
-        { icon: "📱", title: "App Development", desc: "Mobile and web applications" },
-        { icon: "🌐", title: "Web Technologies", desc: "Modern frameworks and full-stack development" },
-        { icon: "🔧", title: "Software Solutions", desc: "Impactful tools and systems" }
-    ];
+  const education = [
+    {
+      degree: "Bachelor of Engineering (Honours)",
+      field: "Software Engineering — Minor in Networks & Cybersecurity",
+      school: "Auckland University of Technology",
+      desc: "OOP, SQL, Data Structures & Algorithms, Software Construction, Linux, Agile Scrum, Cryptography, Full Stack, Software Architecture, CCNA Networking, Machine Learning.",
+    },
+  ];
 
-    return (
-        <div className="min-h-screen transition-all duration-300 bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800">
+  return (
+    <div className="min-h-screen bg-black p-6 space-y-6">
 
-            {/* Hero Section */}
-            <div className="container mx-auto px-6 py-16">
-                <div className="transition-all duration-1000 opacity-100 translate-y-0">
-                    <div className="max-w-4xl mx-auto">
-                        <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight transition-colors duration-300 text-neutral-800 dark:text-white">
-                            About <span className="text-blue-600">Me</span>
-                        </h1>
-                        
-                        <div className="rounded-2xl p-8 md:p-12 shadow-2xl ring-1 ring-neutral-900/5 dark:ring-neutral-700/50 transition-all duration-300 bg-white dark:bg-neutral-800 backdrop-blur-sm">
-                            {/* Content */}
-                            <div className="space-y-6">
-                                <div className="relative">
-                                    <div className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></div>
-                                    <p className="text-lg leading-relaxed pl-6 transition-colors duration-300 text-neutral-700 dark:text-neutral-300">
-                                        I am a <span className="font-semibold text-blue-600">software engineering student</span> seeking an internship/graduate role to further my skills, knowledge, and career.
-                                    </p>
-                                </div>
-                                
-                                <p className="text-lg leading-relaxed transition-colors duration-300 text-neutral-700 dark:text-neutral-300">
-                                    Versed in <span className="font-medium text-neutral-800 dark:text-white">Java, Python, and JavaScript</span>, and collaborative teamwork, I like to produce tangible solutions with immediate feedback.
-                                </p>
-                                
-                                <p className="text-lg leading-relaxed transition-colors duration-300 text-neutral-700 dark:text-neutral-300">
-                                    Being open-minded and interested in many aspects of technology, from <span className="font-medium text-neutral-800 dark:text-white">penetration testing to app development</span>, I love being able to create and iterate on innovative software solutions.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      {/* Hero */}
+      <div className="relative bg-neutral-950 rounded-2xl px-10 py-14 ring-1 ring-white/10 shadow-2xl overflow-hidden">
+        <span className="absolute top-5 left-5 w-5 h-5 border-t border-l border-white/20" />
+        <span className="absolute top-5 right-5 w-5 h-5 border-t border-r border-white/20" />
+        <span className="absolute bottom-5 left-5 w-5 h-5 border-b border-l border-white/20" />
+        <span className="absolute bottom-5 right-5 w-5 h-5 border-b border-r border-white/20" />
+
+        <h1 className="text-7xl font-light tracking-tight text-white/90 leading-none">About</h1>
+        <h2 className="mt-1 text-7xl font-bold tracking-tight text-white/90 leading-none">Me.</h2>
+        <p className="mt-5 font-geist-mono text-sm tracking-[0.2em] uppercase text-white/40">
+          Software Engineering Student — Auckland, NZ
+        </p>
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/60">
+          I&apos;m a software engineering student seeking a full-time development role to gain real-world experience and advance my career. Highly motivated to learn, passionate about problem solving, and keen to keep up with industry tech.
+        </p>
+      </div>
+
+      {/* Skills */}
+      <div className="relative bg-neutral-950 rounded-2xl px-10 py-10 ring-1 ring-white/10 shadow-2xl overflow-hidden">
+        <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/20" />
+        <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/20" />
+        <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/20" />
+        <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/20" />
+
+        <div className="space-y-6">
+          {[
+            { label: 'Languages', skills: ['Java', 'Python', 'C#', 'JavaScript', 'HTML', 'CSS', 'SQL', 'PHP', 'Rust'] },
+            { label: 'Frameworks', skills: ['Next.js', 'React', 'ASP.NET Core', 'Tailwind CSS', 'Symfony'] },
+            { label: 'Technologies', skills: ['Git', 'Linux', 'Agile / Scrum', 'REST APIs', 'Node.js', 'Docker'] },
+            { label: 'Certifications', skills: ['ISC2 Certified in Cybersecurity (CC)'] },
+          ].map((group) => (
+            <div key={group.label} className="flex flex-col gap-2.5">
+              <span className="font-geist-mono text-xs tracking-widest uppercase text-white/90">{group.label}</span>
+              <div className="flex flex-wrap gap-2.5">
+                {group.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-4 py-1.5 rounded-lg border border-white/10 bg-white/5 font-geist-mono text-sm text-white/75 hover:text-white/90 hover:border-white/20 hover:bg-white/10 transition-colors duration-150"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
-
-            {/* Skills Section */}
-            <div className="container mx-auto px-6 py-16">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl font-bold mb-12 text-center transition-colors duration-300 text-neutral-800 dark:text-white">
-                        Technical Skills
-                    </h2>
-                    
-                    <div className="rounded-2xl p-8 shadow-2xl ring-1 ring-neutral-900/5 dark:ring-neutral-700/50 transition-all duration-300 bg-white dark:bg-neutral-800 backdrop-blur-sm">
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-                            {skills.map((skill, index) => (
-                                <div key={index} className="p-4 rounded-lg text-center transition-all duration-300 hover:scale-105 bg-neutral-50 dark:bg-neutral-700 text-neutral-800 dark:text-white hover:bg-neutral-100 dark:hover:bg-blue-600 shadow-md hover:shadow-lg ">
-                                    <span className="font-medium">{skill.name}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Interests Section */}
-            <div className="container mx-auto px-6 py-16">
-                <div className="max-w-6xl mx-auto">
-                    <h2 className="text-3xl font-bold mb-12 text-center transition-colors duration-300 text-neutral-800 dark:text-white">
-                        Areas of Interest
-                    </h2>
-                    
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {interests.map((interest, index) => (
-                            <div key={index} className="rounded-xl p-6 shadow-lg ring-1 ring-neutral-900/5 dark:ring-neutral-700/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group bg-white dark:bg-neutral-800 backdrop-blur-sm">
-                                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                                    {interest.icon}
-                                </div>
-                                <h3 className="font-semibold mb-2 transition-colors duration-300 text-neutral-800 dark:text-white">
-                                    {interest.title}
-                                </h3>
-                                <p className="text-sm transition-colors duration-300 text-neutral-600 dark:text-neutral-400">
-                                    {interest.desc}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
+          ))}
         </div>
-    );
+      </div>
+
+      {/* Experience + Education */}
+      <div className="grid grid-cols-2 gap-6">
+
+        {/* Experience */}
+        <div className="relative bg-neutral-950 rounded-2xl px-8 py-10 ring-1 ring-white/10 shadow-2xl overflow-hidden">
+          <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/20" />
+          <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/20" />
+          <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/20" />
+          <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/20" />
+
+          <span className="font-geist-mono text-[10px] tracking-widest uppercase text-white/25">Experience</span>
+          <div className="mt-6 space-y-6">
+            {experience.map((e) => (
+              <div key={e.role} className="border-l border-white/10 pl-5">
+                <p className="text-white/90 font-semibold">{e.role}</p>
+                <p className="font-geist-mono text-xs tracking-widest uppercase text-white/30 mt-0.5">{e.company} — {e.period}</p>
+                <p className="mt-2 text-sm text-white/50 leading-relaxed">{e.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Education */}
+        <div className="relative bg-neutral-950 rounded-2xl px-8 py-10 ring-1 ring-white/10 shadow-2xl overflow-hidden">
+          <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/20" />
+          <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/20" />
+          <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/20" />
+          <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/20" />
+
+          <span className="font-geist-mono text-[10px] tracking-widest uppercase text-white/25">Education</span>
+          <div className="mt-6 space-y-6">
+            {education.map((e) => (
+              <div key={e.degree} className="border-l border-white/10 pl-5">
+                <p className="text-white/90 font-semibold">{e.degree}</p>
+                <p className="font-geist-mono text-xs tracking-widest uppercase text-white/30 mt-0.5">{e.field}</p>
+                <p className="font-geist-mono text-xs tracking-widest uppercase text-white/20 mt-0.5">{e.school}</p>
+                <p className="mt-2 text-sm text-white/50 leading-relaxed">{e.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  );
 }
