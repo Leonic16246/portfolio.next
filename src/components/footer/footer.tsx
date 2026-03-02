@@ -1,101 +1,72 @@
 import Link from 'next/link';
-
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Footer() {
   return (
-    <footer className="bg-neutral text-neutral-200 p-6 border-t-4 border-neutral-400">
+    <footer className="bg-neutral-950 border-t border-white/10 px-10 py-10">
+      <div className="flex justify-between items-start gap-8">
 
-        <div className="grid grid-cols-3 gap-80">
-
-            <div className="col-span-1 lg:col-span-2">
-                <div className="flex items-center mb-4">
-                    <h3 className="text-2xl font-bold">My Portfolio</h3>
-                </div>
-                <p className="text-neutral-300 mb-4 max-w-md">
-                Building better worlds.
-                </p>
-            <div className="flex space-x-4">
-              <a
-                href="https://github.com/Leonic16246"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white"
-                aria-label="GitHub"
-              >
-                <FontAwesomeIcon icon={faGithub} size="lg" />
-              </a>
-              
-              <a
-                href="https://www.linkedin.com/in/leonic-lee"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white"
-                aria-label="LinkedIn"
-              >
-                <FontAwesomeIcon icon={faLinkedin} size="lg" />
-              </a>
-            </div>
-          </div>
-
-            {/* Quick Links */}
-            <div>
-                <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-                <ul className="space-y-2">
-                    <li>
-                        <Link href="/about" className="text-neutral-300 hover:text-white transition-colors">
-                            About
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/projects" className="text-neutral-300 hover:text-white transition-colors">
-                            Projects
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/contact" className="text-neutral-300 hover:text-white transition-colors">
-                            Contact
-                        </Link>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        {/* Newsletter Signup
-        <div className="mt-8 pt-8 border-t border-neutral-800">
-        <div className="md:flex md:items-center md:justify-between">
-            <div className="mb-4 md:mb-0">
-            <h4 className="text-lg font-semibold mb-2">Stay updated</h4>
-            <p className="text-neutral-300">Subscribe to our newsletter for the latest updates.</p>
-            </div>
-            <div className="flex">
-            <input
-                type="email"
-                placeholder="Enter your email"
-                className="px-4 py-2 bg-neutral-800 text-white border border-neutral-700 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-            <button
-                type="submit"
-                className="px-6 py-2 bg-blue-600 text-white rounded-r-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-neutral-900"
+        {/* Left — branding */}
+        <div className="flex flex-col gap-3">
+          <h3 className="text-white/90 font-bold text-xl tracking-tight">My Portfolio</h3>
+          <p className="text-white/80 text-sm">
+            Building better worlds.
+          </p>
+          <div className="flex items-center gap-4 mt-1 text-white/75">
+            <a
+              href="https://github.com/Leonic16246"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+              aria-label="GitHub"
             >
-                Subscribe
-            </button>
-            </div>
+              <FontAwesomeIcon icon={faGithub} size="lg" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/leonic-lee"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+              aria-label="LinkedIn"
+            >
+              <FontAwesomeIcon icon={faLinkedin} size="lg" />
+            </a>
+          </div>
         </div>
-        </div> */}
 
-        {/* Bottom Bar */}
-        <div className="mt-8 pt-8 border-t border-neutral-800 md:flex md:items-center md:justify-between">
-            <div className="text-neutral-400 text-sm">
-                <p>&copy; {new Date().getFullYear()} COPYRIGHT LOLOLOL</p>
-            </div>
-            <div className="mt-4 md:mt-0">
-                <p className='text-neutral-400 text-sm'>Made with Next.js</p>
-            </div>
+        {/* Right — quick links */}
+        <div className="flex flex-col gap-2">
+          <span className="font-geist-mono text-[10px] tracking-widest uppercase text-white/80 mb-1">
+            Links
+          </span>
+          {[
+            { href: '/about', label: 'About' },
+            { href: '/projects', label: 'Projects' },
+            { href: '/contact', label: 'Contact' },
+          ].map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className="text-white/80 hover:text-white/90 text-sm transition-colors"
+            >
+              {label}
+            </Link>
+          ))}
         </div>
+
+      </div>
+
+      {/* Bottom bar */}
+      <div className="mt-10 pt-6 border-t border-white/[0.07] flex items-center justify-between">
+        <p className="font-geist-mono text-[10px] tracking-widest uppercase text-white/80">
+          &copy; {new Date().getFullYear()} COPYRIGHT LOLOLOL
+        </p>
+        <p className="font-geist-mono text-[10px] tracking-widest uppercase text-white/80">
+          Made with Next.js
+        </p>
+      </div>
 
     </footer>
-  );
-};
-
+  )
+}
