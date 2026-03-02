@@ -91,7 +91,7 @@ export default function Footer() {
                 <p>&copy; {new Date().getFullYear()} COPYRIGHT LOLOLOL</p>
             </div>
             <div className="mt-4 md:mt-0">
-                <p className='text-neutral-400 text-sm'>Made using Next.js, Tailwind CSS, MongoDB, & Supabase</p>
+                <p className='text-neutral-400 text-sm'>Made with Next.js</p>
             </div>
         </div>
 

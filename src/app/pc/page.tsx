@@ -82,7 +82,7 @@ export default function PC() {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-200 mb-2">
-            PC Components Overview
+            PC Builds List
           </h1>
         </div>
 
@@ -112,16 +112,16 @@ export default function PC() {
                     key={item.pc_id} 
                     className="hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors duration-150"
                   >
-                    <td className="px-6 py-4 text-sm font-medium text-neutral-900 dark:text-neutral-100">
+                    <td className="px-6 py-4 text-sm font-semibold text-neutral-900 dark:text-neutral-200">
                       {item.name || '-'}
                     </td>
-                    <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
+                    <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-200">
                       {item.cpu || '-'}
                     </td>
-                    <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
+                    <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-200">
                       {item.gpu || '-'}
                     </td>
-                    <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
+                    <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-200">
                       {item.note || '-'}
                     </td>
                   </tr>
