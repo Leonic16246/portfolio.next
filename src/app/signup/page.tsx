@@ -2,7 +2,6 @@
 
 import { signup } from './actions'
 import Image from 'next/image'
-import logo from '/public/images/CherryTreeGlyph.png'
 import { useState } from 'react'
 
 export const dynamic = 'force-dynamic'
@@ -114,7 +113,7 @@ export default function LoginPage() {
 
           <div className="flex-shrink-0 ml-8">
             <Image
-              src={logo}
+              src="/images/CherryTreeGlyph.png"
               alt="Logo"
               width={400}
               height={400}

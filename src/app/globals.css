@@ -1,16 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-
 @import "tailwindcss";
 
 @theme {
-  --font-roboto: "Roboto", sans-serif; 
-
-
-
+  --font-geist-sans: var(--font-geist-sans);
+  --font-geist-mono: var(--font-geist-mono);
 }
 
 @theme {
@@ -20,4 +12,3 @@
   --color-gold: #D4AF37;
   --color-slate: #1d1d1d;
 }
-

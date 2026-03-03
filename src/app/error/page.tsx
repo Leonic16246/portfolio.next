@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import logo from '/public/images/CherryTreeGlyph.png'
 
 export default function ErrorPage() {
   return (
@@ -27,7 +26,7 @@ export default function ErrorPage() {
 
           <div className="flex-shrink-0 ml-8">
             <Image
-              src={logo}
+              src="/images/CherryTreeGlyph.png"
               alt="Logo"
               width={400}
               height={400}
