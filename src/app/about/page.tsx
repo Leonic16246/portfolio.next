@@ -15,9 +15,9 @@ export default function About() {
   const education = [
     {
       degree: "Bachelor of Engineering (Honours)",
-      field: "Software Engineering — Minor in Networks & Cybersecurity",
+      field: "Software Engineering",
       school: "Auckland University of Technology",
-      desc: "OOP, SQL, Data Structures & Algorithms, Software Construction, Linux, Agile Scrum, Cryptography, Full Stack, Software Architecture, CCNA Networking, Machine Learning.",
+      desc: "OOP, SQL, Data Structures & Algorithms, Software Construction, Linux, Agile Scrum, Cryptography, Full Stack development, Software Architecture, CCNA, Machine Learning.",
     },
   ];
 
@@ -31,10 +31,10 @@ export default function About() {
         <span className="absolute bottom-5 left-5 w-5 h-5 border-b border-l border-white/20" />
         <span className="absolute bottom-5 right-5 w-5 h-5 border-b border-r border-white/20" />
 
-        <h1 className="text-7xl font-light tracking-tight text-white/90 leading-none">About</h1>
+        <h1 className="text-7xl tracking-tight text-white/90 leading-none">About</h1>
         <h2 className="mt-1 text-7xl font-bold tracking-tight text-white/90 leading-none">Me.</h2>
         <p className="mt-5 font-geist-mono text-sm tracking-[0.2em] uppercase text-white/40">
-          Software Engineering Student — Auckland, NZ
+          Software Engineering
         </p>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/60">
           I&apos;m a software engineering student seeking a full-time software development role to gain real-world experience and advance my career. Highly motivated to learn, passionate about problem solving, and able to keep up with industry tech.
@@ -87,7 +87,7 @@ export default function About() {
             {experience.map((e) => (
               <div key={e.role} className="border-l border-white/10 pl-5">
                 <p className="text-white/90 font-semibold">{e.role}</p>
-                <p className="font-geist-mono text-xs tracking-widest uppercase text-white/30 mt-0.5">{e.company} — {e.period}</p>
+                <p className="font-geist-mono text-xs tracking-widest uppercase text-white/40 mt-0.5">{e.company} — {e.period}</p>
                 <p className="mt-2 text-sm text-white/50 leading-relaxed">{e.desc}</p>
               </div>
             ))}
@@ -106,8 +106,8 @@ export default function About() {
             {education.map((e) => (
               <div key={e.degree} className="border-l border-white/10 pl-5">
                 <p className="text-white/90 font-semibold">{e.degree}</p>
-                <p className="font-geist-mono text-xs tracking-widest uppercase text-white/30 mt-0.5">{e.field}</p>
-                <p className="font-geist-mono text-xs tracking-widest uppercase text-white/20 mt-0.5">{e.school}</p>
+                <p className="font-geist-mono text-xs tracking-widest uppercase text-white/40 mt-0.5">{e.field}</p>
+                <p className="font-geist-mono text-xs tracking-widest uppercase text-white/25 mt-0.5">{e.school}</p>
                 <p className="mt-2 text-sm text-white/50 leading-relaxed">{e.desc}</p>
               </div>
             ))}

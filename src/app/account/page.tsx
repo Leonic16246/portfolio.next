@@ -191,10 +191,10 @@ export default function Account() {
                             </button>
                             
                             <button
-                                onClick={() => router.push('/dashboard')}
+                                onClick={() => router.push('/admin')}
                                 className="px-8 py-4 bg-neutral-200 dark:bg-neutral-600 text-neutral-900 dark:text-white font-semibold rounded-xl hover:bg-neutral-300 dark:hover:bg-neutral-500 transform hover:-translate-y-0.5 transition-all duration-200"
                             >
-                                Back to Dashboard
+                                Admin Dashboard
                             </button>
                         </div>
                     </div>

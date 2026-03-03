@@ -75,7 +75,7 @@ export default function Header() {
     <header
       className={`
         fixed top-0 left-0 right-0 z-50
-        bg-neutral-950/80 backdrop-blur-md border-b border-white/10
+        bg-neutral-950/80 backdrop-blur-md border-b border-white/20
         transition-transform duration-300 ease-in-out
         ${isVisible ? 'translate-y-0' : '-translate-y-full'}
       `}
@@ -117,7 +117,7 @@ export default function Header() {
           </nav>
 
           {/* Right icons */}
-          <div className="flex items-center gap-4 text-white/80">
+          <div className="flex items-center gap-4 text-white/80 mr-4">
             <a
               href="https://github.com/Leonic16246"
               target="_blank"

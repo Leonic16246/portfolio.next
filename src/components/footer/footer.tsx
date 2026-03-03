@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Footer() {
   return (
-    <footer className="bg-neutral-950 border-t border-white/10 px-10 py-10">
+    <footer className="bg-neutral-950 border-t border-white/20 px-10 py-10">
       <div className="flex justify-between items-start gap-8">
 
         {/* Left — branding */}

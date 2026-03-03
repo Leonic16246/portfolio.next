@@ -86,7 +86,7 @@ export default function Projects() {
         <span className="absolute bottom-5 left-5 w-5 h-5 border-b border-l border-white/20" />
         <span className="absolute bottom-5 right-5 w-5 h-5 border-b border-r border-white/20" />
 
-        <h1 className="text-7xl font-light tracking-tight text-white/90 leading-none">My</h1>
+        <h1 className="text-7xl tracking-tight text-white/90 leading-none">My</h1>
         <h2 className="mt-1 text-7xl font-bold tracking-tight text-white/90 leading-none">Projects.</h2>
         {/* <p className="mt-5 font-geist-mono text-sm tracking-[0.2em] uppercase text-white/40">
           {projectsData.project.length} project{projectsData.project.length !== 1 ? 's' : ''}
