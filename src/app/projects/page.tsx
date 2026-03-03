@@ -88,28 +88,28 @@ export default function Projects() {
 
         <h1 className="text-7xl font-light tracking-tight text-white/90 leading-none">My</h1>
         <h2 className="mt-1 text-7xl font-bold tracking-tight text-white/90 leading-none">Projects.</h2>
-        <p className="mt-5 font-geist-mono text-sm tracking-[0.2em] uppercase text-white/40">
+        {/* <p className="mt-5 font-geist-mono text-sm tracking-[0.2em] uppercase text-white/40">
           {projectsData.project.length} project{projectsData.project.length !== 1 ? 's' : ''}
-        </p>
+        </p> */}
       </div>
 
       {/* Grid */}
-      <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
         {projectsData.project.map((item: ProjectType, index: number) => (
           <article
             key={index}
             className="relative bg-neutral-950 rounded-2xl ring-1 ring-white/10 shadow-2xl overflow-hidden flex flex-col hover:ring-white/20 transition-all duration-200"
           >
             {/* Corner brackets */}
-            <span className="absolute top-3 left-3 w-3 h-3 border-t border-l border-white/20 z-10" />
-            <span className="absolute top-3 right-3 w-3 h-3 border-t border-r border-white/20 z-10" />
+            {/* <span className="absolute top-3 left-3 w-3 h-3 border-t border-l border-white/20 z-10" />
+            <span className="absolute top-3 right-3 w-3 h-3 border-t border-r border-white/20 z-10" /> */}
 
             {/* Image */}
             <div className="relative h-64 bg-neutral-900 overflow-hidden">
               <img
                 src={item.imgsrc}
                 alt={`${item.title} preview`}
-                className="w-full h-full object-cover opacity-60"
+                className="w-full h-full object-cover opacity-80"
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = 'none';
                 }}

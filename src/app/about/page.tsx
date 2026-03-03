@@ -37,7 +37,7 @@ export default function About() {
           Software Engineering Student — Auckland, NZ
         </p>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/60">
-          I&apos;m a software engineering student seeking a full-time development role to gain real-world experience and advance my career. Highly motivated to learn, passionate about problem solving, and keen to keep up with industry tech.
+          I&apos;m a software engineering student seeking a full-time software development role to gain real-world experience and advance my career. Highly motivated to learn, passionate about problem solving, and able to keep up with industry tech.
         </p>
       </div>
 
