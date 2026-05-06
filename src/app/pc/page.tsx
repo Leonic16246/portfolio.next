@@ -8,7 +8,7 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
 const supabase = createBrowserClient(supabaseUrl, supabaseKey);
 
 type PCItem = {
-  pc_id: string;
+  pcId: string;
   name: string;
   cpu: string;
   gpu: string;
@@ -22,24 +22,23 @@ export default function PC() {
 
   useEffect(() => { fetchPCData(); }, []);
 
-  const fetchPCData = async () => {
-    try {
-      setLoading(true);
-      const { data: pcData, error: supabaseError } = await supabase
-        .from('pc')
-        .select('pc_id, name, cpu, gpu, note')
-        .order('pc_id', { ascending: true });
+    const fetchPCData = async () => {
+      try {
+        setLoading(true);
 
-      if (supabaseError) throw new Error(`Supabase error: ${supabaseError.message}`);
-      setData(pcData || []);
-      setError(null);
-    } catch (err) {
-      console.error('Error loading PC data:', err);
-      setError('Failed to load PC data');
-    } finally {
-      setLoading(false);
-    }
-  };
+        const res = await fetch(`${process.env.NEXT_PUBLIC_DOTNET_API_URL}/api/pc`);
+        if (!res.ok) throw new Error('Failed to fetch');
+
+        const data = await res.json();
+        setData(data);
+        setError(null);
+      } catch (err) {
+        console.error('Error loading PC data:', err);
+        setError('Failed to load PC data');
+      } finally {
+        setLoading(false);
+      }
+    };
 
   if (loading) {
     return (
@@ -103,7 +102,7 @@ export default function PC() {
               <tbody>
                 {data.map((item) => (
                   <tr
-                    key={item.pc_id}
+                    key={item.pcId}
                     className="border-b border-white/[0.05] hover:bg-white/[0.02] transition-colors duration-150 last:border-b-0"
                   >
                     <td className="px-8 py-4 text-sm font-medium text-white/80">{item.name || '—'}</td>
@@ -119,7 +118,7 @@ export default function PC() {
           {/* Mobile cards */}
           <div className="lg:hidden divide-y divide-white/[0.04]">
             {data.map((item) => (
-              <div key={item.pc_id} className="px-6 py-6 space-y-3">
+              <div key={item.pcId} className="px-6 py-6 space-y-3">
                 <p className="text-white/80 font-medium">{item.name || 'Unnamed'}</p>
                 <div className="space-y-1.5">
                   {[
