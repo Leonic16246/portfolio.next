@@ -1,68 +1,32 @@
-"use client";
-
-import { useEffect, useState } from 'react';
-import { createBrowserClient } from '@supabase/ssr';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
-const supabase = createBrowserClient(supabaseUrl, supabaseKey);
-
 type PCItem = {
-  pcId: string;
+  pcId: number;
   name: string;
   cpu: string;
   gpu: string;
   note: string;
 };
 
-export default function PC() {
-  const [data, setData] = useState<PCItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => { fetchPCData(); }, []);
-
-    const fetchPCData = async () => {
-      try {
-        setLoading(true);
-
-        const res = await fetch(`${process.env.NEXT_PUBLIC_DOTNET_API_URL}/api/pc`);
-        if (!res.ok) throw new Error('Failed to fetch');
-
-        const data = await res.json();
-        setData(data);
-        setError(null);
-      } catch (err) {
-        console.error('Error loading PC data:', err);
-        setError('Failed to load PC data');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-6 h-6 border-2 border-white/20 border-t-white/80 rounded-full animate-spin" />
-          <p className="font-geist-mono text-xs tracking-widest uppercase text-white/30">Loading...</p>
-        </div>
-      </div>
-    );
+async function getPCData(): Promise<PCItem[] | null> {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_DOTNET_API_URL}/api/pc`, {
+      next: { revalidate: 10 }
+    });
+    if (!res.ok) return null;
+    return res.json();
+  } catch {
+    return null;
   }
+}
 
-  if (error) {
+export default async function PC() {
+  const data = await getPCData();
+
+  if (data === null) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <p className="font-geist-mono text-xs tracking-widest uppercase text-white/30">{error}</p>
-          <button
-            onClick={fetchPCData}
-            className="rounded-full border border-white/15 px-6 py-2.5 text-sm font-light text-white/80 transition hover:bg-white/5 hover:border-white/25 active:scale-95"
-          >
-            Retry
-          </button>
-        </div>
+        <p className="font-geist-mono text-xs tracking-widest uppercase text-white/30">
+          Failed to load PC data
+        </p>
       </div>
     );
   }
