@@ -1,13 +1,16 @@
 # Portfolio Website
 
 ## Introduction
-my portfolio website built using Next.js and Tailwind, using Supabase and MongoDB for authentication and databases. Deployed using Netlify.
+my portfolio website built using Next.js in TypeScript and Tailwind CSS, hosted on Netlify. Using Supabase for auth/PostgreSQL and MongoDB for NoSQL, served through the .NET API backend hosted on Azure.
+
+.NET API backend repository: https://github.com/Leonic16246/portfolio.net
 
 ## Website
-https://leonic.dev or https://leonic-portfolio.netlify.app/
+https://leonic.dev or https://leonic-portfolio.netlify.app
 
 ## Setup
 Install Node.js
+
 Clone the repository
 
 Install dependencies in the root folder:
