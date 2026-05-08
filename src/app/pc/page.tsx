@@ -11,7 +11,7 @@ type PCItem = {
 
 async function getPCData(search?: string): Promise<PCItem[] | null> {
   try {
-    const url = new URL(`${process.env.NEXT_PUBLIC_DOTNET_API_URL}/api/pc`);
+    const url = new URL(`${process.env.DOTNET_API_URL}/api/pc`);
     if (search) url.searchParams.set('search', search);
 
     const res = await fetch(url.toString(), {
@@ -50,8 +50,8 @@ function SortLink({
     >
       {label}
       <span className="flex flex-col leading-none text-[8px]">
-        <span className={isAsc ? 'text-white/80' : 'text-white/20'}>▲</span>
-        <span className={isDesc ? 'text-white/80' : 'text-white/20'}>▼</span>
+        <span className={isAsc ? 'text-white/80' : 'text-white/40'}>▲</span>
+        <span className={isDesc ? 'text-white/80' : 'text-white/40'}>▼</span>
       </span>
     </Link>
   );
