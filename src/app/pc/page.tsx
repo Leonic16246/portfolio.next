@@ -50,8 +50,8 @@ function SortLink({
     >
       {label}
       <span className="flex flex-col leading-none text-[8px]">
-        <span className={isAsc ? 'text-white/80' : 'text-white/20'}>▲</span>
-        <span className={isDesc ? 'text-white/80' : 'text-white/20'}>▼</span>
+        <span className={isAsc ? 'text-white/80' : 'text-white/40'}>▲</span>
+        <span className={isDesc ? 'text-white/80' : 'text-white/40'}>▼</span>
       </span>
     </Link>
   );
