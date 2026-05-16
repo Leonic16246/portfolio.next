@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Footer() {
   return (
-    <footer className="bg-neutral-950 border-t border-white/20 px-10 py-10">
+    <footer className="bg-neutral border-t border-white/25 px-[2rem] py-[1rem]">
       <div className="flex justify-between items-start gap-8">
 
         {/* Left — branding */}
@@ -63,7 +63,7 @@ export default function Footer() {
           &copy; {new Date().getFullYear()} COPYRIGHT LOLOLOL
         </p>
         <p className="font-geist-mono text-[10px] tracking-widest uppercase text-white/80">
-          Made with Next.js
+          Made in New Zealand
         </p>
       </div>
 

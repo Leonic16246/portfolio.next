@@ -75,12 +75,12 @@ export default function Header() {
     <header
       className={`
         fixed top-0 left-0 right-0 z-50
-        bg-neutral-950/80 backdrop-blur-md border-b border-white/20
+        bg-neutral backdrop-blur-sm border-b border-white/25
         transition-transform duration-300 ease-in-out
         ${isVisible ? 'translate-y-0' : '-translate-y-full'}
       `}
     >
-      <div className="relative flex items-center justify-between px-2 py-2">
+      <div className="relative flex items-center justify-between px-[1rem] py-[0.5rem]">
 
         {/* Logo */}
         <Link href="/" className="shrink-0">
