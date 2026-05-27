@@ -80,7 +80,7 @@ export default function Header() {
         ${isVisible ? 'translate-y-0' : '-translate-y-full'}
       `}
     >
-      <div className="relative flex items-center justify-between px-[1rem] py-[0.5rem]">
+      <div className="relative flex items-center justify-between px-[4rem] py-[0.5rem]">
 
         {/* Logo */}
         <Link href="/" className="shrink-0">
