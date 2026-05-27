@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
-import PostForm from '@/components/admin/postform'
+import PostForm from '@/components/admin/blog/postform'
 
 export default async function NewPostPage() {
   const supabase = await createClient()
