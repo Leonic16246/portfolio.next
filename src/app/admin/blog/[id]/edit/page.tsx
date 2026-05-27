@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { notFound, redirect } from 'next/navigation'
-import PostForm from '@/components/admin/postform'
+import PostForm from '@/components/admin/blog/postform'
 
 interface PageProps {
   params: Promise<{ id: string }>

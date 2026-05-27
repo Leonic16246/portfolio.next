@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body className={`${GeistSans.className} bg-neutral-800 dark:bg-black text-neutral-900 dark:text-neutral-200 pt-16 antialiased`}>
+      <body className={`${GeistSans.className} bg-neutral dark:bg-black text-neutral dark:text-white pt-16 antialiased`}>
         <Header />
           <main className="min-h-screen">{children}</main> 
         <Footer />

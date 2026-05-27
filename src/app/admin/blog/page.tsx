@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-import DeleteButton from '@/components/admin/deletebutton'
+import DeleteButton from '@/components/admin/blog/deletebutton'
 
 export const dynamic = 'force-dynamic'
 
