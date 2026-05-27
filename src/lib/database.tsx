@@ -1,6 +1,4 @@
 import mongoose, { Schema } from 'mongoose';
-import { cpuUsage } from 'process';
-import { MdOtherHouses } from 'react-icons/md';
 
 const mongoUri = process.env.MONGODB_URI;
 if (!mongoUri) {

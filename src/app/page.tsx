@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import logo from '../../public/images/CherryTreeGlyph.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 
 const projects = [
   {
@@ -24,79 +26,98 @@ const projects = [
     skills: ['Python', 'Raspberry Pi', 'YOLOv7', 'EasyOCR', 'OpenCV', 'SQLite', 'PHP', 'Apache'],
     source: 'https://github.com/Leonic16246/license-plate-reader',
   },
+  {
+    title: 'Quarter',
+    imgsrc: 'images/quarter.png',
+    desc: 'An AI powered and Web3 proof of concept demo allowing your agentic AI to facilitate shopping using cryptocurrency online. Built with Next.js and integrating various third party services such as wagmi v2, WalletConnect, ENS, and MetaMask; Successfully securing the Fire Eyes Sponsor Prize Track at Web3UOA’s 2026 Hackathon.',
+    skills: [],
+    source: 'https://github.com/Leonic16246/Quarter',
+  },
 ]
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-black p-8">
-      <div className="relative bg-neutral p-24">
+      <div className="relative bg-neutral p-8">
 
-        <span className="absolute top-5 left-5 w-5 h-5 border-t-2 border-l-2 border-white/50" />
-        <span className="absolute top-5 right-5 w-5 h-5 border-t-2 border-r-2 border-white/50" />
-        <span className="absolute bottom-5 left-5 w-5 h-5 border-b-2 border-l-2 border-white/50" />
-        <span className="absolute bottom-5 right-5 w-5 h-5 border-b-2 border-r-2 border-white/50" />
 
-        <div className="flex flex-col items-center gap-8 max-w-7xl mx-auto">
+        <div className="flex flex-col items-center gap-8 mx-auto">
 
           {/* Hero card */}
-          <div className="relative w-full rounded-lg border-2 border-white/25 transition hover:border-white/50 px-10 py-12">
-            <span className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-white/50" />
-            <span className="absolute top-4 right-4 w-4 h-4 border-t-2 border-r-2 border-white/50" />
-            <span className="absolute bottom-4 left-4 w-4 h-4 border-b-2 border-l-2 border-white/50" />
-            <span className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-white/50" />
+          <div className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12">
+            <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
+            <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
+            <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
+            <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
 
-            <h1 className="text-7xl font-light tracking-tight text-white leading-none">
-              Hi, I&apos;m
-            </h1>
-            <h2 className="mt-1 text-7xl font-bold tracking-tight text-white leading-none">
-              Leon Lee
-            </h2>
+            <div className="flex items-center justify-between gap-8">
+              {/* Left: text content */}
+              <div className="flex flex-col">
+                <h1 className="text-7xl font-light tracking-tight text-white/80 leading-none">
+                  Hi, I&apos;m
+                </h1>
+                <h2 className="mt-1 text-7xl font-bold tracking-tight text-white/90 leading-none">
+                  Leon Lee
+                </h2>
+                <p className="mt-5 font-geist-mono text-sm tracking-[0.2em] uppercase text-white/70">
+                  Software Engineering Student
+                </p>
+                <p className="mt-4 text-base leading-relaxed text-white/80">
+                  Welcome to my portfolio.
+                </p>
+                <div className="mt-8 flex items-center gap-4">
+                  <Link
+                    href="/files/Leon-Lee-CV.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full border-2 bg-white/90 px-6 py-2.5 text-sm text-black transition hover:bg-white/75 active:scale-95"
+                  >
+                    View CV
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="rounded-full border-2 border-white/25 px-6 py-2.5 text-sm text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
+                  >
+                    Get in touch
+                  </Link>
+                </div>
+              </div>
 
-            <p className="mt-5 font-geist-mono text-sm tracking-[0.2em] uppercase text-white/75">
-              Software Engineering Student
-            </p>
-
-            <p className="mt-4 text-base leading-relaxed text-white/80">
-              Welcome to my portfolio.
-            </p>
-
-            <div className="mt-8 flex items-center gap-4">
-              <Link
-                href="/files/Leon-Lee-CV.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full border-2 bg-white/90 px-6 py-2.5 text-sm text-black transition hover:bg-white/75 active:scale-95"
-              >
-                View CV
-              </Link>
-              <Link
-                href="/contact"
-                className="rounded-full border-2 border-white/25 px-6 py-2.5 text-sm text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
-              >
-                Get in touch
-              </Link>
+              {/* Right: logo */}
+              <div className="">
+                <Image
+                  src={logo}
+                  alt="glyph"
+                  width={256}
+                  height={256}
+                  className="mr-12 opacity-90 hover:opacity-100 transition"
+                />
+              </div>
             </div>
           </div>
 
           {/* About Me card */}
-          <div className="relative w-full rounded-lg border-2 border-white/25 transition hover:border-white/50 px-10 py-12">
-            <span className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-white/50" />
-            <span className="absolute top-4 right-4 w-4 h-4 border-t-2 border-r-2 border-white/50" />
-            <span className="absolute bottom-4 left-4 w-4 h-4 border-b-2 border-l-2 border-white/50" />
-            <span className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-white/50" />
+          <div className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12">
+            <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
+            <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
+            <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
+            <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
 
-            <h2 className="text-5xl font-bold tracking-tight text-white">About Me</h2>
+            <Link href="/about">
+              <h2 className="text-5xl font-bold tracking-tight text-white/90">About Me</h2>
+            </Link>
+
             <p className="mt-5 text-lg leading-relaxed text-white/90">
               I am a software engineering student seeking a full-time software development role to gain real-world experience and advance my career. Highly motivated to learn, passionate about problem solving, and able to keep up with industry tech. I enjoy going through the software development lifecycle on my own projects. Meeting user needs is always satisfying to me.
             </p>
           </div>
 
           {/* Skill cards */}
-          <div className="relative w-full rounded-lg border-2 border-white/25 transition hover:border-white/50 px-10 py-12 space-y-8">
-            <span className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-white/50" />
-            <span className="absolute top-4 right-4 w-4 h-4 border-t-2 border-r-2 border-white/50" />
-            <span className="absolute bottom-4 left-4 w-4 h-4 border-b-2 border-l-2 border-white/50" />
-            <span className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-white/50" />
+          <div className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12">
+            <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
+            <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
+            <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
+            <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
 
             {[
               { label: 'Languages', skills: ['Java', 'Python', 'C#', 'JavaScript', 'HTML', 'CSS', 'SQL', 'PHP', 'Rust'] },
@@ -104,13 +125,13 @@ export default function Home() {
               { label: 'Technologies', skills: ['Git', 'Linux', 'Agile / Scrum', 'REST APIs', 'Node.js', 'Docker'] },
               { label: 'Certifications', skills: ['ISC2 Certified in Cybersecurity (CC)'] }
             ].map((group) => (
-              <div key={group.label} className="flex flex-col gap-2.5">
+              <div key={group.label} className="flex flex-col py-3 gap-2">
                 <span className="font-geist-mono text-xs tracking-widest uppercase text-white/90">{group.label}</span>
-                <div className="flex flex-wrap gap-2.5">
+                <div className="flex flex-wrap gap-3">
                   {group.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-4 py-1.5 rounded-xl border-2 border-white/25 bg-white/5 font-geist-mono text-sm text-white/80 hover:text-white/90 hover:border-white/50 hover:bg-white/10 transition-colors duration-150"
+                      className="px-4 py-2 rounded-xl border border-white/10 font-geist-mono text-sm text-white/80 hover:text-white/90 hover:border-white/20 transition-colors duration-150"
                     >
                       {skill}
                     </span>
@@ -121,23 +142,25 @@ export default function Home() {
           </div>
 
           {/* Project cards */}
-          <div className="relative w-full rounded-lg border-2 border-white/25 transition hover:border-white/50 px-10 py-12">
-            <span className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-white/50" />
-            <span className="absolute top-4 right-4 w-4 h-4 border-t-2 border-r-2 border-white/50" />
-            <span className="absolute bottom-4 left-4 w-4 h-4 border-b-2 border-l-2 border-white/50" />
-            <span className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-white/50" />
+          <div className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12">
+            <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
+            <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
+            <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
+            <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
 
-            <h2 className="text-5xl font-bold tracking-tight text-white">Projects</h2>
+            <Link href="/projects">
+              <h2 className="text-5xl font-bold tracking-tight text-white/90">Projects</h2>
+            </Link>
 
-            <div className="mt-8 grid grid-cols-1 gap-6">
+            <div className="mt-8 grid grid-cols-2 gap-6">
               {projects.map((project, i) => (
                 <div
                   key={i}
-                  className="rounded-lg border-2 border-white/25 overflow-hidden transition hover:border-white/50 duration-200 flex flex-col"
+                  className="rounded-lg border border-white/10 bg-neutral-950 overflow-hidden transition hover:border-white/20 duration-200 flex flex-col"
                 >
 
                   {/* Image */}
-                  <div className="relative h-50 bg-neutral-900 overflow-hidden">
+                  <div className="relative h-96 bg-neutral-900 overflow-hidden">
                     <img
                       src={project.imgsrc}
                       alt={`${project.title} preview`}
@@ -153,7 +176,7 @@ export default function Home() {
                       {project.skills.map((tech, j) => (
                         <span
                           key={j}
-                          className="px-3 py-1 rounded-lg border-2 border-white/25 bg-white/5 transition hover:border-white/50 hover:text-white/90 font-geist-mono text-xs text-white/80"
+                          className="px-4 py-2 rounded-xl border border-white/10 transition hover:border-white/20 hover:text-white/90 font-geist-mono text-sm text-white/80"
                         >
                           {tech}
                         </span>
@@ -165,9 +188,9 @@ export default function Home() {
                           href={project.source}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="rounded-xl border-2 border-white/25 px-5 py-2 text-xs font-geist-mono tracking-widest uppercase text-white/80 transition hover:bg-white/5 hover:border-white/50 hover:text-white/90 active:scale-95 inline-block"
+                          className="rounded-xl border border-white/10 px-5 py-3 text-sm font-geist-mono tracking-widest uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90 active:scale-95 inline-flex items-center gap-2"
                         >
-                          Source Code &rarr;
+                          Source Code <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                         </a>
                       </div>
                     )}
@@ -179,9 +202,9 @@ export default function Home() {
             <div className="mt-8">
               <Link
                 href="/projects"
-                className="rounded-xl border-2 border-white/25 px-6 py-2.5 text-sm text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm font-geist-mono uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90"
               >
-                View all projects &rarr;
+                View all projects <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
               </Link>
             </div>
           </div>
