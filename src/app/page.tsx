@@ -31,16 +31,15 @@ export default function Home() {
     <div className="min-h-screen bg-black p-8">
       <div className="relative bg-neutral p-24">
 
-        {/* Corner bracket decorations */}
         <span className="absolute top-5 left-5 w-5 h-5 border-t-2 border-l-2 border-white/50" />
         <span className="absolute top-5 right-5 w-5 h-5 border-t-2 border-r-2 border-white/50" />
         <span className="absolute bottom-5 left-5 w-5 h-5 border-b-2 border-l-2 border-white/50" />
         <span className="absolute bottom-5 right-5 w-5 h-5 border-b-2 border-r-2 border-white/50" />
 
-        <div className="flex flex-col items-center gap-8 max-w-5xl mx-auto">
+        <div className="flex flex-col items-center gap-8 max-w-7xl mx-auto">
 
           {/* Hero card */}
-          <div className="relative w-full rounded-xl border border-white/50 px-10 py-12">
+          <div className="relative w-full rounded-lg border-2 border-white/25 transition hover:border-white/50 px-10 py-12">
             <span className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-white/50" />
             <span className="absolute top-4 right-4 w-4 h-4 border-t-2 border-r-2 border-white/50" />
             <span className="absolute bottom-4 left-4 w-4 h-4 border-b-2 border-l-2 border-white/50" />
@@ -53,7 +52,7 @@ export default function Home() {
               Leon Lee
             </h2>
 
-            <p className="mt-5 font-geist-mono text-sm tracking-[0.2em] uppercase text-white/60">
+            <p className="mt-5 font-geist-mono text-sm tracking-[0.2em] uppercase text-white/75">
               Software Engineering Student
             </p>
 
@@ -66,13 +65,13 @@ export default function Home() {
                 href="/files/Leon-Lee-CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full bg-white/90 px-6 py-2.5 text-sm text-black transition hover:bg-white/75 active:scale-95"
+                className="rounded-full border-2 bg-white/90 px-6 py-2.5 text-sm text-black transition hover:bg-white/75 active:scale-95"
               >
                 View CV
               </Link>
               <Link
                 href="/contact"
-                className="rounded-full border-2 border-white/50 px-6 py-2.5 text-sm text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
+                className="rounded-full border-2 border-white/25 px-6 py-2.5 text-sm text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
               >
                 Get in touch
               </Link>
@@ -80,7 +79,7 @@ export default function Home() {
           </div>
 
           {/* About Me card */}
-          <div className="relative w-full rounded-xl border border-white/50 px-10 py-12">
+          <div className="relative w-full rounded-lg border-2 border-white/25 transition hover:border-white/50 px-10 py-12">
             <span className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-white/50" />
             <span className="absolute top-4 right-4 w-4 h-4 border-t-2 border-r-2 border-white/50" />
             <span className="absolute bottom-4 left-4 w-4 h-4 border-b-2 border-l-2 border-white/50" />
@@ -92,8 +91,8 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Skills card */}
-          <div className="relative w-full rounded-xl border border-white/50 px-10 py-12 space-y-8">
+          {/* Skill cards */}
+          <div className="relative w-full rounded-lg border-2 border-white/25 transition hover:border-white/50 px-10 py-12 space-y-8">
             <span className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-white/50" />
             <span className="absolute top-4 right-4 w-4 h-4 border-t-2 border-r-2 border-white/50" />
             <span className="absolute bottom-4 left-4 w-4 h-4 border-b-2 border-l-2 border-white/50" />
@@ -111,7 +110,7 @@ export default function Home() {
                   {group.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-4 py-1.5 rounded-lg border border-white/50 bg-white/5 font-geist-mono text-sm text-white/80 hover:text-white/90 hover:border-white/50 hover:bg-white/10 transition-colors duration-150"
+                      className="px-4 py-1.5 rounded-xl border-2 border-white/25 bg-white/5 font-geist-mono text-sm text-white/80 hover:text-white/90 hover:border-white/50 hover:bg-white/10 transition-colors duration-150"
                     >
                       {skill}
                     </span>
@@ -121,8 +120,8 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Projects card */}
-          <div className="relative w-full rounded-xl border border-white/50 px-10 py-12">
+          {/* Project cards */}
+          <div className="relative w-full rounded-lg border-2 border-white/25 transition hover:border-white/50 px-10 py-12">
             <span className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-white/50" />
             <span className="absolute top-4 right-4 w-4 h-4 border-t-2 border-r-2 border-white/50" />
             <span className="absolute bottom-4 left-4 w-4 h-4 border-b-2 border-l-2 border-white/50" />
@@ -134,10 +133,10 @@ export default function Home() {
               {projects.map((project, i) => (
                 <div
                   key={i}
-                  className="rounded-xl border border-white/50 overflow-hidden hover:border-white/50 transition-all duration-200 flex flex-col"
+                  className="rounded-lg border-2 border-white/25 overflow-hidden transition hover:border-white/50 duration-200 flex flex-col"
                 >
 
-                  {/* Screenshot */}
+                  {/* Image */}
                   <div className="relative h-50 bg-neutral-900 overflow-hidden">
                     <img
                       src={project.imgsrc}
@@ -154,7 +153,7 @@ export default function Home() {
                       {project.skills.map((tech, j) => (
                         <span
                           key={j}
-                          className="px-3 py-1 rounded-full border-2 border-white/50 bg-white/5 font-geist-mono text-xs text-white/80"
+                          className="px-3 py-1 rounded-lg border-2 border-white/25 bg-white/5 transition hover:border-white/50 hover:text-white/90 font-geist-mono text-xs text-white/80"
                         >
                           {tech}
                         </span>
@@ -166,7 +165,7 @@ export default function Home() {
                           href={project.source}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="rounded-full border-2 border-white/50 px-5 py-2 text-xs font-geist-mono tracking-widest uppercase text-white/80 transition hover:bg-white/5 hover:border-white/50 hover:text-white/90 active:scale-95 inline-block"
+                          className="rounded-xl border-2 border-white/25 px-5 py-2 text-xs font-geist-mono tracking-widest uppercase text-white/80 transition hover:bg-white/5 hover:border-white/50 hover:text-white/90 active:scale-95 inline-block"
                         >
                           Source Code &rarr;
                         </a>
@@ -180,7 +179,7 @@ export default function Home() {
             <div className="mt-8">
               <Link
                 href="/projects"
-                className="rounded-full border-2 border-white/50 px-6 py-2.5 text-sm text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
+                className="rounded-xl border-2 border-white/25 px-6 py-2.5 text-sm text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
               >
                 View all projects &rarr;
               </Link>
