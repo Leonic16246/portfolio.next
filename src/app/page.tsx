@@ -28,7 +28,7 @@ const projects = [
   },
   {
     title: 'Quarter',
-    imgsrc: 'images/quarter.svg',
+    imgsrc: 'images/Quarter.svg',
     desc: 'An AI powered and Web3 proof of concept demo allowing your agentic AI to facilitate shopping using cryptocurrency online. Built with Next.js and integrating various third party services such as wagmi v2, WalletConnect, ENS, and MetaMask; Successfully securing the Fire Eyes Sponsor Prize Track at Web3UOA’s 2026 Hackathon.',
     skills: [],
     source: 'https://github.com/Leonic16246/Quarter',
@@ -50,33 +50,33 @@ export default function Home() {
             <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
             <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
 
-            <div className="flex items-center justify-between gap-8">
+            <div className="flex items-center justify-between gap-16">
               {/* Left: text content */}
               <div className="flex flex-col">
-                <h1 className="text-7xl font-light tracking-tight text-white/80 leading-none">
+                <h1 className="text-8xl font-light tracking-tight text-white/80 leading-none">
                   Hi, I&apos;m
                 </h1>
-                <h2 className="mt-1 text-7xl font-bold tracking-tight text-white/90 leading-none">
+                <h1 className="text-8xl font-bold tracking-tight text-white/90 leading-none">
                   Leon Lee
-                </h2>
-                <p className="mt-5 font-geist-mono text-sm tracking-[0.2em] uppercase text-white/70">
+                </h1>
+                <h2 className="mt-4 font-geist-mono text-lg tracking-[0.2em] uppercase text-white/70">
                   Software Engineering Student
-                </p>
-                <p className="mt-4 text-base leading-relaxed text-white/80">
+                </h2>
+                <h3 className="mt-4 text-xl text-white/80 leading-relaxed">
                   Welcome to my portfolio.
-                </p>
+                </h3>
                 <div className="mt-8 flex items-center gap-4">
                   <Link
                     href="/files/Leon-Lee-CV.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-full border-2 bg-white/90 px-6 py-2.5 text-sm text-black transition hover:bg-white/75 active:scale-95"
+                    className="rounded-full border-2 bg-white/90 px-6 py-2.5 text-md text-black transition hover:bg-white/75 active:scale-95"
                   >
                     View CV
                   </Link>
                   <Link
                     href="/contact"
-                    className="rounded-full border-2 border-white/25 px-6 py-2.5 text-sm text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
+                    className="rounded-full border-2 border-white/25 px-6 py-2.5 text-md text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
                   >
                     Get in touch
                   </Link>
@@ -88,8 +88,8 @@ export default function Home() {
                 <Image
                   src={logo}
                   alt="glyph"
-                  width={320}
-                  height={320}
+                  width={384}
+                  height={384}
                   className="mr-12 opacity-90 hover:opacity-100 transition"
                 />
               </div>
@@ -104,10 +104,10 @@ export default function Home() {
             <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
 
             <Link href="/about">
-              <h2 className="text-5xl font-bold tracking-tight text-white/90">About Me</h2>
+              <h2 className="text-6xl font-bold tracking-tight text-white/90">About Me</h2>
             </Link>
 
-            <p className="mt-5 text-lg leading-relaxed text-white/80">
+            <p className="mt-4 text-xl leading-relaxed text-white/80">
               I am a software engineering student seeking a full-time software development role to gain real-world experience and advance my career. Highly motivated to learn, passionate about problem solving, and able to keep up with industry tech. I enjoy going through the software development lifecycle on my own projects. Meeting user needs is always satisfying to me.
             </p>
           </div>
@@ -119,19 +119,20 @@ export default function Home() {
             <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
             <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
 
+            <h2 className="text-6xl font-bold tracking-tight text-white/90">Skills</h2>
             {[
               { label: 'Languages', skills: ['Java', 'Python', 'C#', 'JavaScript', 'HTML', 'CSS', 'SQL', 'PHP', 'Rust'] },
               { label: 'Frameworks', skills: ['Next.js', 'React', 'ASP.NET Core', 'Tailwind CSS', 'Symfony'] },
               { label: 'Technologies', skills: ['Git', 'Linux', 'Agile / Scrum', 'REST APIs', 'Node.js', 'Docker'] },
               { label: 'Certifications', skills: ['ISC2 Certified in Cybersecurity (CC)'] }
             ].map((group) => (
-              <div key={group.label} className="flex flex-col py-3 gap-2">
-                <span className="font-geist-mono text-xs tracking-widest uppercase text-white/90">{group.label}</span>
-                <div className="flex flex-wrap gap-3">
+              <div key={group.label} className="flex flex-col gap-2">
+                <span className="font-geist-mono font-semibold text-lg tracking-widest uppercase text-white/80 mt-4">{group.label}</span>
+                <div className="flex flex-wrap gap-4">
                   {group.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-4 py-2 rounded-xl border border-white/10 font-geist-mono text-sm text-white/80 hover:text-white/90 hover:border-white/20 transition-colors duration-150"
+                      className="px-4 py-2 rounded-xl border border-white/10 font-geist-mono font-semibold text-md text-white/80 hover:text-white/90 hover:border-white/20 transition mt-2"
                     >
                       {skill}
                     </span>
@@ -149,7 +150,7 @@ export default function Home() {
             <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
 
             <Link href="/projects">
-              <h2 className="text-5xl font-bold tracking-tight text-white/90">Projects</h2>
+              <h2 className="text-6xl font-bold tracking-tight text-white/90">Projects</h2>
             </Link>
 
             <div className="mt-8 grid grid-cols-2 gap-6">
@@ -170,13 +171,13 @@ export default function Home() {
 
                   {/* Content */}
                   <div className="flex flex-col flex-1 px-5 py-5 gap-3">
-                    <h3 className="text-base font-semibold text-white/90">{project.title}</h3>
-                    <p className="text-sm text-white/80 leading-relaxed flex-1">{project.desc}</p>
+                    <h3 className="text-4xl font-semibold text-white/90">{project.title}</h3>
+                    <p className="text-lg text-white/80 leading-relaxed tracking-wide flex-1">{project.desc}</p>
                     <div className="flex flex-wrap gap-2 pt-2">
                       {project.skills.map((tech, j) => (
                         <span
                           key={j}
-                          className="px-4 py-2 rounded-xl border border-white/10 transition hover:border-white/20 hover:text-white/90 font-geist-mono text-sm text-white/80"
+                          className="px-4 py-2 rounded-xl border border-white/10 transition hover:border-white/20 hover:text-white/90 font-geist-mono font-semibold text-md text-white/80"
                         >
                           {tech}
                         </span>
@@ -188,7 +189,7 @@ export default function Home() {
                           href={project.source}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="rounded-xl border border-white/10 px-5 py-3 text-sm font-geist-mono tracking-widest uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90 active:scale-95 inline-flex items-center gap-2"
+                          className="rounded-xl border border-white/10 px-5 py-3 text-md font-geist-mono font-semibold tracking-wide uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90 inline-flex items-center gap-2"
                         >
                           Source Code <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                         </a>
@@ -202,7 +203,7 @@ export default function Home() {
             <div className="mt-8">
               <Link
                 href="/projects"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm font-geist-mono uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-md font-semibold font-geist-mono tracking-wider uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90"
               >
                 View all projects <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
               </Link>
