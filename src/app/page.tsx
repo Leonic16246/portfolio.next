@@ -28,7 +28,7 @@ const projects = [
   },
   {
     title: 'Quarter',
-    imgsrc: 'images/quarter.png',
+    imgsrc: 'images/quarter.svg',
     desc: 'An AI powered and Web3 proof of concept demo allowing your agentic AI to facilitate shopping using cryptocurrency online. Built with Next.js and integrating various third party services such as wagmi v2, WalletConnect, ENS, and MetaMask; Successfully securing the Fire Eyes Sponsor Prize Track at Web3UOA’s 2026 Hackathon.',
     skills: [],
     source: 'https://github.com/Leonic16246/Quarter',
@@ -88,8 +88,8 @@ export default function Home() {
                 <Image
                   src={logo}
                   alt="glyph"
-                  width={256}
-                  height={256}
+                  width={320}
+                  height={320}
                   className="mr-12 opacity-90 hover:opacity-100 transition"
                 />
               </div>
@@ -107,7 +107,7 @@ export default function Home() {
               <h2 className="text-5xl font-bold tracking-tight text-white/90">About Me</h2>
             </Link>
 
-            <p className="mt-5 text-lg leading-relaxed text-white/90">
+            <p className="mt-5 text-lg leading-relaxed text-white/80">
               I am a software engineering student seeking a full-time software development role to gain real-world experience and advance my career. Highly motivated to learn, passionate about problem solving, and able to keep up with industry tech. I enjoy going through the software development lifecycle on my own projects. Meeting user needs is always satisfying to me.
             </p>
           </div>
@@ -170,8 +170,8 @@ export default function Home() {
 
                   {/* Content */}
                   <div className="flex flex-col flex-1 px-5 py-5 gap-3">
-                    <h3 className="text-base font-semibold text-white">{project.title}</h3>
-                    <p className="text-sm text-white/90 leading-relaxed flex-1">{project.desc}</p>
+                    <h3 className="text-base font-semibold text-white/90">{project.title}</h3>
+                    <p className="text-sm text-white/80 leading-relaxed flex-1">{project.desc}</p>
                     <div className="flex flex-wrap gap-2 pt-2">
                       {project.skills.map((tech, j) => (
                         <span
