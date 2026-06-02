@@ -88,8 +88,8 @@ export default function Header() {
           <Image
             src={logo}
             alt="Logo"
-            width={64}
-            height={64}
+            width={56}
+            height={56}
             className="cursor-pointer opacity-90 hover:opacity-100 transition-opacity"
             priority
           />
@@ -106,7 +106,7 @@ export default function Header() {
               key={href}
               href={href}
               className={`
-                px-4 py-2 rounded-xl text-lg text-white/90 tracking-wider uppercase transition-colors duration-150
+                px-4 py-2 rounded-xl text-md text-white/90 tracking-wider uppercase transition-colors duration-150
                 ${pathname === href
                   ? ' bg-white/10'
                   : 'hover:text-white hover:bg-white/5'}

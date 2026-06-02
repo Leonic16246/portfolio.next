@@ -9,8 +9,8 @@ export default function Footer() {
 
         {/* Left — branding */}
         <div className="flex flex-col gap-4">
-          <h2 className="text-white/90 font-semibold text-3xl">Leon Lee</h2>
-          <p className="text-white/80 text-xl font-semibold">
+          <h2 className="text-white/90 font-semibold text-2xl">Leon Lee</h2>
+          <p className="text-white/80 text-lg font-semibold">
             Portfolio Website
           </p>
           <div className="flex items-center gap-4 mt-1 text-white/80">
@@ -36,8 +36,8 @@ export default function Footer() {
         </div>
 
         {/* Right — quick links */}
-        <div className="flex flex-col gap-2">
-          <span className="font-semibold text-lg uppercase tracking-wider text-white/80 mb-2">
+        <div className="flex flex-col gap-1">
+          <span className="font-bold text-lg uppercase tracking-wider text-white/80 mb-2">
             Links
           </span>
           {[

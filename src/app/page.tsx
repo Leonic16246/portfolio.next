@@ -7,28 +7,28 @@ import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 const projects = [
   {
     title: 'Personal Website',
-    imgsrc: 'images/CherryTreeGlyph.png',
+    imgsrc: '/images/CherryTreeGlyph.png',
     desc: 'A portfolio website, using Next.js, tailwind CSS, Supabase for authentication & PostgreSQL, and MongoDB for NoSQL, using an ASP.NET backend for REST api calls. Frontend and backend are hosted on Netlify and Azure respectively. Demonstrates my understanding of modern full-stack web development.',
     skills: ['Next.js', 'TypeScript', 'ASP.NET Core', 'Supabase', 'Auth', 'MongoDB', 'Netlify', 'Azure', 'CI/CD'],
     source: 'https://github.com/Leonic16246/portfolio.next',
   },
   {
     title: 'The Battle of Hamburg-err',
-    imgsrc: 'images/TBoHE.png',
+    imgsrc: '/images/TBoHE.png',
     desc: 'As the product owner in a Scrum team of four, I lead the conceptualisation of a food-themed tower defence game, using the Unity game engine and MagicaVoxel for art styling. My contributions included menu UI logic, resolution options, independent audio controls, and saving/loading. Leveraging Scrum methodologies and GitHub for Collaboration.',
     skills: ['Unity', 'C#', 'Agile Scrum'],
     source: 'https://github.com/Leonic16246/Battle-of-Hamburg-Err',
   },
   {
     title: 'Licence Plate Reader',
-    imgsrc: 'images/menu-icon.svg',
+    imgsrc: '/images/menu-icon.svg',
     desc: 'A collaborative embedded project written in Python utilising a Raspberry Pi 4B, custom trained YOLOv7 model, EasyOCR, and OpenCV to read licence play numbers displayed in front of a camera. Results are saved to the local SQLite database hosted on the Pi and displayed on its local php web page.',
     skills: ['Python', 'Raspberry Pi', 'YOLOv7', 'EasyOCR', 'OpenCV', 'SQLite', 'PHP', 'Apache'],
     source: 'https://github.com/Leonic16246/license-plate-reader',
   },
   {
     title: 'Quarter',
-    imgsrc: 'images/Quarter.svg',
+    imgsrc: '/images/Quarter.png',
     desc: 'An AI powered and Web3 proof of concept demo allowing your agentic AI to facilitate shopping using cryptocurrency online. Built with Next.js and integrating various third party services such as wagmi v2, WalletConnect, ENS, and MetaMask; Successfully securing the Fire Eyes Sponsor Prize Track at Web3UOA’s 2026 Hackathon.',
     skills: [],
     source: 'https://github.com/Leonic16246/Quarter',
@@ -50,12 +50,12 @@ export default function Home() {
             <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
             <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
 
-            <div className="flex items-center justify-between gap-16">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
               {/* Left: text content */}
               <div className="flex flex-col">
-                <h1 className="text-8xl font-light tracking-tight text-white/80 leading-none">
+                <p className="text-8xl font-light tracking-tight text-white/80 leading-none">
                   Hi, I&apos;m
-                </h1>
+                </p>
                 <h1 className="text-8xl font-bold tracking-tight text-white/90 leading-none">
                   Leon Lee
                 </h1>
@@ -90,6 +90,7 @@ export default function Home() {
                   alt="glyph"
                   width={384}
                   height={384}
+                  priority
                   className="mr-12 opacity-90 hover:opacity-100 transition"
                 />
               </div>
@@ -153,7 +154,7 @@ export default function Home() {
               <h2 className="text-6xl font-bold tracking-tight text-white/90">Projects</h2>
             </Link>
 
-            <div className="mt-8 grid grid-cols-2 gap-6">
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
               {projects.map((project, i) => (
                 <div
                   key={i}
@@ -162,10 +163,13 @@ export default function Home() {
 
                   {/* Image */}
                   <div className="relative h-96 bg-neutral-900 overflow-hidden">
-                    <img
+                    <Image
                       src={project.imgsrc}
                       alt={`${project.title} preview`}
-                      className="w-full h-full object-cover object-center opacity-90"
+                      fill
+                      sizes="50vw"
+                      unoptimized={project.imgsrc.endsWith('.svg')}
+                      className="object-cover object-center opacity-90"
                     />
                   </div>
 
