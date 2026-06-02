@@ -76,12 +76,12 @@ export default function Header() {
     <header
       className={`
         fixed top-0 left-0 right-0 z-50
-        bg-neutral backdrop-blur-sm border-b border-white/25
-        transition-transform duration-300 ease-in-out
-        ${isVisible ? 'translate-y-0' : '-translate-y-full'}
-      `}
+        bg-neutral backdrop-blur-xs border-b border-white/25
+        transition duration-250 ease-in-out
+        ${isVisible ? 'translate-y-0' : '-translate-y-full'}`
+      }
     >
-      <div className="relative flex items-center justify-between px-[6rem] py-[0.1rem]">
+      <div className="relative flex items-center justify-between px-[6rem] py-[0.1rem] fade-in" style={{ animationDelay: '0.1s' }}>
 
         {/* Logo */}
         <Link href="/" className="shrink-0 ">
@@ -106,7 +106,7 @@ export default function Header() {
               key={href}
               href={href}
               className={`
-                px-4 py-2 rounded-xl text-md text-white/90 tracking-wider uppercase transition-colors duration-150
+                px-4 py-2 rounded-xl font-semibold text-md text-white/90 tracking-wider uppercase transition-colors duration-150
                 ${pathname === href
                   ? ' bg-white/10'
                   : 'hover:text-white hover:bg-white/5'}
@@ -151,7 +151,7 @@ export default function Header() {
               </ul>
             </div>
           </div>
-          
+
           <a
             href="https://github.com/Leonic16246"
             target="_blank"
