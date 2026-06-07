@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Personal Website",
+    "imgsrc": "/images/CherryTreeGlyph.png",
+    "desc": "A portfolio website, using Next.js, tailwind CSS, Supabase for authentication & PostgreSQL, and MongoDB for NoSQL, using an ASP.NET backend for REST api calls. Frontend and backend are hosted on Netlify and Azure respectively. Demonstrates my understanding of modern full-stack web development.",
+    "skills": ["Next.js", "TypeScript", "ASP.NET Core", "Supabase", "Auth", "MongoDB", "Netlify", "Azure", "CI/CD"],
+    "source": "https://github.com/Leonic16246/portfolio.next"
+  },
+  {
+    "title": "The Battle of Hamburg-err",
+    "imgsrc": "/images/TBoHE.png",
+    "desc": "As the product owner in a Scrum team of four, I lead the conceptualisation of a food-themed tower defence game, using the Unity game engine and MagicaVoxel for art styling. My contributions included menu UI logic, resolution options, independent audio controls, and saving/loading. Leveraging Scrum methodologies and GitHub for Collaboration.",
+    "skills": ["Unity", "C#", "Agile Scrum"],
+    "source": "https://github.com/Leonic16246/Battle-of-Hamburg-Err"
+  },
+  {
+    "title": "Licence Plate Reader",
+    "imgsrc": "/images/menu-icon.svg",
+    "desc": "A collaborative embedded project written in Python utilising a Raspberry Pi 4B, custom trained YOLOv7 model, EasyOCR, and OpenCV to read licence play numbers displayed in front of a camera. Results are saved to the local SQLite database hosted on the Pi and displayed on its local php web page.",
+    "skills": ["Python", "Raspberry Pi", "YOLOv7", "EasyOCR", "OpenCV", "SQLite", "PHP", "Apache"],
+    "source": "https://github.com/Leonic16246/license-plate-reader"
+  },
+  {
+    "title": "Quarter",
+    "imgsrc": "/images/Quarter.png",
+    "desc": "An AI powered and Web3 proof of concept demo allowing your agentic AI to facilitate shopping using cryptocurrency online. Built with Next.js and integrating various third party services such as wagmi v2, WalletConnect, ENS, and MetaMask; Successfully securing the Fire Eyes Sponsor Prize Track at Web3UOA’s 2026 Hackathon.",
+    "skills": [],
+    "source": "https://github.com/Leonic16246/Quarter"
+  }
+]

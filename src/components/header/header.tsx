@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { createBrowserClient } from '@supabase/ssr'
+import logo from '../../../public/images/CherryTreeGlyph.png'
 
 export default function Header() {
   const [email, setEmail] = useState<string | null>(null)
@@ -75,27 +76,27 @@ export default function Header() {
     <header
       className={`
         fixed top-0 left-0 right-0 z-50
-        bg-neutral backdrop-blur-sm border-b border-white/25
-        transition-transform duration-300 ease-in-out
-        ${isVisible ? 'translate-y-0' : '-translate-y-full'}
-      `}
+        bg-neutral backdrop-blur-xs border-b border-white/25
+        transition duration-250 ease-in-out
+        ${isVisible ? 'translate-y-0' : '-translate-y-full'}`
+      }
     >
-      <div className="relative flex items-center justify-between px-[4rem] py-[0.5rem]">
+      <div className="flex justify-between px-[6rem] py-[0.1rem] fade-in" style={{ animationDelay: '0.1s' }}>
 
         {/* Logo */}
         <Link href="/" className="shrink-0">
           <Image
-            src="/images/CherryTreeGlyph.png"
+            src={logo}
             alt="Logo"
-            width={50}
-            height={50}
+            width={56}
+            height={56}
             className="cursor-pointer opacity-90 hover:opacity-100 transition-opacity"
             priority
           />
         </Link>
 
         {/* Nav links */}
-        <nav className="flex items-center gap-8">
+        <nav className="flex items-center gap-16">
           {[
             { href: '/about', label: 'About' },
             { href: '/projects', label: 'Projects' },
@@ -105,10 +106,10 @@ export default function Header() {
               key={href}
               href={href}
               className={`
-                px-4 py-1.5 rounded-lg font-geist-mono text-sm tracking-widest uppercase transition-colors duration-150
+                px-4 py-2 rounded-xl text-white/90 tracking-wider uppercase transition-colors duration-200
                 ${pathname === href
-                  ? 'text-white bg-white/10'
-                  : 'text-white/90 hover:text-white hover:bg-white/5'}
+                  ? ' bg-white/10'
+                  : 'hover:text-white hover:bg-white/5'}
               `}
             >
               {label}
@@ -117,18 +118,18 @@ export default function Header() {
         </nav>
 
         {/* Right icons */}
-        <div className="flex items-center gap-4 text-white/80 mr-4">
+        <div className="flex items-center gap-8 text-white/80">
 
 
           {/* Always rendered to prevent layout shift — invisible when loading or logged out */}
           <div className={`relative group ${loading || !email ? 'invisible' : ''}`}>
             <div className="hover:text-white transition-colors cursor-pointer">
-              <FontAwesomeIcon icon={faUser} size="lg" />
+              <FontAwesomeIcon icon={faUser} size="2xl" />
             </div>
 
             <div className="absolute right-0 top-full mt-2 w-44 bg-neutral-950 ring-1 ring-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-              <ul className="flex flex-col py-2 text-sm">
-                <li className="px-4 py-2 font-geist-mono text-[10px] tracking-widest uppercase text-white/50 truncate">
+              <ul className="flex flex-col py-2">
+                <li className="px-4 py-2 font-geist-mono text-[10px] tracking-wider uppercase text-white/50 truncate">
                   {email}
                 </li>
                 <li>
@@ -150,7 +151,7 @@ export default function Header() {
               </ul>
             </div>
           </div>
-          
+
           <a
             href="https://github.com/Leonic16246"
             target="_blank"
@@ -158,7 +159,7 @@ export default function Header() {
             className="hover:text-white transition-colors"
             aria-label="GitHub"
           >
-            <FontAwesomeIcon icon={faGithub} size="lg" />
+            <FontAwesomeIcon icon={faGithub} size="2xl" />
           </a>
 
           <a
@@ -168,7 +169,7 @@ export default function Header() {
             className="hover:text-white transition-colors"
             aria-label="LinkedIn"
           >
-            <FontAwesomeIcon icon={faLinkedin} size="lg" />
+            <FontAwesomeIcon icon={faLinkedin} size="2xl" />
           </a>
 
         </div>

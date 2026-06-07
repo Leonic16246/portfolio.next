@@ -8,10 +8,10 @@ export default function Footer() {
       <div className="flex justify-between items-start gap-8">
 
         {/* Left — branding */}
-        <div className="flex flex-col gap-3">
-          <h3 className="text-white/90 font-bold text-xl tracking-tight">Leon Lee</h3>
-          <p className="text-white/80 text-sm">
-            Be the change you want to see in the world
+        <div className="flex flex-col gap-4">
+          <h2 className="text-white/90 font-semibold text-2xl">Leon Lee</h2>
+          <p className="text-white/80 text-lg font-semibold">
+            Portfolio Website
           </p>
           <div className="flex items-center gap-4 mt-1 text-white/80">
             <a
@@ -21,7 +21,7 @@ export default function Footer() {
               className="hover:text-white transition-colors"
               aria-label="GitHub"
             >
-              <FontAwesomeIcon icon={faGithub} size="xl" />
+              <FontAwesomeIcon icon={faGithub} size="2xl" />
             </a>
             <a
               href="https://www.linkedin.com/in/leonic-lee"
@@ -30,14 +30,14 @@ export default function Footer() {
               className="hover:text-white transition-colors"
               aria-label="LinkedIn"
             >
-              <FontAwesomeIcon icon={faLinkedin} size="xl" />
+              <FontAwesomeIcon icon={faLinkedin} size="2xl" />
             </a>
           </div>
         </div>
 
         {/* Right — quick links */}
-        <div className="flex flex-col gap-2">
-          <span className="font-geist-mono text-xs tracking-widest uppercase text-white/80 mb-1">
+        <div className="flex flex-col gap-1">
+          <span className="font-bold text-lg uppercase tracking-wider text-white/80 mb-2">
             Links
           </span>
           {[
@@ -48,7 +48,7 @@ export default function Footer() {
             <Link
               key={href}
               href={href}
-              className="text-white/80 hover:text-white/90 text-md transition-colors"
+              className="text-white/80 hover:text-white/90 text-lg tracking-wide transition-colors"
             >
               {label}
             </Link>
@@ -58,11 +58,11 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="mt-10 pt-6 border-t border-white/[0.07] flex items-center justify-between">
-        <p className="font-geist-mono text-xs tracking-widest uppercase text-white/80">
+      <div className="mt-8 pt-8 border-t-2 border-white/10 flex items-center justify-between">
+        <p className="font-semibold text-sm tracking-wider uppercase text-white/80">
           &copy; {new Date().getFullYear()} COPYRIGHT LOLOLOL
         </p>
-        <p className="font-geist-mono text-xs tracking-widest uppercase text-white/80">
+        <p className="font-geist-mono font-semibold text-xs tracking-wider uppercase text-white/80">
           {/* Made in New Zealand */}
         </p>
       </div>
