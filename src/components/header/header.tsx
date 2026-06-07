@@ -81,10 +81,10 @@ export default function Header() {
         ${isVisible ? 'translate-y-0' : '-translate-y-full'}`
       }
     >
-      <div className="relative flex items-center justify-between px-[6rem] py-[0.1rem] fade-in" style={{ animationDelay: '0.1s' }}>
+      <div className="flex justify-between px-[6rem] py-[0.1rem] fade-in" style={{ animationDelay: '0.1s' }}>
 
         {/* Logo */}
-        <Link href="/" className="shrink-0 ">
+        <Link href="/" className="shrink-0">
           <Image
             src={logo}
             alt="Logo"
@@ -106,7 +106,7 @@ export default function Header() {
               key={href}
               href={href}
               className={`
-                px-4 py-2 rounded-xl font-semibold text-md text-white/90 tracking-wider uppercase transition-colors duration-150
+                px-4 py-2 rounded-xl text-white/90 tracking-wider uppercase transition-colors duration-200
                 ${pathname === href
                   ? ' bg-white/10'
                   : 'hover:text-white hover:bg-white/5'}

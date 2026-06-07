@@ -3,37 +3,8 @@ import Image from 'next/image'
 import logo from '../../public/images/CherryTreeGlyph.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
-
-const projects = [
-  {
-    title: 'Personal Website',
-    imgsrc: '/images/CherryTreeGlyph.png',
-    desc: 'A portfolio website, using Next.js, tailwind CSS, Supabase for authentication & PostgreSQL, and MongoDB for NoSQL, using an ASP.NET backend for REST api calls. Frontend and backend are hosted on Netlify and Azure respectively. Demonstrates my understanding of modern full-stack web development.',
-    skills: ['Next.js', 'TypeScript', 'ASP.NET Core', 'Supabase', 'Auth', 'MongoDB', 'Netlify', 'Azure', 'CI/CD'],
-    source: 'https://github.com/Leonic16246/portfolio.next',
-  },
-  {
-    title: 'The Battle of Hamburg-err',
-    imgsrc: '/images/TBoHE.png',
-    desc: 'As the product owner in a Scrum team of four, I lead the conceptualisation of a food-themed tower defence game, using the Unity game engine and MagicaVoxel for art styling. My contributions included menu UI logic, resolution options, independent audio controls, and saving/loading. Leveraging Scrum methodologies and GitHub for Collaboration.',
-    skills: ['Unity', 'C#', 'Agile Scrum'],
-    source: 'https://github.com/Leonic16246/Battle-of-Hamburg-Err',
-  },
-  {
-    title: 'Licence Plate Reader',
-    imgsrc: '/images/menu-icon.svg',
-    desc: 'A collaborative embedded project written in Python utilising a Raspberry Pi 4B, custom trained YOLOv7 model, EasyOCR, and OpenCV to read licence play numbers displayed in front of a camera. Results are saved to the local SQLite database hosted on the Pi and displayed on its local php web page.',
-    skills: ['Python', 'Raspberry Pi', 'YOLOv7', 'EasyOCR', 'OpenCV', 'SQLite', 'PHP', 'Apache'],
-    source: 'https://github.com/Leonic16246/license-plate-reader',
-  },
-  {
-    title: 'Quarter',
-    imgsrc: '/images/Quarter.png',
-    desc: 'An AI powered and Web3 proof of concept demo allowing your agentic AI to facilitate shopping using cryptocurrency online. Built with Next.js and integrating various third party services such as wagmi v2, WalletConnect, ENS, and MetaMask; Successfully securing the Fire Eyes Sponsor Prize Track at Web3UOA’s 2026 Hackathon.',
-    skills: [],
-    source: 'https://github.com/Leonic16246/Quarter',
-  },
-]
+import projects from '../../public/data/projects.json'
+import skills from '../../public/data/skills.json'
 
 export default function Home() {
   return (
@@ -119,19 +90,14 @@ export default function Home() {
           <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
 
           <h2 className="text-6xl font-bold tracking-tight text-white/90">Skills</h2>
-          {[
-            { label: 'Languages', skills: ['Java', 'Python', 'C#', 'JavaScript', 'HTML', 'CSS', 'SQL', 'PHP', 'Rust'] },
-            { label: 'Frameworks', skills: ['Next.js', 'React', 'ASP.NET Core', 'Tailwind CSS', 'Symfony'] },
-            { label: 'Technologies', skills: ['Git', 'Linux', 'Agile / Scrum', 'REST APIs', 'Node.js', 'Docker'] },
-            { label: 'Certifications', skills: ['ISC2 Certified in Cybersecurity (CC)'] }
-          ].map((group) => (
+          {skills.map((group) => (
             <div key={group.label} className="flex flex-col gap-2">
-              <span className="font-geist-mono font-semibold text-lg tracking-widest uppercase text-white/80 mt-4">{group.label}</span>
+              <span className="font-geist-mono text-lg tracking-widest uppercase text-white/80 mt-4">{group.label}</span>
               <div className="flex flex-wrap gap-4">
                 {group.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-4 py-2 rounded-xl border border-white/10 font-geist-mono font-semibold text-md text-white/80 hover:text-white/90 hover:border-white/20 transition mt-2"
+                    className="px-4 py-2 rounded-xl border border-white/10 font-geist-mono  text-md text-white/80 hover:text-white/90 hover:border-white/20 transition mt-2"
                   >
                     {skill}
                   </span>
@@ -173,13 +139,13 @@ export default function Home() {
 
                 {/* Content */}
                 <div className="flex flex-col flex-1 px-5 py-5 gap-3">
-                  <h3 className="text-4xl font-semibold text-white/90">{project.title}</h3>
+                  <h3 className="text-4xl font-bold text-white/90">{project.title}</h3>
                   <p className="text-lg text-white/80 leading-relaxed tracking-wide flex-1">{project.desc}</p>
                   <div className="flex flex-wrap gap-2 pt-2">
                     {project.skills.map((tech, j) => (
                       <span
                         key={j}
-                        className="px-4 py-2 rounded-xl border border-white/10 transition hover:border-white/20 hover:text-white/90 font-geist-mono font-semibold text-md text-white/80"
+                        className="px-4 py-2 rounded-xl border border-white/10 transition hover:border-white/20 hover:text-white/90 font-geist-mono text-md text-white/80"
                       >
                         {tech}
                       </span>
@@ -191,7 +157,7 @@ export default function Home() {
                         href={project.source}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-xl border border-white/10 px-5 py-3 text-md font-geist-mono font-semibold tracking-wide uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90 inline-flex items-center gap-2"
+                        className="rounded-xl border border-white/10 px-5 py-3 text-md font-geist-mono tracking-wide uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90 inline-flex items-center gap-2"
                       >
                         Source Code <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                       </a>
@@ -205,7 +171,7 @@ export default function Home() {
           <div className="mt-8">
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-md font-semibold font-geist-mono tracking-wider uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-md font-geist-mono tracking-wider uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90"
             >
               View all projects <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
             </Link>

@@ -1,0 +1,43 @@
+[
+  {
+    "label": "Languages",
+    "skills": [
+      "Java",
+      "Python",
+      "C#",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "SQL",
+      "PHP",
+      "Rust"
+    ]
+  },
+  {
+    "label": "Frameworks",
+    "skills": [
+      "Next.js",
+      "React",
+      "ASP.NET Core",
+      "Tailwind CSS",
+      "Symfony"
+    ]
+  },
+  {
+    "label": "Technologies",
+    "skills": [
+      "Git",
+      "Linux",
+      "Agile / Scrum",
+      "REST APIs",
+      "Node.js",
+      "Docker"
+    ]
+  },
+  {
+    "label": "Certifications",
+    "skills": [
+      "ISC2 Certified in Cybersecurity (CC)"
+    ]
+  }
+]
