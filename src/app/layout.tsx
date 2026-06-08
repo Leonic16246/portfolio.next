@@ -6,10 +6,10 @@ import Footer from '../components/footer/footer'
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Leon Lee Software Developer Portfolio",
+  title: "Leon Lee - Software Engineer",
   description: "Portfolio of Leon Lee, software engineering student",
   openGraph: {
-    title: "Leon Lee — Software Engineer",
+    title: "Leon Lee - Software Engineer",
     description: "Software engineering student & software developer.",
     url: "https://leonlee.dev",
     images: ["/images/CherryTreeGlyph.png"],
