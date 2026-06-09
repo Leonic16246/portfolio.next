@@ -1,0 +1,23 @@
+[
+  {
+    "href": "mailto:leonic16246@gmail.com",
+    "icon": "faEnvelope",
+    "label": "Email",
+    "value": "leonic16246@gmail.com",
+    "external": false
+  },
+  {
+    "href": "https://github.com/Leonic16246",
+    "icon": "faGithub",
+    "label": "GitHub",
+    "value": "github.com/Leonic16246",
+    "external": true
+  },
+  {
+    "href": "https://www.linkedin.com/in/leonic-lee",
+    "icon": "faLinkedin",
+    "label": "LinkedIn",
+    "value": "linkedin.com/in/leonic-lee",
+    "external": true
+  }
+]
