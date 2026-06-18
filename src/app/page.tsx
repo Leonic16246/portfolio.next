@@ -36,7 +36,7 @@ export default function Home() {
               </h3>
               <div className="mt-8 flex items-center gap-4">
                 <Link
-                  href="/files/Leon-Lee-CV.pdf"
+                  href="/files/Leon_Lee_CV_2026.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-full border-2 bg-white/90 px-6 py-2.5 text-md text-black transition hover:bg-white/75 active:scale-95"

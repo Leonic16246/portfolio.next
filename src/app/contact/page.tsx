@@ -14,7 +14,7 @@ const iconMap: Record<string, IconDefinition> = {
 
 export default function Contact() {
   return (
-    <div className="min-h-screen p-16">
+    <div className="min-h-screen p-8">
 
       <div className="flex flex-col items-center gap-8 mx-auto">
 
