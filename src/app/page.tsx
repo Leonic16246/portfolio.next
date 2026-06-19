@@ -23,7 +23,7 @@ export default function Home() {
             {/* Left: text content */}
             <div className="flex flex-col">
               <p className="text-8xl font-light tracking-tight text-white/80 leading-none">
-                Hi, I&apos;m
+                Hi, I'm
               </p>
               <h1 className="text-8xl font-bold tracking-tight text-white/90 leading-none">
                 Leon Lee
