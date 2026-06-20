@@ -76,10 +76,10 @@ export default async function BlogPost({ params }: PageProps) {
             {post.title}
           </h1>
           {post.excerpt && (
-            <p className="mt-4 text-2xl text-white/80 max-w-2xl">{post.excerpt}</p>
+            <p className="mt-4 text-2xl text-white/90 max-w-2xl">{post.excerpt}</p>
           )}
-          <time className="mt-5 block font-geist-mono tracking-wider uppercase text-white/80">
-            {new Date(post.created_at).toLocaleDateString('en-UK', {
+          <time className="mt-5 block font-geist-mono tracking-wider uppercase text-white/90">
+            {new Date(post.created_at).toLocaleDateString('en', {
               year: 'numeric',
               month: 'long',
               day: 'numeric',
@@ -97,7 +97,18 @@ export default async function BlogPost({ params }: PageProps) {
           <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
           <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
 
-          <div className="text-xl">
+          <div className="
+          prose 
+          prose-invert
+          prose-xl max-w-none
+          prose-headings:text-white prose-headings:font-semibold
+          prose-p:text-white
+          prose-a:text-white/80 prose-a:underline prose-a:underline-offset-4 hover:prose-a:text-white
+          prose-code:text-white/80 prose-code:bg-white/5 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-geist-mono prose-code:text-sm
+          prose-pre:bg-transparent prose-pre:p-0
+          prose-blockquote:border-white/10 prose-blockquote:text-white/40
+          prose-hr:border-white/10
+        ">
             <ReactMarkdown
               remarkPlugins={[remarkGfm, remarkBreaks]}
               components={{
