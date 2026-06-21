@@ -30,8 +30,8 @@ export default function Contact() {
 
           <p className="text-7xl tracking-tight text-white/80">Get in</p>
           <h1 className="text-7xl tracking-tight text-white/90">Touch.</h1>
-          <p className="mt-6 text-xl uppercase text-white/70">
-            Feel free to reach out through any of the following
+          <p className="mt-4 text-xl text-white/70">
+            Feel free to reach out through any of the following:
           </p>
         </div>
 

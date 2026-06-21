@@ -39,13 +39,13 @@ export default function Home() {
                   href="/files/Leon_Lee_CV_2026.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border-2 bg-white/90 px-6 py-2.5 text-md text-black transition hover:bg-white/75 active:scale-95"
+                  className="rounded-full border-2 bg-white/90 px-6 py-2.5 text-center text-black transition hover:bg-white/75 active:scale-95"
                 >
                   View CV
                 </Link>
                 <Link
                   href="/contact"
-                  className="rounded-full border-2 border-white/25 px-6 py-2.5 text-md text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
+                  className="rounded-full border-2 border-white/25 px-6 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
                 >
                   Get in touch
                 </Link>

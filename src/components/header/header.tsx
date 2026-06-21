@@ -81,7 +81,7 @@ export default function Header() {
         ${isVisible ? 'translate-y-0' : '-translate-y-full'}`
       }
     >
-      <div className="flex justify-between px-[6rem] py-[0.1rem] fade-in" style={{ animationDelay: '0.1s' }}>
+      <div className="flex justify-between px-[2rem] lg:px-[6rem] py-[0.1rem] fade-in" style={{ animationDelay: '0.1s' }}>
 
         {/* Logo */}
         <Link href="/" className="shrink-0">

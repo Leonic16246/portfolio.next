@@ -94,12 +94,12 @@ export default function Projects() {
           <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
           <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
 
-          <p className="text-8xl font-light tracking-tight text-white/80 leading-none">My</p>
-          <h1 className="text-8xl font-bold tracking-tight text-white/90 leading-none">Projects</h1>
+          <p className="text-5xl md:text-8xl font-light tracking-tight text-white/80 leading-none">My</p>
+          <h1 className="text-5xl md:text-8xl font-bold tracking-tight text-white/90 leading-none">Projects</h1>
         </div>
 
         {/* Projects grid */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-6">
           {projectsData.project.map((project: ProjectType, i: number) => (
             <div
               key={i}
