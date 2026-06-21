@@ -6,6 +6,7 @@ import Footer from '../components/footer/footer'
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL((process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000')),
   title: "Leon Lee - Software Engineer",
   description: "Portfolio of Leon Lee, software engineering student",
   openGraph: {
