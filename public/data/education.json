@@ -1,0 +1,14 @@
+[
+    {
+      "name": "Bachelor of Engineering (Honours)",
+      "field": "Software Engineering",
+      "school": "Auckland University of Technology",
+      "desc": "OOP, SQL, Data Structures & Algorithms, Software Construction, Linux, Agile Scrum, Cryptography, Full Stack development, Software Architecture, CCNA, Machine Learning."
+    },
+    {
+      "name": "Certified in CyberSecurity",
+      "field": "IT",
+      "school": "ISC2",
+      "desc": ""
+    }
+  ]

@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -58,13 +60,16 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="mt-8 pt-8 border-t-2 border-white/10 flex items-center justify-between">
-        <p className="font-semibold text-sm tracking-wider uppercase text-white/80">
+      <div className="mt-8 pt-8 border-t-2 border-white/10 flex items-center justify-between font-semibold text-sm tracking-wider uppercase text-white/80">
+        <p>
           &copy; {new Date().getFullYear()} COPYRIGHT LOLOLOL
         </p>
-        <p className="font-geist-mono font-semibold text-xs tracking-wider uppercase text-white/80">
-          {/* Made in New Zealand */}
-        </p>
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="hover:text-white transition-colors cursor-pointer"
+        >
+          ↑ Top
+        </button>
       </div>
 
     </footer>

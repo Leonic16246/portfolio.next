@@ -1,6 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
 interface ProjectsData {
   project: ProjectType[];
@@ -42,7 +45,7 @@ export default function Projects() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-6 h-6 border-2 border-white/20 border-t-white/80 rounded-full animate-spin" />
           <p className="font-geist-mono text-xs tracking-widest uppercase text-white/30">Loading projects...</p>
@@ -53,7 +56,7 @@ export default function Projects() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <p className="font-geist-mono text-xs tracking-widest uppercase text-white/30">Failed to load projects</p>
           <p className="text-sm text-white/40">{error}</p>
@@ -70,90 +73,84 @@ export default function Projects() {
 
   if (!projectsData || !projectsData.project || projectsData.project.length === 0) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <p className="font-geist-mono text-xs tracking-widest uppercase text-white/30">No projects found</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black p-6 space-y-6">
+    <div className="min-h-screen p-8">
 
-      {/* Header */}
-      <div className="relative bg-neutral-950 rounded-2xl px-10 py-14 ring-1 ring-white/10 shadow-2xl overflow-hidden">
-        <span className="absolute top-5 left-5 w-5 h-5 border-t border-l border-white/20" />
-        <span className="absolute top-5 right-5 w-5 h-5 border-t border-r border-white/20" />
-        <span className="absolute bottom-5 left-5 w-5 h-5 border-b border-l border-white/20" />
-        <span className="absolute bottom-5 right-5 w-5 h-5 border-b border-r border-white/20" />
+      <div className="flex flex-col items-center gap-8 mx-auto">
 
-        <h1 className="text-7xl tracking-tight text-white/90 leading-none">My</h1>
-        <h2 className="mt-1 text-7xl font-bold tracking-tight text-white/90 leading-none">Projects.</h2>
-        {/* <p className="mt-5 font-geist-mono text-sm tracking-[0.2em] uppercase text-white/40">
-          {projectsData.project.length} project{projectsData.project.length !== 1 ? 's' : ''}
-        </p> */}
-      </div>
+        {/* Header card */}
+        <div
+          className="fade-in relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12"
+          style={{ animationDelay: '0.2s' }}
+        >
+          <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
+          <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
+          <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
+          <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
 
-      {/* Grid */}
-      <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
-        {projectsData.project.map((item: ProjectType, index: number) => (
-          <article
-            key={index}
-            className="relative bg-neutral-950 rounded-2xl ring-1 ring-white/10 shadow-2xl overflow-hidden flex flex-col hover:ring-white/20 transition-all duration-200"
-          >
-            {/* Corner brackets */}
-            {/* <span className="absolute top-3 left-3 w-3 h-3 border-t border-l border-white/20 z-10" />
-            <span className="absolute top-3 right-3 w-3 h-3 border-t border-r border-white/20 z-10" /> */}
+          <p className="text-5xl md:text-8xl font-light tracking-tight text-white/80 leading-none">My</p>
+          <h1 className="text-5xl md:text-8xl font-bold tracking-tight text-white/90 leading-none">Projects</h1>
+        </div>
 
-            {/* Image */}
-            <div className="relative h-64 bg-neutral-900 overflow-hidden">
-              <img
-                src={item.imgsrc}
-                alt={`${item.title} preview`}
-                className="w-full h-full object-cover opacity-80"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = 'none';
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 to-transparent" />
-            </div>
+        {/* Projects grid */}
+        <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {projectsData.project.map((project: ProjectType, i: number) => (
+            <div
+              key={i}
+              className="fade-in rounded-lg border border-white/10 bg-neutral-950 overflow-hidden transition hover:border-white/20 duration-200 flex flex-col"
+              style={{ animationDelay: `${0.3 + i * 0.08}s` }}
+            >
 
-            {/* Content */}
-            <div className="flex flex-col flex-1 px-6 py-6 gap-4">
-              <h3 className="text-white/90 font-semibold text-lg leading-tight">{item.title}</h3>
-
-              <p className="text-sm text-white/50 leading-relaxed flex-1">{item.desc}</p>
-
-              {/* Skills */}
-              <div className="flex flex-wrap gap-2">
-                {item.skills.map((tech: string, techIndex: number) => (
-                  <span
-                    key={techIndex}
-                    className="px-3 py-1 rounded-lg border border-white/10 bg-white/5 font-geist-mono text-xs text-white/50"
-                  >
-                    {tech}
-                  </span>
-                ))}
+              {/* Image */}
+              <div className="relative h-96 bg-neutral-900 overflow-hidden">
+                <Image
+                  src={project.imgsrc}
+                  alt={`${project.title} preview`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  unoptimized={project.imgsrc.endsWith('.svg')}
+                  className="object-cover object-center opacity-90"
+                />
               </div>
 
-              {/* Source link */}
-              {item.source && (
-                <div className="pt-4 border-t border-white/[0.07]">
-                  <a
-                    href={item.source}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-full border border-white/15 px-5 py-2 text-xs font-geist-mono tracking-widest uppercase text-white/60 transition hover:bg-white/5 hover:border-white/25 hover:text-white/90 active:scale-95 inline-block"
-                  >
-                    Source Code →
-                  </a>
+              {/* Content */}
+              <div className="flex flex-col flex-1 px-5 py-5 gap-3">
+                <h3 className="text-3xl font-bold text-white/90">{project.title}</h3>
+                <p className="text-lg text-white/80 tracking-wide flex-1">{project.desc}</p>
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {project.skills.map((tech: string, j: number) => (
+                    <span
+                      key={j}
+                      className="px-4 py-2 rounded-xl border border-white/10 transition hover:border-white/20 hover:text-white/90 font-geist-mono text-sm text-white/80"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
-              )}
+                {project.source && (
+                  <div className="pt-3">
+                    <a
+                      href={project.source}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-xl border border-white/10 px-5 py-3 text-md font-geist-mono tracking-wide uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90 inline-flex items-center gap-2"
+                    >
+                      Source Code <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                    </a>
+                  </div>
+                )}
+              </div>
             </div>
+          ))}
+        </div>
 
-          </article>
-        ))}
       </div>
-
     </div>
   );
 }

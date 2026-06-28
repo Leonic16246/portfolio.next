@@ -8,7 +8,7 @@ import skills from '../../public/data/skills.json'
 
 export default function Home() {
   return (
-    <div className="min-h-screen p-16">
+    <div className="min-h-screen p-8">
 
       <div className="flex flex-col items-center gap-8 mx-auto"> {/* gap between cards */}
 
@@ -23,7 +23,7 @@ export default function Home() {
             {/* Left: text content */}
             <div className="flex flex-col">
               <p className="text-8xl font-light tracking-tight text-white/80 leading-none">
-                Hi, I&apos;m
+                Hi, I'm
               </p>
               <h1 className="text-8xl font-bold tracking-tight text-white/90 leading-none">
                 Leon Lee
@@ -36,16 +36,16 @@ export default function Home() {
               </h3>
               <div className="mt-8 flex items-center gap-4">
                 <Link
-                  href="/files/Leon-Lee-CV.pdf"
+                  href="/files/Leon_Lee_CV_2026.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border-2 bg-white/90 px-6 py-2.5 text-md text-black transition hover:bg-white/75 active:scale-95"
+                  className="rounded-full border-2 bg-white/90 px-6 py-2.5 text-center text-black transition hover:bg-white/75 active:scale-95"
                 >
                   View CV
                 </Link>
                 <Link
                   href="/contact"
-                  className="rounded-full border-2 border-white/25 px-6 py-2.5 text-md text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
+                  className="rounded-full border-2 border-white/25 px-6 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
                 >
                   Get in touch
                 </Link>

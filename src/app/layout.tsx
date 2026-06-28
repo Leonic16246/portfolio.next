@@ -6,11 +6,12 @@ import Footer from '../components/footer/footer'
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Leon Lee Software Developer Portfolio",
-  description: "Portfolio of Leon Lee, software engineering student",
+  metadataBase: new URL((process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000')),
+  title: "Leon Lee - Software Engineer",
+  description: "Portfolio of Leon Lee",
   openGraph: {
-    title: "Leon Lee — Software Engineer",
-    description: "Software engineering student & software developer.",
+    title: "Leon Lee - Software Engineer",
+    description: "Software engineering student",
     url: "https://leonlee.dev",
     images: ["/images/CherryTreeGlyph.png"],
   },
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body className={`${GeistSans.className} bg-white dark:bg-black text-black dark:text-white pt-16 antialiased`}>
+      <body className={`${GeistSans.className} bg-black text-white pt-16 antialiased`}>
         <Header />
           <main className="min-h-screen">{children}</main> 
         <Footer />
