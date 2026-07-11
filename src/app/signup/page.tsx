@@ -2,13 +2,14 @@
 
 import { signup } from './actions'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useActionState } from 'react'
 
 export const dynamic = 'force-dynamic'
 
 export default function LoginPage() {
   const [password, setPassword] = useState('')
   const [showRequirements, setShowRequirements] = useState(false)
+  const [state, formAction] = useActionState(signup, null)
 
   // Password validation checks
   const hasMinLength = password.length >= 8
@@ -27,8 +28,14 @@ export default function LoginPage() {
             <h2 className="mt-3 text-4xl font-semibold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Join for free</h2>
             <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-300">Sign up</p>
             
-            <form action={signup} className="mt-8 space-y-6">
-              
+            <form action={formAction} className="mt-8 space-y-6">
+
+              {state?.error && (
+                <div className="bg-red-50 dark:bg-red-900/50 border border-red-200 dark:border-red-800 rounded-lg p-3">
+                  <p className="text-sm text-red-600 dark:text-red-400">{state.error}</p>
+                </div>
+              )}
+
               <div className="space-y-4">
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">

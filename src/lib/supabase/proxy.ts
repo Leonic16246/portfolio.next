@@ -40,10 +40,12 @@ export async function updateSession(request: NextRequest) {
     request.nextUrl.pathname.startsWith('/signup')
     
 
-  const isLoggedInPage = 
+  const isLoggedInPage =
     request.nextUrl.pathname.startsWith('/private') ||
     request.nextUrl.pathname.startsWith('/account') ||
     request.nextUrl.pathname.startsWith('/admin')
+
+  const isAdminPage = request.nextUrl.pathname.startsWith('/admin')
 
   if (user && isAuthPage) {
     // User is logged in but trying to access auth pages - redirect to home
@@ -57,6 +59,16 @@ export async function updateSession(request: NextRequest) {
     const url = request.nextUrl.clone()
     url.pathname = '/'
     return NextResponse.redirect(url)
+  }
+
+  // Check if user is an admin for admin pages
+  if (user && isAdminPage) {
+    const { data: admin } = await supabase.rpc('is_admin')
+    if (admin !== true) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/'
+      return NextResponse.redirect(url)
+    }
   }
 
   return supabaseResponse

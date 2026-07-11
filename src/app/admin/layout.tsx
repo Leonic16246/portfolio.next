@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
+import { isAdmin } from '@/lib/auth/is-admin'
 import { redirect } from 'next/navigation'
 
 export default async function AdminLayout({
@@ -8,12 +9,17 @@ export default async function AdminLayout({
   children: React.ReactNode
 }) {
   const supabase = await createClient()
-  
+
   // Check if user is authenticated
   const { data: { user } } = await supabase.auth.getUser()
-  
+
   if (!user) {
     redirect('/login')
+  }
+
+  // Check if user is admin
+  if (!(await isAdmin(supabase))) {
+    redirect('/')
   }
 
   return (
