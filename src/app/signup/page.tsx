@@ -7,6 +7,7 @@ import { useState, useActionState } from 'react'
 export const dynamic = 'force-dynamic'
 
 export default function LoginPage() {
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showRequirements, setShowRequirements] = useState(false)
   const [state, formAction] = useActionState(signup, null)
@@ -19,80 +20,83 @@ export default function LoginPage() {
   const isPasswordValid = hasMinLength && hasUpperCase && hasLowerCase && hasNumbers
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 p-6">
-      <div className="bg-white dark:bg-neutral-800 rounded-lg px-6 py-8 ring-1 ring-neutral-900/5 dark:ring-neutral-700/50 shadow-xl">
+    <div className="min-h-screen bg-neutral-950 p-6">
+      <div className="bg-neutral-900 rounded-lg px-6 py-8 ring-1 ring-white/10 shadow-xl">
         <div className='flex justify-between items-center'>
           
           <div className="flex-1">
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Welcome</h1>
-            <h2 className="mt-3 text-4xl font-semibold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Join for free</h2>
-            <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-300">Sign up</p>
-            
+            <h1 className="text-5xl font-bold text-white/90">Welcome</h1>
+            <h2 className="mt-3 text-4xl font-semibold text-white/90">Join for free</h2>
+            <p className="mt-4 text-lg text-white/70">Sign up</p>
+
             <form action={formAction} className="mt-8 space-y-6">
 
               {state?.error && (
-                <div className="bg-red-50 dark:bg-red-900/50 border border-red-200 dark:border-red-800 rounded-lg p-3">
-                  <p className="text-sm text-red-600 dark:text-red-400">{state.error}</p>
+                <div className="bg-red-900/50 rounded-lg p-4">
+                  <p className="text-red-500">{state.error}</p>
                 </div>
               )}
 
               <div className="space-y-4">
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                  <label htmlFor="email" className="block text-lg text-white/80 mb-2">
                     Email Address
                   </label>
-                  <input 
-                    id="email" 
-                    name="email" 
-                    type="email" 
-                    required 
-                    className="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 dark:placeholder-neutral-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    autoFocus
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-4 py-3 border-2 border-white/20 rounded-lg bg-black/80 text-white placeholder-white/50 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                     placeholder="Enter your email"
                   />
                 </div>
-                
+
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                  <label htmlFor="password" className="block text-lg text-white/80 mb-2">
                     Password
                   </label>
-                  <input 
-                    id="password" 
-                    name="password" 
-                    type="password" 
-                    required 
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     onFocus={() => setShowRequirements(true)}
-                    className={`w-full px-4 py-3 border rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 dark:placeholder-neutral-400 focus:ring-2 focus:border-transparent transition-colors ${
-                      password && !isPasswordValid 
-                        ? 'border-red-300 dark:border-red-600 focus:ring-red-500' 
+                    className={`w-full px-4 py-3 border-2 rounded-lg bg-black/80 text-white placeholder-white/50 focus:ring-2 focus:border-transparent transition-colors ${
+                      password && !isPasswordValid
+                        ? 'border-red-500 focus:ring-red-500'
                         : password && isPasswordValid
-                        ? 'border-green-300 dark:border-green-600 focus:ring-green-500'
-                        : 'border-neutral-300 dark:border-neutral-600 focus:ring-purple-500'
+                        ? 'border-green-500 focus:ring-green-500'
+                        : 'border-white/20 focus:ring-blue-500'
                     }`}
                     placeholder="Enter your password"
                   />
                   
                   {/* Password Requirements */}
                   {(showRequirements || password) && (
-                    <div className="mt-3 p-3 bg-neutral-50 dark:bg-neutral-900 rounded-lg border border-neutral-200 dark:border-neutral-700">
-                      <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                    <div className="mt-3 p-3 bg-black/40 rounded-lg border border-white/10">
+                      <p className="text-sm font-medium text-white/80 mb-2">
                         Password Requirements:
                       </p>
                       <div className="space-y-1">
-                        <div className={`flex items-center text-sm ${hasMinLength ? 'text-green-600 dark:text-green-400' : 'text-neutral-500 dark:text-neutral-400'}`}>
+                        <div className={`flex items-center text-sm ${hasMinLength ? 'text-green-400' : 'text-white/40'}`}>
                           <span className="mr-2">{hasMinLength ? '✓' : '○'}</span>
                           At least 8 characters
                         </div>
-                        <div className={`flex items-center text-sm ${hasUpperCase ? 'text-green-600 dark:text-green-400' : 'text-neutral-500 dark:text-neutral-400'}`}>
+                        <div className={`flex items-center text-sm ${hasUpperCase ? 'text-green-400' : 'text-white/40'}`}>
                           <span className="mr-2">{hasUpperCase ? '✓' : '○'}</span>
                           One uppercase letter
                         </div>
-                        <div className={`flex items-center text-sm ${hasLowerCase ? 'text-green-600 dark:text-green-400' : 'text-neutral-500 dark:text-neutral-400'}`}>
+                        <div className={`flex items-center text-sm ${hasLowerCase ? 'text-green-400' : 'text-white/40'}`}>
                           <span className="mr-2">{hasLowerCase ? '✓' : '○'}</span>
                           One lowercase letter
                         </div>
-                        <div className={`flex items-center text-sm ${hasNumbers ? 'text-green-600 dark:text-green-400' : 'text-neutral-500 dark:text-neutral-400'}`}>
+                        <div className={`flex items-center text-sm ${hasNumbers ? 'text-green-400' : 'text-white/40'}`}>
                           <span className="mr-2">{hasNumbers ? '✓' : '○'}</span>
                           One number
                         </div>
@@ -103,13 +107,13 @@ export default function LoginPage() {
               </div>
               
               <div className="flex gap-4 pt-4">
-                <button 
+                <button
                   type="submit"
                   disabled={!isPasswordValid || !password}
-                  className={`flex-1 font-semibold py-3 px-6 rounded-lg border focus:ring-2 focus:ring-offset-2 transition-all duration-200 ${
+                  className={`flex-1 font-semibold py-3 px-6 rounded-lg transition-all duration-200 ${
                     isPasswordValid && password
-                      ? 'bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 border-neutral-300 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-800 focus:ring-purple-500 focus:ring-offset-white dark:focus:ring-offset-neutral-800 cursor-pointer'
-                      : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-400 dark:text-neutral-600 border-neutral-200 dark:border-neutral-700 cursor-not-allowed'
+                      ? 'bg-blue-500 text-white hover:bg-blue-800 cursor-pointer'
+                      : 'bg-white/10 text-white/40 cursor-not-allowed'
                   }`}
                 >
                   Sign Up
@@ -125,7 +129,7 @@ export default function LoginPage() {
               width={400}
               height={400}
               priority
-              className="opacity-90"
+              className="opacity-80"
             />
           </div>
 
