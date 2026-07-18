@@ -20,14 +20,13 @@ export default function LoginPage() {
   const isPasswordValid = hasMinLength && hasUpperCase && hasLowerCase && hasNumbers
 
   return (
-    <div className="min-h-screen bg-neutral-950 p-6">
+    <div className="min-h-screen p-8">
       <div className="bg-neutral-900 rounded-lg px-6 py-8 ring-1 ring-white/10 shadow-xl">
-        <div className='flex justify-between items-center'>
-          
-          <div className="flex-1">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+
+          <div className="flex-1 w-full">
             <h1 className="text-5xl font-bold text-white/90">Welcome</h1>
-            <h2 className="mt-3 text-4xl font-semibold text-white/90">Join for free</h2>
-            <p className="mt-4 text-lg text-white/70">Sign up</p>
+            <h2 className="mt-3 text-4xl font-semibold text-white/90">Sign up</h2>
 
             <form action={formAction} className="mt-8 space-y-6">
 
@@ -122,14 +121,14 @@ export default function LoginPage() {
             </form>
           </div>
 
-          <div className="flex-shrink-0 ml-8">
+          <div className="hidden sm:block shrink-0 w-40 md:w-64 lg:w-auto">
             <Image
               src="/images/CherryTreeGlyph.png"
               alt="Logo"
               width={400}
               height={400}
               priority
-              className="opacity-80"
+              className="opacity-80 w-full h-auto"
             />
           </div>
 
