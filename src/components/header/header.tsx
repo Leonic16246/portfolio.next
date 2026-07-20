@@ -16,9 +16,13 @@ const navLinks = [
   { href: '/contact', label: 'Contact' },
 ]
 
+type AuthState =
+  | { status: 'loading' }
+  | { status: 'authenticated'; email: string }
+  | { status: 'unauthenticated' }
+
 export default function Header() {
-  const [email, setEmail] = useState<string | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [auth, setAuth] = useState<AuthState>({ status: 'loading' })
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -51,10 +55,9 @@ export default function Header() {
     const supabase = createBrowserClient(supabaseUrl, supabaseKey)
 
     const fetchUser = async () => {
-      setLoading(true)
+      setAuth({ status: 'loading' })
       const { data: { user } } = await supabase.auth.getUser()
-      setEmail(user?.email || null)
-      setLoading(false)
+      setAuth(user?.email ? { status: 'authenticated', email: user.email } : { status: 'unauthenticated' })
     }
 
     fetchUser()
@@ -94,7 +97,7 @@ export default function Header() {
     const supabase = createBrowserClient(supabaseUrl, supabaseKey)
 
     await supabase.auth.signOut()
-    setEmail(null)
+    setAuth({ status: 'unauthenticated' })
     setMenuOpen(false)
     setUserMenuOpen(false)
     router.push('/')
@@ -147,7 +150,7 @@ export default function Header() {
 
 
           {/* Always rendered to prevent layout shift for user icon */}
-          <div ref={userMenuRef} className={`relative ${loading || !email ? 'invisible' : ''}`}>
+          <div ref={userMenuRef} className={`relative ${auth.status !== 'authenticated' ? 'invisible' : ''}`}>
             <button
               onClick={() => setUserMenuOpen((o) => !o)}
               aria-haspopup="true"
@@ -164,7 +167,7 @@ export default function Header() {
             >
               <ul className="flex flex-col py-2">
                 <li className="px-4 py-2 font-geist-mono text-[10px] tracking-wider uppercase text-white/50 truncate">
-                  {email}
+                  {auth.status === 'authenticated' ? auth.email : ''}
                 </li>
                 <li>
                   <Link
@@ -264,10 +267,10 @@ export default function Header() {
               </div>
 
               {/* Account*/}
-              {email && (
+              {auth.status === 'authenticated' && (
                 <div className="border-t border-white/25 flex flex-col p-4 gap-4">
                   <span className="font-geist-mono text-sm tracking-wide text-white/80 truncate">
-                    {email}
+                    {auth.email}
                   </span>
                   <Link
                     href="/account"

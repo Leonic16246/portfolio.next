@@ -56,6 +56,14 @@ describe('Header', () => {
     expect(push).toHaveBeenCalledWith('/')
   })
 
+  it('hides the account button while the auth check is still pending', () => {
+    getUser.mockReturnValue(new Promise(() => {})) // never resolves
+    render(<Header />)
+
+    const wrapper = screen.getByLabelText('Account menu').parentElement
+    expect(wrapper).toHaveClass('invisible')
+  })
+
   it('highlights the active nav link based on pathname', async () => {
     getUser.mockResolvedValue({ data: { user: null } })
     render(<Header />)
