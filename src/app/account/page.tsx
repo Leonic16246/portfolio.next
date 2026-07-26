@@ -56,7 +56,7 @@ export default function Account() {
             const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
             const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY as string;
             const supabase = createBrowserClient(supabaseUrl, supabaseKey);
-            
+
             await supabase.auth.signOut();
             // The auth state listener will handle the redirect
         } catch (error) {
@@ -66,150 +66,135 @@ export default function Account() {
         }
     };
 
-    const AnimatedText = ({ text, className }: { text: string; className?: string }) => {
-        return (
-            <span className={className}>
-                {text}
-            </span>
-        );
-    };
-
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 p-6 flex items-center justify-center">
-                <div className="flex items-center space-x-3">
-                    <div className="w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-                    <span className="text-neutral-600 dark:text-neutral-400">Loading...</span>
+            <div className="min-h-screen p-8 flex items-center justify-center">
+                <div className="flex items-center gap-3">
+                    <div className="w-5 h-5 border-2 border-white/60 border-t-transparent rounded-full animate-spin" />
+                    <span className="font-geist-mono text-sm tracking-widest uppercase text-white/70">
+                        Loading
+                    </span>
                 </div>
             </div>
         );
     }
 
+    // Unauthenticated users are redirected by proxy.ts before reaching this page;
+    // this only guards the brief window after signing out, before the redirect lands.
     if (!user) {
-        return (
-            <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 p-6 flex items-center justify-center">
-                <div className="text-center">
-                    <h1 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">
-                        Not Logged In.
-                    </h1>
-                    <button
-                        onClick={() => router.push('/login')}
-                        className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
-                    >
-                        Login
-                    </button>
-                </div>
-            </div>
-        );
+        return null;
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 p-6">
-            <div className="max-w-4xl mx-auto">
-                <div className="bg-white dark:bg-neutral-800 rounded-2xl px-8 py-12 ring-1 ring-neutral-900/5 dark:ring-neutral-700/50 shadow-2xl backdrop-blur-sm">
-                    {/* Header Section */}
-                    <div className="text-center mb-8">
-                        <h1 className="text-5xl font-bold text-neutral-900 dark:text-white mb-6">
-                            <AnimatedText text="My Account" className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent" />
-                        </h1>
-                        <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-                            Manage your account settings and preferences.
-                        </p>
-                    </div>
+        <div className="min-h-screen p-8">
 
-                    {/* Account Information */}
-                    <div className="max-w-2xl mx-auto">
-                        <div className="space-y-6">
-                            {/* User Avatar Section */}
-                            <div className="flex justify-center mb-8">
-                                <div className="w-24 h-24 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
-                                    <span className="text-2xl font-bold text-white">
-                                        {user.email?.charAt(0).toUpperCase()}
-                                    </span>
-                                </div>
-                            </div>
+            <div className="flex flex-col items-center gap-8 mx-auto"> {/* gap between cards */}
 
-                            {/* Email Display */}
-                            <div className="bg-neutral-50 dark:bg-neutral-700 rounded-xl p-6 border border-neutral-200 dark:border-neutral-600">
-                                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                                    Email Address
-                                </label>
-                                <div className="flex items-center justify-between">
-                                    <span className="text-lg text-neutral-900 dark:text-white font-medium">
-                                        {user.email}
-                                    </span>
-                                    <div className="flex items-center space-x-2">
-                                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                                        <span className="text-sm text-green-600 dark:text-green-400 font-medium">
-                                            Verified
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                {/* Header card */}
+                <div className="fade-in relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12" style={{ animationDelay: '0.2s' }}>
+                    <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
+                    <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
+                    <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
+                    <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
 
-                            {/* Account Details */}
-                            <div className="bg-neutral-50 dark:bg-neutral-700 rounded-xl p-6 border border-neutral-200 dark:border-neutral-600">
-                                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                                    User ID
-                                </label>
-                                <span className="text-sm text-neutral-600 dark:text-neutral-400 font-mono break-all">
-                                    {user.id}
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                        {/* Left: text content */}
+                        <div className="flex flex-col">
+                            <p className="text-7xl font-light tracking-tight text-white/80 leading-none">My</p>
+                            <h1 className="text-7xl font-bold tracking-tight text-white/90 leading-none">Account</h1>
+                            <h2 className="mt-4 font-geist-mono text-lg tracking-[0.2em] uppercase text-white/70 break-all">
+                                {user.email}
+                            </h2>
+                            <h3 className="mt-4 text-xl text-white/80 leading-relaxed">
+                                Manage your account settings and preferences.
+                            </h3>
+                        </div>
+
+                        {/* Right: avatar */}
+                        <div className="md:mr-12 shrink-0">
+                            <div className="w-32 h-32 rounded-full border border-white/10 bg-neutral-950 flex items-center justify-center transition hover:border-white/20">
+                                <span className="text-5xl font-bold text-white/90">
+                                    {user.email?.charAt(0).toUpperCase()}
                                 </span>
                             </div>
-
-                            {user.created_at && (
-                                <div className="bg-neutral-50 dark:bg-neutral-700 rounded-xl p-6 border border-neutral-200 dark:border-neutral-600">
-                                    <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                                        Member Since
-                                    </label>
-                                    <span className="text-lg text-neutral-900 dark:text-white">
-                                        {new Date(user.created_at).toLocaleDateString('en-US', {
-                                            year: 'numeric',
-                                            month: 'long',
-                                            day: 'numeric'
-                                        })}
-                                    </span>
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Action Buttons */}
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8 mt-8 border-t border-neutral-200 dark:border-neutral-700">
-                            <button
-                                onClick={handleLogout}
-                                disabled={isLoggingOut}
-                                className="relative px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none min-w-[140px]"
-                            >
-                                {isLoggingOut ? (
-                                    <div className="flex items-center justify-center">
-                                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                                        Logging out...
-                                    </div>
-                                ) : (
-                                    'Log Out'
-                                )}
-                            </button>
-                            
-                            <button
-                                onClick={() => router.push('/admin')}
-                                className="px-8 py-4 bg-neutral-200 dark:bg-neutral-600 text-neutral-900 dark:text-white font-semibold rounded-xl hover:bg-neutral-300 dark:hover:bg-neutral-500 transform hover:-translate-y-0.5 transition-all duration-200"
-                            >
-                                Admin Dashboard
-                            </button>
                         </div>
                     </div>
+                </div>
 
-                    {/* Additional Info */}
-                    {/* <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-700">
-                        <div className="text-center">
-                            <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
-                                Need Help?
-                            </h3>
-                            <p className="text-neutral-600 dark:text-neutral-400">
-                                If you have any questions about your account, feel free to contact support.
-                            </p>
+                {/* Account details card */}
+                <div className="fade-in relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12" style={{ animationDelay: '0.3s' }}>
+                    <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
+                    <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
+                    <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
+                    <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
+
+                    <h2 className="text-6xl font-bold tracking-tight text-white/90">Details</h2>
+
+                    <div className="mt-8 flex flex-col gap-6">
+                        {/* Email */}
+                        <div className="rounded-lg border border-white/10 bg-neutral-950 px-5 py-5 transition hover:border-white/20">
+                            <span className="font-geist-mono text-sm tracking-widest uppercase text-white/70">
+                                Email Address
+                            </span>
+                            <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+                                <span className="text-xl text-white/90 break-all">{user.email}</span>
+                                <div className="flex items-center gap-2">
+                                    <div className="w-2 h-2 rounded-full bg-white/60" />
+                                    <span className="font-geist-mono text-sm tracking-wider uppercase text-white/70">
+                                        Verified
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                    </div> */}
+
+                        {/* User ID */}
+                        <div className="rounded-lg border border-white/10 bg-neutral-950 px-5 py-5 transition hover:border-white/20">
+                            <span className="font-geist-mono text-sm tracking-widest uppercase text-white/70">
+                                User ID
+                            </span>
+                            <p className="mt-3 font-geist-mono text-base text-white/80 break-all">{user.id}</p>
+                        </div>
+
+                        {/* Member since */}
+                        {user.created_at && (
+                            <div className="rounded-lg border border-white/10 bg-neutral-950 px-5 py-5 transition hover:border-white/20">
+                                <span className="font-geist-mono text-sm tracking-widest uppercase text-white/70">
+                                    Member Since
+                                </span>
+                                <p className="mt-3 text-xl text-white/90">
+                                    {new Date(user.created_at).toLocaleDateString('en-US', {
+                                        year: 'numeric',
+                                        month: 'long',
+                                        day: 'numeric'
+                                    })}
+                                </p>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Action buttons */}
+                    <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
+                        <button
+                            onClick={() => router.push('/admin')}
+                            className="rounded-full border-2 bg-white/90 px-6 py-2.5 text-center text-black transition hover:bg-white/75 active:scale-95"
+                        >
+                            Admin Dashboard
+                        </button>
+                        <button
+                            onClick={handleLogout}
+                            disabled={isLoggingOut}
+                            className="rounded-full border-2 border-white/25 px-6 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            {isLoggingOut ? (
+                                <span className="inline-flex items-center justify-center gap-2">
+                                    <span className="w-4 h-4 border-2 border-white/60 border-t-transparent rounded-full animate-spin" />
+                                    Logging out...
+                                </span>
+                            ) : (
+                                'Log Out'
+                            )}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

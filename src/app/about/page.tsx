@@ -49,7 +49,7 @@ export default function About() {
                   {group.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-4 py-2 rounded-xl border border-white/10 font-geist-mono text-md text-white/80 hover:text-white/90 hover:border-white/20 transition mt-2"
+                      className="px-4 py-2 rounded-xl border border-white/10 font-geist-mono text-base text-white/80 hover:text-white/90 hover:border-white/20 transition mt-2"
                     >
                       {skill}
                     </span>

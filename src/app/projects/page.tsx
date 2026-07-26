@@ -139,7 +139,7 @@ export default function Projects() {
                       href={project.source}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-xl border border-white/10 px-5 py-3 text-md font-geist-mono tracking-wide uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90 inline-flex items-center gap-2"
+                      className="rounded-xl border border-white/10 px-5 py-3 text-base font-geist-mono tracking-wide uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90 inline-flex items-center gap-2"
                     >
                       Source Code <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                     </a>

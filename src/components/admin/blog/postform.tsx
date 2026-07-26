@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { createBrowserClient } from '@supabase/ssr'
 import { useRouter } from 'next/navigation'
+import PostContent from '@/components/blog/post-content'
 
 interface PostFormProps {
   userId: string
@@ -89,12 +90,9 @@ export default function PostForm({ userId, post }: PostFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
-      <div className="md:grid md:grid-cols-3 md:gap-6">
+      <div className="md:grid md:grid-cols-1 md:gap-6">
         <div className="md:col-span-1">
           <h3 className="text-lg font-medium leading-6 text-neutral-900">Post Information</h3>
-          <p className="mt-1 text-sm text-neutral-900">
-            Basic information about your blog post.
-          </p>
         </div>
         <div className="mt-5 md:mt-0 md:col-span-2 space-y-6">
           <div>
@@ -145,18 +143,30 @@ export default function PostForm({ userId, post }: PostFormProps) {
           </div>
 
           <div>
-            <label htmlFor="content" className="block text-sm font-medium text-neutral-900">
-              Content
-            </label>
-            <textarea
-              id="content"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              required
-              rows={15}
-              className="mt-1 block w-full border border-neutral-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm font-mono text-neutral-900"
-              placeholder="Write your post content here..."
-            />
+            <div className="flex items-center justify-between">
+              <label htmlFor="content" className="block text-sm font-medium text-neutral-900">
+                Content
+              </label>
+              <span className="text-xs text-neutral-500">Markdown supported</span>
+            </div>
+            <div className="mt-1 grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <textarea
+                id="content"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                required
+                rows={20}
+                className="block w-full border border-neutral-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm font-mono text-neutral-900"
+                placeholder="Write your post content here..."
+              />
+              <div className="border border-neutral-300 rounded-md bg-black px-4 py-3 overflow-y-auto max-h-[32rem]">
+                {content ? (
+                  <PostContent content={content} />
+                ) : (
+                  <p className="text-sm text-neutral-500">Preview will appear here...</p>
+                )}
+              </div>
+            </div>
           </div>
 
           <div className="flex items-start">

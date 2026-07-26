@@ -97,7 +97,7 @@ export default function Home() {
                 {group.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-4 py-2 rounded-xl border border-white/10 font-geist-mono  text-md text-white/80 hover:text-white/90 hover:border-white/20 transition mt-2"
+                    className="px-4 py-2 rounded-xl border border-white/10 font-geist-mono  text-base text-white/80 hover:text-white/90 hover:border-white/20 transition mt-2"
                   >
                     {skill}
                   </span>
@@ -145,7 +145,7 @@ export default function Home() {
                     {project.skills.map((tech, j) => (
                       <span
                         key={j}
-                        className="px-4 py-2 rounded-xl border border-white/10 transition hover:border-white/20 hover:text-white/90 font-geist-mono text-md text-white/80"
+                        className="px-4 py-2 rounded-xl border border-white/10 transition hover:border-white/20 hover:text-white/90 font-geist-mono text-base text-white/80"
                       >
                         {tech}
                       </span>
@@ -157,7 +157,7 @@ export default function Home() {
                         href={project.source}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-xl border border-white/10 px-5 py-3 text-md font-geist-mono tracking-wide uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90 inline-flex items-center gap-2"
+                        className="rounded-xl border border-white/10 px-5 py-3 text-base font-geist-mono tracking-wide uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90 inline-flex items-center gap-2"
                       >
                         Source Code <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                       </a>
@@ -171,7 +171,7 @@ export default function Home() {
           <div className="mt-8">
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-md font-geist-mono tracking-wider uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-base font-geist-mono tracking-wider uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90"
             >
               View all projects <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
             </Link>

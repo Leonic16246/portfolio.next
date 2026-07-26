@@ -1,12 +1,12 @@
 'use client'
 
 import { signup } from './actions'
-import Image from 'next/image'
+import Link from 'next/link'
 import { useState, useActionState } from 'react'
 
 export const dynamic = 'force-dynamic'
 
-export default function LoginPage() {
+export default function SignupPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showRequirements, setShowRequirements] = useState(false)
@@ -19,119 +19,128 @@ export default function LoginPage() {
   const hasNumbers = /\d/.test(password)
   const isPasswordValid = hasMinLength && hasUpperCase && hasLowerCase && hasNumbers
 
+  const requirements = [
+    { met: hasMinLength, label: 'At least 8 characters' },
+    { met: hasUpperCase, label: 'One uppercase letter' },
+    { met: hasLowerCase, label: 'One lowercase letter' },
+    { met: hasNumbers, label: 'One number' },
+  ]
+
   return (
     <div className="min-h-screen p-8">
-      <div className="bg-neutral-900 rounded-lg px-6 py-8 ring-1 ring-white/10 shadow-xl">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
 
-          <div className="flex-1 w-full">
-            <h1 className="text-5xl font-bold text-white/90">Welcome</h1>
-            <h2 className="mt-3 text-4xl font-semibold text-white/90">Sign up</h2>
+      <div className="flex flex-col items-center gap-8 mx-auto">
 
-            <form action={formAction} className="mt-8 space-y-6">
+        {/* Signup card */}
+        <div className="fade-in relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12" style={{ animationDelay: '0.2s' }}>
+          <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
+          <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
+          <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
+          <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
 
-              {state?.error && (
-                <div className="bg-red-900/50 rounded-lg p-4">
-                  <p className="text-red-500">{state.error}</p>
-                </div>
-              )}
+          <div className="flex flex-col max-w-2xl">
+              <p className="text-7xl font-light tracking-tight text-white/80 leading-none">Welcome</p>
+              <h1 className="text-7xl font-bold tracking-tight text-white/90 leading-none">Sign up</h1>
 
-              <div className="space-y-4">
-                <div>
-                  <label htmlFor="email" className="block text-lg text-white/80 mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    autoFocus
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 border-2 border-white/20 rounded-lg bg-black/80 text-white placeholder-white/50 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                    placeholder="Enter your email"
-                  />
-                </div>
+              <form action={formAction} className="mt-8 flex flex-col gap-6">
 
-                <div>
-                  <label htmlFor="password" className="block text-lg text-white/80 mb-2">
-                    Password
-                  </label>
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    onFocus={() => setShowRequirements(true)}
-                    className={`w-full px-4 py-3 border-2 rounded-lg bg-black/80 text-white placeholder-white/50 focus:ring-2 focus:border-transparent transition-colors ${
-                      password && !isPasswordValid
-                        ? 'border-red-500 focus:ring-red-500'
-                        : password && isPasswordValid
-                        ? 'border-green-500 focus:ring-green-500'
-                        : 'border-white/20 focus:ring-blue-500'
-                    }`}
-                    placeholder="Enter your password"
-                  />
-                  
-                  {/* Password Requirements */}
-                  {(showRequirements || password) && (
-                    <div className="mt-3 p-3 bg-black/40 rounded-lg border border-white/10">
-                      <p className="text-sm font-medium text-white/80 mb-2">
-                        Password Requirements:
-                      </p>
-                      <div className="space-y-1">
-                        <div className={`flex items-center text-sm ${hasMinLength ? 'text-green-400' : 'text-white/40'}`}>
-                          <span className="mr-2">{hasMinLength ? '✓' : '○'}</span>
-                          At least 8 characters
-                        </div>
-                        <div className={`flex items-center text-sm ${hasUpperCase ? 'text-green-400' : 'text-white/40'}`}>
-                          <span className="mr-2">{hasUpperCase ? '✓' : '○'}</span>
-                          One uppercase letter
-                        </div>
-                        <div className={`flex items-center text-sm ${hasLowerCase ? 'text-green-400' : 'text-white/40'}`}>
-                          <span className="mr-2">{hasLowerCase ? '✓' : '○'}</span>
-                          One lowercase letter
-                        </div>
-                        <div className={`flex items-center text-sm ${hasNumbers ? 'text-green-400' : 'text-white/40'}`}>
-                          <span className="mr-2">{hasNumbers ? '✓' : '○'}</span>
-                          One number
+                {state?.error && (
+                  <div className="rounded-lg border border-white/25 bg-white/5 px-5 py-4">
+                    <span className="font-geist-mono text-sm tracking-widest uppercase text-white/70">
+                      Error
+                    </span>
+                    <p className="mt-2 text-white/90">{state.error}</p>
+                  </div>
+                )}
+
+                <div className="flex flex-col gap-4">
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block font-geist-mono text-sm tracking-widest uppercase text-white/70 mb-2"
+                    >
+                      Email Address
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      autoFocus
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full px-4 py-3 rounded-lg border border-white/10 bg-black/40 text-white/90 placeholder-white/40 transition focus:outline-none focus:border-white/25"
+                      placeholder="Enter your email"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="password"
+                      className="block font-geist-mono text-sm tracking-widest uppercase text-white/70 mb-2"
+                    >
+                      Password
+                    </label>
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      onFocus={() => setShowRequirements(true)}
+                      aria-invalid={password ? !isPasswordValid : undefined}
+                      aria-describedby="password-requirements"
+                      className={`w-full px-4 py-3 rounded-lg border bg-black/40 text-white/90 placeholder-white/40 transition focus:outline-none focus:border-white/25 ${
+                        password && !isPasswordValid ? 'border-white/40' : 'border-white/10'
+                      }`}
+                      placeholder="Enter your password"
+                    />
+
+                    {/* Password Requirements */}
+                    {(showRequirements || password) && (
+                      <div
+                        id="password-requirements"
+                        className="mt-3 rounded-lg border border-white/10 bg-black/40 px-5 py-4"
+                      >
+                        <span className="font-geist-mono text-sm tracking-widest uppercase text-white/70">
+                          Password Requirements
+                        </span>
+                        <div className="mt-3 flex flex-col gap-1">
+                          {requirements.map(({ met, label }) => (
+                            <div
+                              key={label}
+                              className={`flex items-center gap-2 transition-colors ${
+                                met ? 'text-white/90' : 'text-white/40'
+                              }`}
+                            >
+                              <span aria-hidden="true">{met ? '✓' : '○'}</span>
+                              {label}
+                            </div>
+                          ))}
                         </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
-              </div>
-              
-              <div className="flex gap-4 pt-4">
-                <button
-                  type="submit"
-                  disabled={!isPasswordValid || !password}
-                  className={`flex-1 font-semibold py-3 px-6 rounded-lg transition-all duration-200 ${
-                    isPasswordValid && password
-                      ? 'bg-blue-500 text-white hover:bg-blue-800 cursor-pointer'
-                      : 'bg-white/10 text-white/40 cursor-not-allowed'
-                  }`}
-                >
-                  Sign Up
-                </button>
-              </div>
-            </form>
-          </div>
 
-          <div className="hidden sm:block shrink-0 w-40 md:w-64 lg:w-auto">
-            <Image
-              src="/images/CherryTreeGlyph.png"
-              alt="Logo"
-              width={400}
-              height={400}
-              priority
-              className="opacity-80 w-full h-auto"
-            />
+                <div className="flex items-center gap-4 pt-2">
+                  <button
+                    type="submit"
+                    disabled={!isPasswordValid || !password}
+                    className="rounded-full border-2 bg-white/90 px-6 py-2.5 text-center text-black transition hover:bg-white/75 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Sign Up
+                  </button>
+                  <Link
+                    href="/login"
+                    className="font-geist-mono text-sm tracking-wider uppercase text-white/70 transition hover:text-white/90"
+                  >
+                    Already registered?
+                  </Link>
+                </div>
+              </form>
           </div>
-
         </div>
       </div>
     </div>
