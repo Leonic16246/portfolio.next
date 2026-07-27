@@ -1,28 +1,6 @@
 import Link from 'next/link';
 import PCSearch from './PCSearch';
-
-type PCItem = {
-  pcId: number;
-  name: string;
-  cpu: string;
-  gpu: string;
-  note: string;
-};
-
-async function getPCData(search?: string): Promise<PCItem[] | null> {
-  try {
-    const url = new URL(`${process.env.DOTNET_API_URL}/api/pc`);
-    if (search) url.searchParams.set('search', search);
-
-    const res = await fetch(url.toString(), {
-      next: { revalidate: search ? 0 : 30 }
-    });
-    if (!res.ok) return null;
-    return res.json();
-  } catch {
-    return null;
-  }
-}
+import { getPCList } from '@/lib/pc';
 
 function SortLink({
   label,
@@ -63,7 +41,7 @@ export default async function PC({
   searchParams: Promise<{ sort?: string; search?: string }>;
 }) {
   const { sort, search } = await searchParams;
-  const data = await getPCData(search);
+  const data = await getPCList(search);
 
   if (data === null) {
     return (

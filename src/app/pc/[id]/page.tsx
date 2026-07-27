@@ -1,26 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-
-type PCItem = {
-  pcId: number;
-  name: string;
-  cpu: string;
-  gpu: string;
-  note: string;
-};
-
-async function getPCItem(id: string): Promise<PCItem | null> {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_DOTNET_API_URL}/api/pc/${id}`, {
-      next: { revalidate: 60 }
-    });
-    if (res.status === 404) return null;
-    if (!res.ok) throw new Error('Failed to fetch');
-    return res.json();
-  } catch {
-    return null;
-  }
-}
+import { getPCItem } from '@/lib/pc';
 
 export default async function PCDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
