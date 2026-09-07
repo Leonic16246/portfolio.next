@@ -27,9 +27,9 @@ export default function SignupPage() {
   ]
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="min-h-screen py-8">
 
-      <div className="flex flex-col items-center gap-8 mx-auto w-full max-w-[1000px]">
+      <div className="flex flex-col items-center gap-8 content-width">
 
         {/* Signup card */}
         <div className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12">

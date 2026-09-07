@@ -63,7 +63,7 @@ export default function Header() {
         ${isVisible || menuOpen ? 'translate-y-0' : '-translate-y-full'}`
       }
     >
-      <div className="mx-auto flex w-full max-w-[1000px] items-center justify-between px-4 py-2">
+      <div className="content-width flex items-center justify-between py-2">
 
         {/* Logo */}
         <Link href="/" className="shrink-0">
@@ -136,7 +136,7 @@ export default function Header() {
       {menuOpen && (
         <div className="drop-down md:hidden border-t-2 border-white/25 bg-black">
           <div className="overflow-hidden">
-            <div className="px-4 flex flex-col">
+            <div className="content-width flex flex-col">
               {navLinks.map(({ href, label }) => (
                 <Link
                   key={href}

@@ -6,9 +6,9 @@ export default function About() {
 
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="min-h-screen py-8">
 
-      <div className="flex flex-col items-center gap-8 mx-auto w-full max-w-[1000px]">
+      <div className="flex flex-col items-center gap-8 content-width">
 
         {/* Hero card */}
         <div

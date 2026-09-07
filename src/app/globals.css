@@ -14,6 +14,14 @@
   --color-slate: #1d1d1d;
 }
 
+.content-width {
+  margin-inline: auto;
+  width: 87.5%;
+}
+
+@media (min-width: 735px)  { .content-width { width: 692px; } }
+@media (min-width: 1069px) { .content-width { width: 980px; } }
+
 @keyframes dropDown {
   from { grid-template-rows: 0fr; opacity: 0; }
   to   { grid-template-rows: 1fr; opacity: 1; }
