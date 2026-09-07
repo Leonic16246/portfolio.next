@@ -42,18 +42,9 @@ export default async function PC({
 }) {
   const { sort, search } = await searchParams;
   const data = await getPCList(search);
+  const failed = data === null;
 
-  if (data === null) {
-    return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <p className="font-geist-mono text-xs tracking-widest uppercase text-white/30">
-          Failed to load PC data
-        </p>
-      </div>
-    );
-  }
-
-  const sorted = [...data].sort((a, b) => {
+  const sorted = [...(data ?? [])].sort((a, b) => {
     if (sort === 'name') return (a.name || '').localeCompare(b.name || '');
     if (sort === '-name') return (b.name || '').localeCompare(a.name || '');
     return a.pcId - b.pcId;
@@ -70,7 +61,7 @@ export default async function PC({
         <span className="absolute bottom-5 right-5 w-5 h-5 border-b border-r border-white/20" />
         <h1 className="text-7xl font-bold tracking-tight text-white/90 leading-none">PC Builds</h1>
         <p className="mt-5 font-geist-mono text-sm tracking-[0.2em] uppercase text-white/40">
-          {sorted.length} build{sorted.length !== 1 ? 's' : ''}
+          {failed ? 'Unavailable' : `${sorted.length} build${sorted.length !== 1 ? 's' : ''}`}
         </p>
       </div>
 
@@ -78,7 +69,13 @@ export default async function PC({
       <PCSearch search={search} />
 
       {/* Table */}
-      {sorted.length > 0 ? (
+      {failed ? (
+        <div className="relative bg-neutral-950 rounded-2xl px-10 py-14 ring-1 ring-white/10 flex items-center justify-center">
+          <p className="font-geist-mono text-xs tracking-widest uppercase text-white/30">
+            Failed to load PC data
+          </p>
+        </div>
+      ) : sorted.length > 0 ? (
         <div className="relative bg-neutral-950 rounded-2xl ring-1 ring-white/10 shadow-2xl overflow-hidden">
 
           {/* Desktop table */}

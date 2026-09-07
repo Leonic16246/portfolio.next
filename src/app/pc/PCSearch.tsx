@@ -7,13 +7,19 @@ export default function PCSearch({ search }: { search?: string }) {
   const router = useRouter();
   const pathname = usePathname();
   const [value, setValue] = useState(search || '');
+  const [activeSearch, setActiveSearch] = useState(search);
+
+  if (search !== activeSearch) {
+    setActiveSearch(search);
+    setValue(search || '');
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('submitted:', value);
     const params = new URLSearchParams();
     if (value.trim()) params.set('search', value.trim());
-    router.push(`${pathname}?${params.toString()}`);
+    const query = params.toString();
+    router.push(query ? `${pathname}?${query}` : pathname);
   };
 
   const handleClear = () => {
@@ -36,6 +42,7 @@ export default function PCSearch({ search }: { search?: string }) {
           <button
             type="button"
             onClick={handleClear}
+            aria-label="Clear search"
             className="absolute right-4 top-1/2 -translate-y-1/2 text-white/20 hover:text-white/50 transition-colors"
           >
             ✕

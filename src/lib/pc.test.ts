@@ -20,14 +20,24 @@ function mockFetch(response: { ok?: boolean; status?: number; body?: unknown }) 
   return fetchMock
 }
 
+let errorSpy: ReturnType<typeof vi.spyOn>
+
 beforeEach(() => {
   vi.stubEnv('DOTNET_API_URL', 'http://api.test')
+  errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
 })
 
 afterEach(() => {
   vi.unstubAllGlobals()
   vi.unstubAllEnvs()
+  errorSpy.mockRestore()
 })
+
+function connectionRefused() {
+  const error = new TypeError('fetch failed')
+  error.cause = { errors: [{ code: 'ECONNREFUSED' }, { code: 'ECONNREFUSED' }] }
+  return error
+}
 
 describe('getPCList', () => {
   it('returns the list on a successful response', async () => {
@@ -101,5 +111,37 @@ describe('getPCItem', () => {
     vi.stubEnv('DOTNET_API_URL', '')
     mockFetch({ body: item })
     await expect(getPCItem('0')).resolves.toBeNull()
+  })
+})
+
+describe('failure reporting', () => {
+  it('logs the status when the list endpoint responds with an error', async () => {
+    mockFetch({ status: 500 })
+    await getPCList()
+    expect(errorSpy).toHaveBeenCalledWith(expect.stringContaining('500'))
+  })
+
+  it('names the underlying connection failure instead of swallowing it', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(connectionRefused()))
+    await getPCList()
+    expect(errorSpy).toHaveBeenCalledWith(expect.stringContaining('ECONNREFUSED'))
+  })
+
+  it('identifies which search failed, so a dead backend is traceable', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(connectionRefused()))
+    await getPCList('i7')
+    expect(errorSpy).toHaveBeenCalledWith(expect.stringContaining('search: i7'))
+  })
+
+  it('logs the status when the item endpoint responds with an error', async () => {
+    mockFetch({ status: 500 })
+    await getPCItem('0')
+    expect(errorSpy).toHaveBeenCalledWith(expect.stringContaining('500'))
+  })
+
+  it('stays quiet on a 404, which is a normal outcome rather than a failure', async () => {
+    mockFetch({ status: 404 })
+    await expect(getPCItem('999')).resolves.toBeNull()
+    expect(errorSpy).not.toHaveBeenCalled()
   })
 })
