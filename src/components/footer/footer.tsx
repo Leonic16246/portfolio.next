@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Footer() {
   return (
-    <footer className="bg-neutral border-t border-white/25 px-[4rem] py-[2rem]">
+    <footer className="bg-black border-t-2 border-white/25 px-16 py-8">
       <div className="flex justify-between items-start gap-8">
 
         {/* Left — branding */}
@@ -38,8 +38,8 @@ export default function Footer() {
         </div>
 
         {/* Right — quick links */}
-        <div className="flex flex-col gap-1">
-          <span className="font-bold text-lg uppercase tracking-wider text-white/80 mb-2">
+        <div className="flex flex-col">
+          <span className="font-bold text-lg uppercase text-white/80 mb-2">
             Links
           </span>
           {[
@@ -50,7 +50,7 @@ export default function Footer() {
             <Link
               key={href}
               href={href}
-              className="text-white/80 hover:text-white/90 text-lg tracking-wide transition-colors"
+              className="text-white/80 hover:text-white/90 text-lg transition-colors"
             >
               {label}
             </Link>
@@ -60,7 +60,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="mt-8 pt-8 border-t-2 border-white/10 flex items-center justify-between font-semibold text-sm tracking-wider uppercase text-white/80">
+      <div className="mt-8 pt-8 border-t-2 border-white/10 flex items-center justify-between font-semibold uppercase text-white/80">
         <p>
           &copy; {new Date().getFullYear()} COPYRIGHT LOLOLOL
         </p>

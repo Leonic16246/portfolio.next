@@ -57,21 +57,21 @@ export default function Header() {
   return (
     <header
       className={`
-        fixed top-0 left-0 right-0 z-50
-        bg-neutral backdrop-blur-xs border-b border-white/25
+        sticky top-0 z-50
+        bg-black border-b-2 border-white/25
         transition duration-250 ease-in-out
         ${isVisible || menuOpen ? 'translate-y-0' : '-translate-y-full'}`
       }
     >
-      <div className="flex items-center justify-between px-[2rem] lg:px-[6rem] py-[0.1rem]">
+      <div className="mx-auto flex w-full max-w-[1000px] items-center justify-between px-4 py-2">
 
         {/* Logo */}
         <Link href="/" className="shrink-0">
           <Image
             src={logo}
             alt="Logo"
-            width={56}
-            height={56}
+            width={48}
+            height={48}
             className="cursor-pointer opacity-90 hover:opacity-100 transition-opacity"
             priority
           />
@@ -134,9 +134,9 @@ export default function Header() {
 
       {/* Mobile dropdown panel */}
       {menuOpen && (
-        <div className="drop-down md:hidden border-t border-white/25 bg-black/50">
+        <div className="drop-down md:hidden border-t-2 border-white/25 bg-black">
           <div className="overflow-hidden">
-            <div className="px-[2rem] flex flex-col">
+            <div className="px-4 flex flex-col">
               {navLinks.map(({ href, label }) => (
                 <Link
                   key={href}

@@ -16,7 +16,7 @@ export default function Contact() {
   return (
     <div className="min-h-screen p-8">
 
-      <div className="flex flex-col items-center gap-8 mx-auto">
+      <div className="flex flex-col items-center gap-8 mx-auto w-full max-w-[1000px]">
 
         {/* Header card */}
         <div

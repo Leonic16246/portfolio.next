@@ -26,10 +26,12 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body className={`${GeistSans.className} bg-black text-white pt-16 antialiased`}>
-        <Header />
-          <main className="min-h-screen">{children}</main> 
-        <Footer />
+      <body className={`${GeistSans.className} bg-black text-white antialiased`}>
+        <div className="flex min-h-dvh flex-col">
+          <Header />
+          <main className="min-h-dvh">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   )

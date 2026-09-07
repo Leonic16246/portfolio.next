@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="min-h-screen p-8">
 
-      <div className="flex flex-col items-center gap-8 mx-auto"> {/* gap between cards */}
+      <div className="flex flex-col items-center gap-8 mx-auto w-full max-w-[1000px]"> {/* gap between cards */}
 
         {/* Hero card */}
         <div className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12">
@@ -39,13 +39,13 @@ export default function Home() {
                   href="/files/Leon_Lee_CV_2026.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border-2 bg-white/90 px-6 py-2.5 text-center text-black transition hover:bg-white/75 active:scale-95"
+                  className="rounded-2xl border border-white/25 px-6 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
                 >
                   View CV
                 </Link>
                 <Link
                   href="/contact"
-                  className="rounded-full border-2 border-white/25 px-6 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
+                  className="rounded-2xl border border-white/25 px-6 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
                 >
                   Get in touch
                 </Link>

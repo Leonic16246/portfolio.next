@@ -88,7 +88,7 @@ export default function Account() {
     return (
         <div className="min-h-screen p-8">
 
-            <div className="flex flex-col items-center gap-8 mx-auto"> {/* gap between cards */}
+            <div className="flex flex-col items-center gap-8 mx-auto w-full max-w-[1000px]"> {/* gap between cards */}
 
                 {/* Header card */}
                 <div className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12">
