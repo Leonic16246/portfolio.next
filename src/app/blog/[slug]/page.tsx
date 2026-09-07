@@ -1,3 +1,4 @@
+import Card from '@/components/card/card'
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import PostContent from '@/components/blog/post-content'
@@ -59,14 +60,7 @@ export default async function BlogPost({ params }: PageProps) {
         </div>
 
         {/* Header card */}
-        <div
-          className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12"
-        >
-          <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-          <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-          <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-          <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
-
+        <Card>
           <h1 className="text-6xl font-bold tracking-tight text-white/90 max-w-3xl">
             {post.title}
           </h1>
@@ -80,19 +74,12 @@ export default async function BlogPost({ params }: PageProps) {
               day: 'numeric',
             })}
           </time>
-        </div>
+        </Card>
 
         {/* Content card */}
-        <div
-          className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12"
-        >
-          <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-          <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-          <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-          <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
-
+        <Card>
           <PostContent content={post.content} />
-        </div>
+        </Card>
       </div>
     </div>
   )

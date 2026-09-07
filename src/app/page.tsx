@@ -1,3 +1,4 @@
+import Card from '@/components/card/card'
 import Link from 'next/link'
 import Image from 'next/image'
 import logo from '../../public/images/CherryTreeGlyph.png'
@@ -13,12 +14,7 @@ export default function Home() {
       <div className="flex flex-col items-center gap-8 content-width"> {/* gap between cards */}
 
         {/* Hero card */}
-        <div className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12">
-          <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-          <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-          <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-          <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
-
+        <Card>
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             {/* Left: text content */}
             <div className="flex flex-col">
@@ -39,13 +35,13 @@ export default function Home() {
                   href="/files/Leon_Lee_CV_2026.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-2xl border border-white/25 px-6 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
+                  className="rounded-xl border border-white/25 px-6 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
                 >
                   View CV
                 </Link>
                 <Link
                   href="/contact"
-                  className="rounded-2xl border border-white/25 px-6 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
+                  className="rounded-xl border border-white/25 px-6 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
                 >
                   Get in touch
                 </Link>
@@ -64,15 +60,10 @@ export default function Home() {
               />
             </div>
           </div>
-        </div>
+        </Card>
 
         {/* About Me card */}
-        <div className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12">
-          <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-          <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-          <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-          <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
-
+        <Card>
           <Link href="/about">
             <h2 className="text-6xl font-bold tracking-tight text-white/90">About Me</h2>
           </Link>
@@ -80,15 +71,10 @@ export default function Home() {
           <p className="mt-4 text-xl leading-relaxed text-white/80">
             I am a software engineering student seeking a full-time software development role to gain real-world experience and advance my career. Highly motivated to learn, passionate about problem solving, and able to keep up with industry tech. I enjoy going through the software development lifecycle on my own projects. Meeting user needs is always satisfying to me.
           </p>
-        </div>
+        </Card>
 
         {/* Skill cards */}
-        <div className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12">
-          <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-          <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-          <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-          <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
-
+        <Card>
           <h2 className="text-6xl font-bold tracking-tight text-white/90">Skills</h2>
           {skills.map((group) => (
             <div key={group.label} className="flex flex-col gap-2">
@@ -105,15 +91,10 @@ export default function Home() {
               </div>
             </div>
           ))}
-        </div>
+        </Card>
 
         {/* Project cards */}
-        <div className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12">
-          <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-          <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-          <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-          <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
-
+        <Card>
           <Link href="/projects">
             <h2 className="text-6xl font-bold tracking-tight text-white/90">Projects</h2>
           </Link>
@@ -176,7 +157,7 @@ export default function Home() {
               View all projects <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
             </Link>
           </div>
-        </div>
+        </Card>
       </div>
     </div>
   )

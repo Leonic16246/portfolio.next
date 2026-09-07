@@ -1,5 +1,6 @@
 'use client'
 
+import Card, { CardCorners } from '@/components/card/card'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -19,20 +20,13 @@ export default function Contact() {
       <div className="flex flex-col items-center gap-8 content-width">
 
         {/* Header card */}
-        <div
-          className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12"
-        >
-          <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-          <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-          <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-          <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
-
+        <Card>
           <p className="text-7xl tracking-tight text-white/80">Get in</p>
           <h1 className="text-7xl tracking-tight text-white/90">Touch.</h1>
           <p className="mt-4 text-xl text-white/70">
             Feel free to reach out through any of the following:
           </p>
-        </div>
+        </Card>
 
         {/* Contact cards */}
         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -44,10 +38,7 @@ export default function Contact() {
               aria-label={label}
               className="relative rounded-lg border border-white/10 bg-neutral-950 px-8 py-10 overflow-hidden flex flex-col gap-5 transition hover:border-white/20 duration-200 group"
             >
-              <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-              <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-              <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-              <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
+              <CardCorners />
 
               <FontAwesomeIcon
                 icon={iconMap[icon]}

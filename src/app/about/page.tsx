@@ -1,3 +1,4 @@
+import Card from '@/components/card/card'
 import skills from "../../../public/data/skills.json"
 import education from "../../../public/data/education.json"
 import experience from "../../../public/data/experience.json"
@@ -11,14 +12,7 @@ export default function About() {
       <div className="flex flex-col items-center gap-8 content-width">
 
         {/* Hero card */}
-        <div
-          className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12"
-        >
-          <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-          <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-          <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-          <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
-
+        <Card>
           <p className="text-8xl font-light tracking-tight text-white/80 leading-none">About</p>
           <h1 className="text-8xl font-bold tracking-tight text-white/90 leading-none">Me</h1>
           <p className="mt-4 font-geist-mono text-lg tracking-[0.2em] uppercase text-white/70">
@@ -27,17 +21,10 @@ export default function About() {
           <p className="mt-6 max-w-2xl text-xl leading-relaxed text-white/80">
             I'm a software engineering student seeking a full-time software development role to gain real-world experience and advance my career. Highly motivated to learn, passionate about problem solving, and able to keep up with industry tech.
           </p>
-        </div>
+        </Card>
 
         {/* Skills card */}
-        <div
-          className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12"
-        >
-          <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-          <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-          <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-          <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
-
+        <Card>
           <h2 className="text-6xl font-bold tracking-tight text-white/90">Skills</h2>
           <div className="mt-2">
             {skills.map((group) => (
@@ -56,20 +43,13 @@ export default function About() {
               </div>
             ))}
           </div>
-        </div>
+        </Card>
 
         {/* Experience + Education */}
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-4">
 
           {/* Experience */}
-          <div
-            className="relative rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12"
-          >
-            <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-            <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-            <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-            <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
-
+          <Card>
             <h2 className="text-4xl font-bold tracking-tight text-white/90">Experience</h2>
             <div className="mt-6 space-y-6">
               {experience.map((e) => (
@@ -80,17 +60,10 @@ export default function About() {
                 </div>
               ))}
             </div>
-          </div>
+          </Card>
 
           {/* Education */}
-          <div
-            className="relative rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12"
-          >
-            <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-            <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-            <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-            <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
-
+          <Card>
             <h2 className="text-4xl font-bold tracking-tight text-white/90">Education</h2>
             <div className="mt-6 space-y-6">
               {education.map((e) => (
@@ -102,7 +75,7 @@ export default function About() {
                 </div>
               ))}
             </div>
-          </div>
+          </Card>
 
         </div>
 

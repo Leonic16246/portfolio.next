@@ -58,7 +58,7 @@ export default function Header() {
     <header
       className={`
         sticky top-0 z-50
-        bg-black border-b-2 border-white/25
+        bg-black border-b-2 border-white/10
         transition duration-250 ease-in-out
         ${isVisible || menuOpen ? 'translate-y-0' : '-translate-y-full'}`
       }

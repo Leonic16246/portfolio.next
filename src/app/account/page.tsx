@@ -1,4 +1,5 @@
 'use client'
+import Card from '@/components/card/card'
 
 import { useState, useEffect } from 'react';
 import { createBrowserClient } from '@supabase/ssr';
@@ -91,12 +92,7 @@ export default function Account() {
             <div className="flex flex-col items-center gap-8 content-width"> {/* gap between cards */}
 
                 {/* Header card */}
-                <div className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12">
-                    <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-                    <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-                    <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-                    <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
-
+                <Card>
                     <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                         {/* Left: text content */}
                         <div className="flex flex-col">
@@ -119,15 +115,10 @@ export default function Account() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </Card>
 
                 {/* Account details card */}
-                <div className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12">
-                    <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-                    <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-                    <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-                    <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
-
+                <Card>
                     <h2 className="text-6xl font-bold tracking-tight text-white/90">Details</h2>
 
                     <div className="mt-8 flex flex-col gap-6">
@@ -195,7 +186,7 @@ export default function Account() {
                             )}
                         </button>
                     </div>
-                </div>
+                </Card>
             </div>
         </div>
     );
