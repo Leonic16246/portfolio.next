@@ -13,7 +13,7 @@ export default function Home() {
       <div className="flex flex-col items-center gap-8 mx-auto"> {/* gap between cards */}
 
         {/* Hero card */}
-        <div className="fade-in relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12" style={{ animationDelay: '0.2s' }}>
+        <div className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12">
           <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
           <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
           <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
@@ -67,7 +67,7 @@ export default function Home() {
         </div>
 
         {/* About Me card */}
-        <div className="fade-in relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12" style={{ animationDelay: '0.3s' }}>
+        <div className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12">
           <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
           <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
           <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
@@ -83,7 +83,7 @@ export default function Home() {
         </div>
 
         {/* Skill cards */}
-        <div className="fade-in relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12" style={{ animationDelay: '0.4s' }}>
+        <div className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12">
           <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
           <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
           <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
@@ -108,7 +108,7 @@ export default function Home() {
         </div>
 
         {/* Project cards */}
-        <div className="fade-in relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12" style={{ animationDelay: '0.5s' }}>
+        <div className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12">
           <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
           <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
           <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />

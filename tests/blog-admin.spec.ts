@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test'
 
-test('logged-out user does not see the account menu', async ({ page }) => {
-  await page.goto('/')
-  // Header always renders the account button (avoids layout shift) but
-  // hides it via the `invisible` class until a session is loaded.
-  await expect(page.getByLabel('Account menu')).not.toBeVisible()
-  await expect(page.getByText('Log out')).not.toBeVisible()
+test('logged-out user cannot reach the blog admin', async ({ page }) => {
+  // The proxy middleware (src/lib/supabase/proxy.ts) redirects unauthenticated
+  // visits to /admin/* back to the home page before any admin UI renders.
+  await page.goto('/admin/blog')
+  await expect(page).toHaveURL('/')
+  await expect(page.getByText('Admin Dashboard')).not.toBeVisible()
 })

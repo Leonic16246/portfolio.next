@@ -14,19 +14,6 @@
   --color-slate: #1d1d1d;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-.fade-in {
-  animation: fadeIn 2s ease-out both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .fade-in { animation: none; }
-}
-
 @keyframes dropDown {
   from { grid-template-rows: 0fr; opacity: 0; }
   to   { grid-template-rows: 1fr; opacity: 1; }

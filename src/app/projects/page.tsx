@@ -86,8 +86,7 @@ export default function Projects() {
 
         {/* Header card */}
         <div
-          className="fade-in relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12"
-          style={{ animationDelay: '0.2s' }}
+          className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12"
         >
           <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
           <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
@@ -103,8 +102,7 @@ export default function Projects() {
           {projectsData.project.map((project: ProjectType, i: number) => (
             <div
               key={i}
-              className="fade-in rounded-lg border border-white/10 bg-neutral-950 overflow-hidden transition hover:border-white/20 duration-200 flex flex-col"
-              style={{ animationDelay: `${0.3 + i * 0.08}s` }}
+              className="rounded-lg border border-white/10 bg-neutral-950 overflow-hidden transition hover:border-white/20 duration-200 flex flex-col"
             >
 
               {/* Image */}

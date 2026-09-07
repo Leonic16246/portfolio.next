@@ -60,8 +60,7 @@ export default async function BlogPost({ params }: PageProps) {
 
         {/* Header card */}
         <div
-          className="fade-in relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12"
-          style={{ animationDelay: '0.2s' }}
+          className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12"
         >
           <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
           <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
@@ -85,8 +84,7 @@ export default async function BlogPost({ params }: PageProps) {
 
         {/* Content card */}
         <div
-          className="fade-in relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12"
-          style={{ animationDelay: '0.3s' }}
+          className="relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12"
         >
           <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
           <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
