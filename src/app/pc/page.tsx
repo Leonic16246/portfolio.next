@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import PCSearch from './PCSearch';
+import Card from '@/components/card/card';
 import { getPCList } from '@/lib/pc';
 
 function SortLink({
@@ -51,93 +52,98 @@ export default async function PC({
   });
 
   return (
-    <div className="min-h-screen bg-black p-6 space-y-6">
+    <div className="min-h-screen py-8">
 
-      {/* Header */}
-      <div className="relative bg-neutral-950 rounded-2xl px-10 py-14 ring-1 ring-white/10 shadow-2xl overflow-hidden">
-        <span className="absolute top-5 left-5 w-5 h-5 border-t border-l border-white/20" />
-        <span className="absolute top-5 right-5 w-5 h-5 border-t border-r border-white/20" />
-        <span className="absolute bottom-5 left-5 w-5 h-5 border-b border-l border-white/20" />
-        <span className="absolute bottom-5 right-5 w-5 h-5 border-b border-r border-white/20" />
-        <h1 className="text-7xl font-bold tracking-tight text-white/90 leading-none">PC Builds</h1>
-        <p className="mt-5 font-geist-mono text-sm tracking-[0.2em] uppercase text-white/40">
-          {failed ? 'Unavailable' : `${sorted.length} build${sorted.length !== 1 ? 's' : ''}`}
-        </p>
-      </div>
+      <div className="flex flex-col items-center gap-8 content-width">
 
-      {/* Search */}
-      <PCSearch search={search} />
-
-      {/* Table */}
-      {failed ? (
-        <div className="relative bg-neutral-950 rounded-2xl px-10 py-14 ring-1 ring-white/10 flex items-center justify-center">
-          <p className="font-geist-mono text-xs tracking-widest uppercase text-white/30">
-            Failed to load PC data
+        {/* Header card */}
+        <Card>
+          <p className="text-5xl md:text-8xl font-light tracking-tight text-white/80 leading-none">PC</p>
+          <h1 className="text-5xl md:text-8xl font-bold tracking-tight text-white/90 leading-none">Builds</h1>
+          <p className="mt-4 font-geist-mono text-lg tracking-[0.2em] uppercase text-white/70">
+            {failed ? 'Unavailable' : `${sorted.length} build${sorted.length !== 1 ? 's' : ''}`}
           </p>
+        </Card>
+
+        {/* Search */}
+        <div className="w-full">
+          <PCSearch search={search} />
         </div>
-      ) : sorted.length > 0 ? (
-        <div className="relative bg-neutral-950 rounded-2xl ring-1 ring-white/10 shadow-2xl overflow-hidden">
 
-          {/* Desktop table */}
-          <div className="hidden lg:block overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-white/[0.07]">
-                  <th className="px-8 py-4 text-left font-geist-mono text-[10px] tracking-widest uppercase text-white/60">
-                    <SortLink label="Name" field="name" currentSort={sort} search={search} />
-                  </th>
-                  {['CPU', 'GPU', 'Note'].map((col) => (
-                    <th key={col} className="px-8 py-4 text-left font-geist-mono text-[10px] tracking-widest uppercase text-white/60">
-                      {col}
+        {/* Results */}
+        {failed ? (
+          <Card>
+            <p className="font-geist-mono text-sm tracking-widest uppercase text-white/50">
+              Failed to load PC data
+            </p>
+          </Card>
+        ) : sorted.length > 0 ? (
+          <Card>
+
+            {/* Table, once the container reaches its widest step */}
+            <div className="hidden min-[1069px]:block overflow-x-auto">
+              <table className="w-full table-fixed">
+                <thead>
+                  <tr className="border-b border-white/10">
+                    <th className="w-[28%] py-4 pr-6 text-left font-geist-mono text-sm tracking-widest uppercase text-white/70">
+                      <SortLink label="Name" field="name" currentSort={sort} search={search} />
                     </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {sorted.map((item) => (
-                  <tr key={item.pcId} className="border-b border-white/[0.05] hover:bg-white/[0.02] transition-colors duration-150 last:border-b-0">
-                    <td className="px-8 py-4 text-sm font-medium text-white/80">
-                      <Link href={`/pc/${item.pcId}`} className="hover:text-white transition-colors">
-                        {item.name || '—'}
-                      </Link>
-                    </td>
-                    <td className="px-8 py-4 text-sm text-white/80 font-geist-mono">{item.cpu || '—'}</td>
-                    <td className="px-8 py-4 text-sm text-white/80 font-geist-mono">{item.gpu || '—'}</td>
-                    <td className="px-8 py-4 text-sm text-white/80">{item.note || '—'}</td>
+                    {['CPU', 'GPU', 'Note'].map((col) => (
+                      <th key={col} className="w-[24%] py-4 pr-6 last:pr-0 text-left font-geist-mono text-sm tracking-widest uppercase text-white/70">
+                        {col}
+                      </th>
+                    ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {sorted.map((item) => (
+                    <tr key={item.pcId} className="border-b border-white/10 last:border-b-0">
+                      <td className="py-4 pr-6 text-lg text-white/90 break-words">
+                        <Link href={`/pc/${item.pcId}`} className="hover:text-white transition-colors">
+                          {item.name || '—'}
+                        </Link>
+                      </td>
+                      <td className="py-4 pr-6 text-lg text-white/80 break-words">{item.cpu || '—'}</td>
+                      <td className="py-4 pr-6 text-lg text-white/80 break-words">{item.gpu || '—'}</td>
+                      <td className="py-4 text-lg text-white/80 break-words">{item.note || '—'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
-          {/* Mobile cards */}
-          <div className="lg:hidden divide-y divide-white/[0.04]">
-            {sorted.map((item) => (
-              <Link key={item.pcId} href={`/pc/${item.pcId}`} className="block px-6 py-6 space-y-3 hover:bg-white/[0.02]">
-                <p className="text-white/80 font-medium">{item.name || 'Unnamed'}</p>
-                <div className="space-y-1.5">
+            {/* Stacked rows for the narrower container steps */}
+            <div className="min-[1069px]:hidden space-y-6">
+              {sorted.map((item) => (
+                <Link
+                  key={item.pcId}
+                  href={`/pc/${item.pcId}`}
+                  className="block border-l border-white/10 pl-5 hover:border-white/25 transition-colors"
+                >
+                  <p className="text-2xl text-white/90 font-semibold">{item.name || 'Unnamed'}</p>
                   {[
                     { label: 'CPU', value: item.cpu },
                     { label: 'GPU', value: item.gpu },
                     { label: 'Note', value: item.note },
                   ].map(({ label, value }) => (
-                    <div key={label} className="flex justify-between items-baseline gap-4">
-                      <span className="font-geist-mono text-[10px] tracking-widest uppercase text-white/40">{label}</span>
-                      <span className="text-sm text-white/50 font-geist-mono">{value || '—'}</span>
-                    </div>
+                    <p key={label} className="mt-1 font-geist-mono text-sm tracking-widest uppercase text-white/70 break-words">
+                      {label}: <span className="text-white/80">{value || '—'}</span>
+                    </p>
                   ))}
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      ) : (
-        <div className="relative bg-neutral-950 rounded-2xl px-10 py-14 ring-1 ring-white/10 flex items-center justify-center">
-          <p className="font-geist-mono text-xs tracking-widest uppercase text-white/25">
-            {search ? `No results for "${search}"` : 'No PC builds found'}
-          </p>
-        </div>
-      )}
+                </Link>
+              ))}
+            </div>
+
+          </Card>
+        ) : (
+          <Card>
+            <p className="font-geist-mono text-sm tracking-widest uppercase text-white/50">
+              {search ? `No results for "${search}"` : 'No PC builds found'}
+            </p>
+          </Card>
+        )}
+
+      </div>
     </div>
   );
 }
