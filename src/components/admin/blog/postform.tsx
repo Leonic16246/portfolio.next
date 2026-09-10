@@ -89,118 +89,116 @@ export default function PostForm({ userId, post }: PostFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
-      <div className="md:grid md:grid-cols-1 md:gap-6">
-        <div className="md:col-span-1">
-          <h3 className="text-lg font-medium leading-6 text-neutral-900">Post Information</h3>
+    <form onSubmit={handleSubmit} className="space-y-8">
+
+      <div className="space-y-6">
+        <div>
+          <label htmlFor="title" className="block font-geist-mono text-sm tracking-widest uppercase text-white/70">
+            Title
+          </label>
+          <input
+            type="text"
+            id="title"
+            value={title}
+            onChange={handleTitleChange}
+            required
+            className="mt-2 block w-full rounded-lg border border-white/10 bg-black/40 px-4 py-3 text-white/90 placeholder-white/40 transition focus:border-white/25"
+          />
         </div>
-        <div className="mt-5 md:mt-0 md:col-span-2 space-y-6">
-          <div>
-            <label htmlFor="title" className="block text-sm font-medium text-neutral-900">
-              Title
-            </label>
+
+        <div>
+          <label htmlFor="slug" className="block font-geist-mono text-sm tracking-widest uppercase text-white/70">
+            Slug
+          </label>
+          <div className="mt-2 flex">
+            <span className="inline-flex items-center rounded-l-lg border border-r-0 border-white/10 bg-white/5 px-4 font-geist-mono text-sm text-white/50">
+              /blog/
+            </span>
             <input
               type="text"
-              id="title"
-              value={title}
-              onChange={handleTitleChange}
+              id="slug"
+              value={slug}
+              onChange={(e) => setSlug(e.target.value)}
               required
-              className="mt-1 block w-full border border-neutral-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-neutral-900"
+              className="block w-full min-w-0 flex-1 rounded-r-lg border border-white/10 bg-black/40 px-4 py-3 font-geist-mono text-white/90 placeholder-white/40 transition focus:border-white/25"
             />
           </div>
+        </div>
 
-          <div>
-            <label htmlFor="slug" className="block text-sm font-medium text-neutral-900">
-              Slug
+        <div>
+          <label htmlFor="excerpt" className="block font-geist-mono text-sm tracking-widest uppercase text-white/70">
+            Excerpt
+          </label>
+          <textarea
+            id="excerpt"
+            value={excerpt}
+            onChange={(e) => setExcerpt(e.target.value)}
+            rows={2}
+            className="mt-2 block w-full rounded-lg border border-white/10 bg-black/40 px-4 py-3 text-white/90 placeholder-white/40 transition focus:border-white/25"
+            placeholder="A brief summary of your post"
+          />
+        </div>
+
+        <div>
+          <div className="flex items-center justify-between gap-4">
+            <label htmlFor="content" className="block font-geist-mono text-sm tracking-widest uppercase text-white/70">
+              Content
             </label>
-            <div className="mt-1 flex rounded-md shadow-sm">
-              <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-neutral-300 bg-neutral-50 text-neutral-900 sm:text-sm">
-                /blog/
-              </span>
-              <input
-                type="text"
-                id="slug"
-                value={slug}
-                onChange={(e) => setSlug(e.target.value)}
-                required
-                className="flex-1 block w-full border border-neutral-300 rounded-none rounded-r-md py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-neutral-900"
-              />
-            </div>
+            <span className="font-geist-mono text-sm tracking-wider uppercase text-white/40">
+              Markdown supported
+            </span>
           </div>
-
-          <div>
-            <label htmlFor="excerpt" className="block text-sm font-medium text-neutral-900">
-              Excerpt
-            </label>
+          <div className="mt-2 grid grid-cols-1 lg:grid-cols-2 gap-4">
             <textarea
-              id="excerpt"
-              value={excerpt}
-              onChange={(e) => setExcerpt(e.target.value)}
-              rows={2}
-              className="mt-1 block w-full border border-neutral-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-neutral-900"
-              placeholder="A brief summary of your post"
+              id="content"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              required
+              rows={20}
+              className="block w-full rounded-lg border border-white/10 bg-black/40 px-4 py-3 font-geist-mono text-sm text-white/90 placeholder-white/40 transition focus:border-white/25"
+              placeholder="Write your post content here..."
             />
+            <div className="max-h-[32rem] overflow-y-auto rounded-lg border border-white/10 bg-black/40 px-4 py-3">
+              {content ? (
+                <PostContent content={content} />
+              ) : (
+                <p className="font-geist-mono text-sm tracking-wider uppercase text-white/40">
+                  Preview will appear here...
+                </p>
+              )}
+            </div>
           </div>
+        </div>
 
+        <div className="flex items-start gap-3">
+          <input
+            id="published"
+            type="checkbox"
+            checked={published}
+            onChange={(e) => setPublished(e.target.checked)}
+            className="mt-1 h-4 w-4 shrink-0 accent-white/90"
+          />
           <div>
-            <div className="flex items-center justify-between">
-              <label htmlFor="content" className="block text-sm font-medium text-neutral-900">
-                Content
-              </label>
-              <span className="text-xs text-neutral-500">Markdown supported</span>
-            </div>
-            <div className="mt-1 grid grid-cols-1 lg:grid-cols-2 gap-4">
-              <textarea
-                id="content"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                required
-                rows={20}
-                className="block w-full border border-neutral-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm font-mono text-neutral-900"
-                placeholder="Write your post content here..."
-              />
-              <div className="border border-neutral-300 rounded-md bg-black px-4 py-3 overflow-y-auto max-h-[32rem]">
-                {content ? (
-                  <PostContent content={content} />
-                ) : (
-                  <p className="text-sm text-neutral-500">Preview will appear here...</p>
-                )}
-              </div>
-            </div>
-          </div>
-
-          <div className="flex items-start">
-            <div className="flex items-center h-5">
-              <input
-                id="published"
-                type="checkbox"
-                checked={published}
-                onChange={(e) => setPublished(e.target.checked)}
-                className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-neutral-300 rounded"
-              />
-            </div>
-            <div className="ml-3 text-sm">
-              <label htmlFor="published" className="font-medium text-neutral-900">
-                Published
-              </label>
-              <p className="text-neutral-900">Make this post public</p>
-            </div>
+            <label htmlFor="published" className="font-geist-mono text-sm tracking-widest uppercase text-white/70">
+              Published
+            </label>
+            <p className="mt-1 text-white/50">Make this post public</p>
           </div>
         </div>
       </div>
 
-      <div className="flex justify-end space-x-3">
+      <div className="flex flex-wrap justify-end gap-4">
         <button
           type="button"
           onClick={() => router.back()}
-          className="bg-white py-2 px-4 border border-neutral-300 rounded-md shadow-sm text-sm font-medium text-neutral-900 hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          className="rounded-full border-2 border-white/25 px-6 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
         >
           Cancel
         </button>
         <button
           type="submit"
           disabled={loading}
-          className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-neutral-400"
+          className="rounded-full border-2 bg-white/90 px-6 py-2.5 text-center text-black transition hover:bg-white/75 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? 'Saving...' : post ? 'Update Post' : 'Create Post'}
         </button>

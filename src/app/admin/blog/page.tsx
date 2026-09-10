@@ -1,97 +1,122 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
+import Card from '@/components/card/card'
 import DeleteButton from '@/components/admin/blog/deletebutton'
 
 export const dynamic = 'force-dynamic'
 
 export default async function AdminPost() {
   const supabase = await createClient()
-  
+
   const { data: posts } = await supabase
     .from('posts')
     .select('*')
     .order('created_at', { ascending: false })
 
+  const count = posts?.length ?? 0
+
   return (
-    <div className="px-4 sm:px-0">
-      <div className="sm:flex sm:items-center">
-        <div className="sm:flex-auto">
-          <h1 className="text-3xl font-bold text-gray-900">Posts</h1>
-          <p className="mt-2 text-sm text-gray-700">
-            A list of all posts including their title, status, and publish date.
-          </p>
-        </div>
-        <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+    <>
+      <Card>
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
+          <div>
+            <h1 className="text-5xl md:text-8xl font-bold tracking-tight text-white/90 leading-none">
+              Posts
+            </h1>
+            <p className="mt-4 font-geist-mono text-lg tracking-[0.2em] uppercase text-white/70">
+              {count} post{count !== 1 ? 's' : ''}
+            </p>
+          </div>
           <Link
             href="/admin/blog/new"
-            className="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:w-auto"
+            className="shrink-0 rounded-full border-2 bg-white/90 px-6 py-2.5 text-center text-black transition hover:bg-white/75 active:scale-95"
           >
             New post
           </Link>
         </div>
-      </div>
+      </Card>
 
-      <div className="mt-8 flex flex-col">
-        <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-            <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-300">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                      Title
+      {count > 0 ? (
+        <Card>
+          {/* Table, once the container reaches its widest step */}
+          <div className="hidden min-[1069px]:block overflow-x-auto">
+            <table className="w-full table-fixed">
+              <thead>
+                <tr className="border-b border-white/10">
+                  {['Title', 'Status', 'Created'].map((col, i) => (
+                    <th
+                      key={col}
+                      className={`${i === 0 ? 'w-[46%]' : 'w-[18%]'} py-4 pr-6 text-left font-geist-mono text-sm tracking-widest uppercase text-white/70`}
+                    >
+                      {col}
                     </th>
-                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                      Status
-                    </th>
-                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                      Created
-                    </th>
-                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                      <span className="sr-only">Actions</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
-                  {posts?.map((post) => (
-                    <tr key={post.id}>
-                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
-                        <div className="flex items-center">
-                          <div>
-                            <div className="font-medium text-gray-900">{post.title}</div>
-                            <div className="text-gray-500">{post.slug}</div>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        <span className={`inline-flex rounded-full px-2 text-xs font-semibold leading-5 ${
-                          post.published 
-                            ? 'bg-green-100 text-green-800' 
-                            : 'bg-yellow-100 text-yellow-800'
-                        }`}>
-                          {post.published ? 'Published' : 'Draft'}
-                        </span>
-                      </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {new Date(post.created_at).toLocaleDateString()}
-                      </td>
-                      <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <Link
-                          href={`/admin/blog/${post.id}/edit`}
-                          className="text-blue-600 hover:text-blue-900 mr-4"
-                        >
-                          Edit
-                        </Link>
-                        <DeleteButton postId={post.id} />
-                      </td>
-                    </tr>
                   ))}
-                </tbody>
-              </table>
-            </div>
+                  <th className="w-[18%] py-4 text-right font-geist-mono text-sm tracking-widest uppercase text-white/70">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {posts!.map((post) => (
+                  <tr key={post.id} className="border-b border-white/10 last:border-b-0">
+                    <td className="py-4 pr-6 break-words">
+                      <p className="text-lg text-white/90">{post.title}</p>
+                      <p className="font-geist-mono text-sm text-white/50">/{post.slug}</p>
+                    </td>
+                    <td className="py-4 pr-6">
+                      <span className="inline-block rounded border border-white/15 px-2 py-1 font-geist-mono text-xs tracking-widest uppercase text-white/70">
+                        {post.published ? 'Published' : 'Draft'}
+                      </span>
+                    </td>
+                    <td className="py-4 pr-6 font-geist-mono text-sm text-white/70">
+                      {new Date(post.created_at).toLocaleDateString('en-UK')}
+                    </td>
+                    <td className="py-4 text-right whitespace-nowrap">
+                      <Link
+                        href={`/admin/blog/${post.id}/edit`}
+                        className="font-geist-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors"
+                      >
+                        Edit
+                      </Link>
+                      <span className="mx-3 text-white/20">/</span>
+                      <DeleteButton postId={post.id} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        </div>
-      </div>
-    </div>
+
+          {/* Stacked rows for the narrower container steps */}
+          <div className="min-[1069px]:hidden space-y-6">
+            {posts!.map((post) => (
+              <div key={post.id} className="border-l border-white/10 pl-5">
+                <p className="text-2xl text-white/90 font-semibold break-words">{post.title}</p>
+                <p className="mt-1 font-geist-mono text-sm text-white/50 break-words">/{post.slug}</p>
+                <p className="mt-2 font-geist-mono text-sm tracking-widest uppercase text-white/70">
+                  {post.published ? 'Published' : 'Draft'} — {new Date(post.created_at).toLocaleDateString('en-UK')}
+                </p>
+                <p className="mt-3">
+                  <Link
+                    href={`/admin/blog/${post.id}/edit`}
+                    className="font-geist-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors"
+                  >
+                    Edit
+                  </Link>
+                  <span className="mx-3 text-white/20">/</span>
+                  <DeleteButton postId={post.id} />
+                </p>
+              </div>
+            ))}
+          </div>
+        </Card>
+      ) : (
+        <Card>
+          <p className="font-geist-mono text-sm tracking-widest uppercase text-white/50">
+            No posts yet
+          </p>
+        </Card>
+      )}
+    </>
   )
 }

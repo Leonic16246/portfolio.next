@@ -226,12 +226,12 @@ export default function EditPC() {
 
   if (loading) {
       return (
-          <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center">
+          <div className="min-h-screen flex items-center justify-center">
               <div className="text-center">
-                  <div className="text-xl font-medium text-neutral-600 dark:text-neutral-400 mb-4">
+                  <div className="font-geist-mono text-sm tracking-widest uppercase text-white/60 mb-4">
                       Loading...
                   </div>
-                  <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
+                  <div className="w-8 h-8 border-2 border-white/60 border-t-transparent rounded-full animate-spin mx-auto"></div>
               </div>
           </div>
       );
@@ -239,14 +239,14 @@ export default function EditPC() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="text-neutral-600 dark:text-neutral-300 mb-4">
+          <p className="text-white/60 mb-4">
             Please log in
           </p>
           <button
             onClick={() => window.location.href = '/login'}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="rounded-xl border border-white/10 px-4 py-2 font-geist-mono text-sm uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white disabled:opacity-50"
           >
             Login
           </button>
@@ -257,12 +257,12 @@ export default function EditPC() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center">
-        <div className="text-red-600 dark:text-red-400">
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-red-400/90">
           {error}
           <button 
             onClick={fetchPCData}
-            className="ml-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="ml-4 rounded-xl border border-white/10 px-4 py-2 font-geist-mono text-sm uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Retry
           </button>
@@ -272,51 +272,50 @@ export default function EditPC() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 transition-colors duration-200">
-      <div className="container mx-auto px-4 py-8">
+    <>
         <div className="mb-8 flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-200">
+          <h1 className="text-4xl font-bold tracking-tight text-white/90">
             Edit PC Components 
           </h1>
           <button
             onClick={handleInsert}
             disabled={editingItem !== null || operationLoading}
-            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="rounded-full border-2 bg-white/90 px-6 py-2.5 text-center text-black transition hover:bg-white/75 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Add New PC
           </button>
         </div>
 
-        <div className="bg-white dark:bg-neutral-800 rounded-lg shadow-lg overflow-hidden">
+        <div className="relative w-full rounded border-2 border-white/5 bg-neutral-950 overflow-hidden">
           {/* Desktop Table */}
           <div className="hidden lg:block overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-neutral-100 dark:bg-neutral-700">
+              <thead className="border-b border-white/10">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
+                  <th className="py-4 pr-6 text-left font-geist-mono text-sm tracking-widest uppercase text-white/70">
                     Name
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
+                  <th className="py-4 pr-6 text-left font-geist-mono text-sm tracking-widest uppercase text-white/70">
                     CPU
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
+                  <th className="py-4 pr-6 text-left font-geist-mono text-sm tracking-widest uppercase text-white/70">
                     GPU
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
+                  <th className="py-4 pr-6 text-left font-geist-mono text-sm tracking-widest uppercase text-white/70">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-neutral-200 dark:divide-neutral-600">
+              <tbody className="divide-y divide-white/10">
                 {/* Insert Row */}
                 {isInserting && editingItem && (
-                  <tr className="bg-blue-50 dark:bg-blue-900/20">
+                  <tr className="bg-white/[0.03]">
                     <td className="px-6 py-4">
                       <input
                         type="text"
                         value={editingItem.name}
                         onChange={(e) => handleInputChange('name', e.target.value)}
-                        className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded text-sm bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
+                        className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-sm text-white/90 placeholder-white/40 transition focus:border-white/25"
                         placeholder="PC Name"
                       />
                     </td>
@@ -325,7 +324,7 @@ export default function EditPC() {
                         type="text"
                         value={editingItem.cpu}
                         onChange={(e) => handleInputChange('cpu', e.target.value)}
-                        className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded text-sm bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
+                        className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-sm text-white/90 placeholder-white/40 transition focus:border-white/25"
                         placeholder="CPU"
                       />
                     </td>
@@ -334,7 +333,7 @@ export default function EditPC() {
                         type="text"
                         value={editingItem.gpu}
                         onChange={(e) => handleInputChange('gpu', e.target.value)}
-                        className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded text-sm bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
+                        className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-sm text-white/90 placeholder-white/40 transition focus:border-white/25"
                         placeholder="GPU"
                       />
                     </td>
@@ -343,14 +342,14 @@ export default function EditPC() {
                         <button
                           onClick={handleSave}
                           disabled={operationLoading}
-                          className="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600 disabled:opacity-50"
+                          className="rounded-xl border border-white/10 px-3 py-1 font-geist-mono text-sm uppercase text-white/60 transition hover:bg-white/5 hover:text-white disabled:opacity-50"
                         >
                           Save
                         </button>
                         <button
                           onClick={handleCancel}
                           disabled={operationLoading}
-                          className="px-3 py-1 bg-gray-500 text-white rounded text-sm hover:bg-gray-600 disabled:opacity-50"
+                          className="rounded-xl border border-white/10 px-3 py-1 font-geist-mono text-sm uppercase text-white/60 transition hover:bg-white/5 hover:text-white disabled:opacity-50"
                         >
                           Cancel
                         </button>
@@ -363,41 +362,41 @@ export default function EditPC() {
                 {data.map((item) => (
                   <tr 
                     key={item.pc_id} 
-                    className={`hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors duration-150 ${
-                      editingItem?.pc_id === item.pc_id ? 'bg-yellow-50 dark:bg-yellow-900/20' : ''
+                    className={`transition-colors duration-150 hover:bg-white/[0.02] ${
+                      editingItem?.pc_id === item.pc_id ? 'bg-white/[0.05]' : ''
                     }`}
                   >
-                    <td className="px-6 py-4 text-sm font-medium text-neutral-900 dark:text-neutral-100">
+                    <td className="py-4 pr-6 text-white/90 break-words">
                       {editingItem?.pc_id === item.pc_id ? (
                         <input
                           type="text"
                           value={editingItem.name}
                           onChange={(e) => handleInputChange('name', e.target.value)}
-                          className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded text-sm bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
+                          className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-sm text-white/90 placeholder-white/40 transition focus:border-white/25"
                         />
                       ) : (
                         item.name || '-'
                       )}
                     </td>
-                    <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
+                    <td className="py-4 pr-6 text-white/80 break-words">
                       {editingItem?.pc_id === item.pc_id ? (
                         <input
                           type="text"
                           value={editingItem.cpu}
                           onChange={(e) => handleInputChange('cpu', e.target.value)}
-                          className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded text-sm bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
+                          className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-sm text-white/90 placeholder-white/40 transition focus:border-white/25"
                         />
                       ) : (
                         item.cpu || '-'
                       )}
                     </td>
-                    <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
+                    <td className="py-4 pr-6 text-white/80 break-words">
                       {editingItem?.pc_id === item.pc_id ? (
                         <input
                           type="text"
                           value={editingItem.gpu}
                           onChange={(e) => handleInputChange('gpu', e.target.value)}
-                          className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded text-sm bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
+                          className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-sm text-white/90 placeholder-white/40 transition focus:border-white/25"
                         />
                       ) : (
                         item.gpu || '-'
@@ -409,14 +408,14 @@ export default function EditPC() {
                           <button
                             onClick={handleSave}
                             disabled={operationLoading}
-                            className="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600 disabled:opacity-50"
+                            className="rounded-xl border border-white/10 px-3 py-1 font-geist-mono text-sm uppercase text-white/60 transition hover:bg-white/5 hover:text-white disabled:opacity-50"
                           >
                             Save
                           </button>
                           <button
                             onClick={handleCancel}
                             disabled={operationLoading}
-                            className="px-3 py-1 bg-gray-500 text-white rounded text-sm hover:bg-gray-600 disabled:opacity-50"
+                            className="rounded-xl border border-white/10 px-3 py-1 font-geist-mono text-sm uppercase text-white/60 transition hover:bg-white/5 hover:text-white disabled:opacity-50"
                           >
                             Cancel
                           </button>
@@ -426,14 +425,14 @@ export default function EditPC() {
                           <button
                             onClick={() => handleEdit(item)}
                             disabled={editingItem !== null || operationLoading}
-                            className="px-3 py-1 bg-yellow-500 text-white rounded text-sm hover:bg-yellow-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="rounded-xl border border-white/10 px-3 py-1 font-geist-mono text-sm uppercase text-white/60 transition hover:bg-white/5 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
                           >
                             Edit
                           </button>
                           <button
                             onClick={() => handleDelete(item.pc_id)}
                             disabled={editingItem !== null || operationLoading}
-                            className="px-3 py-1 bg-red-500 text-white rounded text-sm hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="rounded-xl border border-red-400/30 px-3 py-1 font-geist-mono text-sm uppercase text-red-400/90 transition hover:bg-red-400/10 hover:border-red-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
                           >
                             Delete
                           </button>
@@ -450,46 +449,46 @@ export default function EditPC() {
           <div className="lg:hidden">
             {/* Insert Card */}
             {isInserting && editingItem && (
-              <div className="p-6 border-b border-neutral-200 dark:border-neutral-600 bg-blue-50 dark:bg-blue-900/20">
+              <div className="border-b border-white/10 bg-white/[0.03] p-6">
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+                  <h3 className="text-2xl font-semibold text-white/90">
                     Add New PC
                   </h3>
                   
                   <div className="space-y-3">
                     <div>
-                      <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
+                      <label className="block font-geist-mono text-sm tracking-widest uppercase text-white/70 mb-1">
                         Name
                       </label>
                       <input
                         type="text"
                         value={editingItem.name}
                         onChange={(e) => handleInputChange('name', e.target.value)}
-                        className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded text-sm bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
+                        className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-sm text-white/90 placeholder-white/40 transition focus:border-white/25"
                         placeholder="PC Name"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
+                      <label className="block font-geist-mono text-sm tracking-widest uppercase text-white/70 mb-1">
                         CPU
                       </label>
                       <input
                         type="text"
                         value={editingItem.cpu}
                         onChange={(e) => handleInputChange('cpu', e.target.value)}
-                        className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded text-sm bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
+                        className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-sm text-white/90 placeholder-white/40 transition focus:border-white/25"
                         placeholder="CPU"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
+                      <label className="block font-geist-mono text-sm tracking-widest uppercase text-white/70 mb-1">
                         GPU
                       </label>
                       <input
                         type="text"
                         value={editingItem.gpu}
                         onChange={(e) => handleInputChange('gpu', e.target.value)}
-                        className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded text-sm bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
+                        className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-sm text-white/90 placeholder-white/40 transition focus:border-white/25"
                         placeholder="GPU"
                       />
                     </div>
@@ -499,14 +498,14 @@ export default function EditPC() {
                     <button
                       onClick={handleSave}
                       disabled={operationLoading}
-                      className="px-4 py-2 bg-blue-500 text-white rounded text-sm hover:bg-blue-600 disabled:opacity-50"
+                      className="rounded-xl border border-white/10 px-4 py-2 font-geist-mono text-sm uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white disabled:opacity-50"
                     >
                       Save
                     </button>
                     <button
                       onClick={handleCancel}
                       disabled={operationLoading}
-                      className="px-4 py-2 bg-gray-500 text-white rounded text-sm hover:bg-gray-600 disabled:opacity-50"
+                      className="rounded-xl border border-white/10 px-4 py-2 font-geist-mono text-sm uppercase text-white/60 transition hover:bg-white/5 hover:text-white disabled:opacity-50"
                     >
                       Cancel
                     </button>
@@ -519,19 +518,19 @@ export default function EditPC() {
             {data.map((item) => (
               <div 
                 key={item.pc_id} 
-                className={`p-6 border-b border-neutral-200 dark:border-neutral-600 last:border-b-0 ${
-                  editingItem?.pc_id === item.pc_id ? 'bg-yellow-50 dark:bg-yellow-900/20' : ''
+                className={`border-b border-white/10 p-6 last:border-b-0 ${
+                  editingItem?.pc_id === item.pc_id ? 'bg-white/[0.05]' : ''
                 }`}
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+                    <h3 className="text-2xl font-semibold text-white/90">
                       {editingItem?.pc_id === item.pc_id ? (
                         <input
                           type="text"
                           value={editingItem.name}
                           onChange={(e) => handleInputChange('name', e.target.value)}
-                          className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded text-sm bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
+                          className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-sm text-white/90 placeholder-white/40 transition focus:border-white/25"
                         />
                       ) : (
                         item.name || 'Unnamed PC'
@@ -541,32 +540,32 @@ export default function EditPC() {
                   
                   <div className="space-y-2 text-sm">
                     <div>
-                      <span className="font-medium text-neutral-700 dark:text-neutral-300">CPU:</span>
+                      <span className="font-geist-mono text-sm tracking-widest uppercase text-white/70">CPU:</span>
                       <div className="mt-1">
                         {editingItem?.pc_id === item.pc_id ? (
                           <input
                             type="text"
                             value={editingItem.cpu}
                             onChange={(e) => handleInputChange('cpu', e.target.value)}
-                            className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded text-sm bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
+                            className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-sm text-white/90 placeholder-white/40 transition focus:border-white/25"
                           />
                         ) : (
-                          <span className="text-neutral-600 dark:text-neutral-400">{item.cpu || '-'}</span>
+                          <span className="text-white/60">{item.cpu || '-'}</span>
                         )}
                       </div>
                     </div>
                     <div>
-                      <span className="font-medium text-neutral-700 dark:text-neutral-300">GPU:</span>
+                      <span className="font-geist-mono text-sm tracking-widest uppercase text-white/70">GPU:</span>
                       <div className="mt-1">
                         {editingItem?.pc_id === item.pc_id ? (
                           <input
                             type="text"
                             value={editingItem.gpu}
                             onChange={(e) => handleInputChange('gpu', e.target.value)}
-                            className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded text-sm bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
+                            className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-sm text-white/90 placeholder-white/40 transition focus:border-white/25"
                           />
                         ) : (
-                          <span className="text-neutral-600 dark:text-neutral-400">{item.gpu || '-'}</span>
+                          <span className="text-white/60">{item.gpu || '-'}</span>
                         )}
                       </div>
                     </div>
@@ -578,14 +577,14 @@ export default function EditPC() {
                         <button
                           onClick={handleSave}
                           disabled={operationLoading}
-                          className="px-4 py-2 bg-blue-500 text-white rounded text-sm hover:bg-blue-600 disabled:opacity-50"
+                          className="rounded-xl border border-white/10 px-4 py-2 font-geist-mono text-sm uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white disabled:opacity-50"
                         >
                           Save
                         </button>
                         <button
                           onClick={handleCancel}
                           disabled={operationLoading}
-                          className="px-4 py-2 bg-gray-500 text-white rounded text-sm hover:bg-gray-600 disabled:opacity-50"
+                          className="rounded-xl border border-white/10 px-4 py-2 font-geist-mono text-sm uppercase text-white/60 transition hover:bg-white/5 hover:text-white disabled:opacity-50"
                         >
                           Cancel
                         </button>
@@ -595,14 +594,14 @@ export default function EditPC() {
                         <button
                           onClick={() => handleEdit(item)}
                           disabled={editingItem !== null || operationLoading}
-                          className="px-4 py-2 bg-yellow-500 text-white rounded text-sm hover:bg-yellow-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="rounded-xl border border-white/10 px-4 py-2 font-geist-mono text-sm uppercase text-white/60 transition hover:bg-white/5 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           Edit
                         </button>
                         <button
                           onClick={() => handleDelete(item.pc_id)}
                           disabled={editingItem !== null || operationLoading}
-                          className="px-4 py-2 bg-red-500 text-white rounded text-sm hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="rounded-xl border border-red-400/30 px-4 py-2 font-geist-mono text-sm uppercase text-red-400/90 transition hover:bg-red-400/10 hover:border-red-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           Delete
                         </button>
@@ -617,10 +616,9 @@ export default function EditPC() {
 
         {data.length === 0 && !isInserting && (
           <div className="text-center py-12">
-            <p className="text-neutral-600 dark:text-neutral-400">No PC components found.</p>
+            <p className="text-white/60">No PC components found.</p>
           </div>
         )}
-      </div>
-    </div>
+    </>
   );
 }

@@ -96,12 +96,12 @@ export default function SubmitPC() {
     
     if (loading) {
         return (
-            <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center">
+            <div className="min-h-screen flex items-center justify-center">
                 <div className="text-center">
-                    <div className="text-xl font-medium text-neutral-600 dark:text-neutral-400 mb-4">
+                    <div className="font-geist-mono text-sm tracking-widest uppercase text-white/60 mb-4">
                         Loading...
                     </div>
-                    <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
+                    <div className="w-8 h-8 border-2 border-white/60 border-t-transparent rounded-full animate-spin mx-auto"></div>
                 </div>
             </div>
         );
@@ -109,14 +109,14 @@ export default function SubmitPC() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="text-neutral-600 dark:text-neutral-300 mb-4">
+          <p className="text-white/60 mb-4">
             Please log in
           </p>
           <button
             onClick={() => window.location.href = '/login'}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="rounded-xl border border-white/10 px-4 py-2 font-geist-mono text-sm uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white disabled:opacity-50"
           >
             Login
           </button>
@@ -126,27 +126,25 @@ export default function SubmitPC() {
   }
 
     return (
-        <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 p-6">
-            <div className="max-w-2xl mx-auto">
-                <div className="bg-white dark:bg-neutral-800 rounded-lg px-6 py-8 ring-1 ring-neutral-900/5 dark:ring-neutral-700/50 shadow-xl">
+        <div className="relative w-full rounded border-2 border-white/5 bg-neutral-950 px-10 py-12">
                     <div className="mb-8">
-                        <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        <h1 className="text-4xl font-bold tracking-tight text-white/90">
                             Submit PC entry
                         </h1>
-                        <p className="mt-2 text-neutral-600 dark:text-neutral-400">
+                        <p className="mt-2 text-white/60">
                             Add your PC build
                         </p>
                     </div>
 
                     {error && (
-                        <div className="mb-6 bg-red-50 dark:bg-red-900/50 border border-red-200 dark:border-red-800 rounded-lg p-4">
-                            <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+                        <div className="mb-6 rounded-lg border border-red-400/30 bg-red-400/5 p-4">
+                            <p className="font-geist-mono text-sm text-red-400/90">{error}</p>
                         </div>
                     )}
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
-                            <label htmlFor="name" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                            <label htmlFor="name" className="block font-geist-mono text-sm tracking-widest uppercase text-white/70 mb-2">
                                 Name
                             </label>
                             <input
@@ -154,14 +152,14 @@ export default function SubmitPC() {
                                 type="text"
                                 value={formData.name}
                                 onChange={(e) => handleInputChange('name', e.target.value)}
-                                className="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100"
+                                className="w-full rounded-lg border border-white/10 bg-black/40 px-4 py-3 text-white/90 placeholder-white/40 transition focus:border-white/25"
                                 placeholder="Name"
                                 required
                             />
                         </div>
 
                         <div>
-                            <label htmlFor="cpu" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                            <label htmlFor="cpu" className="block font-geist-mono text-sm tracking-widest uppercase text-white/70 mb-2">
                                 CPU
                             </label>
                             <input
@@ -169,13 +167,13 @@ export default function SubmitPC() {
                                 type="text"
                                 value={formData.cpu}
                                 onChange={(e) => handleInputChange('cpu', e.target.value)}
-                                className="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100"
+                                className="w-full rounded-lg border border-white/10 bg-black/40 px-4 py-3 text-white/90 placeholder-white/40 transition focus:border-white/25"
                                 placeholder="CPU model"
                             />
                         </div>
 
                         <div>
-                            <label htmlFor="gpu" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                            <label htmlFor="gpu" className="block font-geist-mono text-sm tracking-widest uppercase text-white/70 mb-2">
                                 GPU
                             </label>
                             <input
@@ -183,7 +181,7 @@ export default function SubmitPC() {
                                 type="text"
                                 value={formData.gpu}
                                 onChange={(e) => handleInputChange('gpu', e.target.value)}
-                                className="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100"
+                                className="w-full rounded-lg border border-white/10 bg-black/40 px-4 py-3 text-white/90 placeholder-white/40 transition focus:border-white/25"
                                 placeholder="GPU model"
                             />
                         </div>
@@ -192,21 +190,19 @@ export default function SubmitPC() {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-neutral-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="flex-1 rounded-full border-2 bg-white/90 px-6 py-2.5 text-center text-black transition hover:bg-white/75 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {loading ? 'Submitting...' : 'Submit PC'}
                             </button>
                             <button
                                 type="button"
                                 onClick={() => router.push('/pc')}
-                                className="px-6 py-3 bg-neutral-200 dark:bg-neutral-700 text-neutral-900 dark:text-white font-semibold rounded-lg hover:bg-neutral-300 dark:hover:bg-neutral-600 transition-all duration-200"
+                                className="rounded-full border-2 border-white/25 px-6 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95 disabled:opacity-50"
                             >
                                 Cancel
                             </button>
                         </div>
                     </form>
-                </div>
-            </div>
         </div>
     );
 }

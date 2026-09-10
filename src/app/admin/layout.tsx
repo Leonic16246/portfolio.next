@@ -3,6 +3,12 @@ import { createClient } from '@/lib/supabase/server'
 import { isAdmin } from '@/lib/auth/is-admin'
 import { redirect } from 'next/navigation'
 
+const adminLinks = [
+  { href: '/admin', label: 'Dashboard' },
+  { href: '/admin/blog', label: 'Posts' },
+  { href: '/admin/blog/new', label: 'New Post' },
+]
+
 export default async function AdminLayout({
   children,
 }: {
@@ -23,46 +29,39 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      {/* Admin Navigation */}
-      <nav className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex">
-              <Link href="/admin" className="flex items-center px-2 text-gray-900 font-semibold">
-                Admin Dashboard
-              </Link>
-              <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                <Link
-                  href="/admin/blog"
-                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 hover:text-blue-600"
-                >
-                  Posts
-                </Link>
-                <Link
-                  href="/admin/blog/new"
-                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900"
-                >
-                  New Post
-                </Link>
-              </div>
-            </div>
-            <div className="flex items-center">
-              <span className="text-sm text-gray-700 mr-4">{user.email}</span>
+    <div className="min-h-screen">
+
+      {/* Admin sub-navigation */}
+      <nav className="border-b border-white/10">
+        <div className="content-width flex flex-wrap items-center justify-between gap-x-8 gap-y-3 py-4">
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-2">
+            {adminLinks.map(({ href, label }) => (
               <Link
-                href="/blog"
-                className="text-sm text-gray-500 hover:text-gray-900"
+                key={href}
+                href={href}
+                className="font-geist-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors"
               >
-                View Blog
+                {label}
               </Link>
-            </div>
+            ))}
+          </div>
+          <div className="flex items-center gap-6">
+            <span className="font-geist-mono text-sm tracking-wider text-white/40 truncate">
+              {user.email}
+            </span>
+            <Link
+              href="/blog"
+              className="font-geist-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors"
+            >
+              View Blog
+            </Link>
           </div>
         </div>
       </nav>
 
-      {/* Main Content */}
-      <main className="py-10">
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      {/* Main content - pages compose Cards straight into this column */}
+      <main className="py-8">
+        <div className="content-width flex flex-col gap-8">
           {children}
         </div>
       </main>

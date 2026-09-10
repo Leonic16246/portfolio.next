@@ -14,6 +14,8 @@ export default function PostContent({ content }: PostContentProps) {
       prose
       prose-invert
       prose-xl max-w-none
+      break-words
+      prose-pre:overflow-x-auto
       prose-headings:text-white prose-headings:font-semibold
       prose-p:text-white
       prose-a:text-white/80 prose-a:underline prose-a:underline-offset-4 hover:prose-a:text-white
