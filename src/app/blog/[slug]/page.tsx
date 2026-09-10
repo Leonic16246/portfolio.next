@@ -1,4 +1,5 @@
 import Card from '@/components/card/card'
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import PostContent from '@/components/blog/post-content'
@@ -45,18 +46,18 @@ export default async function BlogPost({ params }: PageProps) {
   }
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="min-h-screen py-8">
 
-      <div className="flex flex-col items-center gap-8 mx-auto">
+      <div className="flex flex-col items-center gap-8 content-width">
 
         {/* Back link */}
         <div className="w-full">
-          <a
+          <Link
             href="/blog"
             className="font-geist-mono text-sm tracking-wider uppercase text-white/60 hover:text-white/80 transition-colors duration-150"
           >
             ← Back
-          </a>
+          </Link>
         </div>
 
         {/* Header card */}
