@@ -30,7 +30,7 @@ export async function getPCList(search?: string): Promise<PCItem[] | null> {
       console.error(`[pc] ${target}: API responded ${res.status} ${res.statusText}`)
       return null
     }
-    return res.json()
+    return await res.json()
   } catch (error) {
     console.error(`[pc] ${target}: ${describeError(error)}`)
     return null
@@ -48,7 +48,7 @@ export async function getPCItem(id: string): Promise<PCItem | null> {
       console.error(`[pc] item ${id}: API responded ${res.status} ${res.statusText}`)
       return null
     }
-    return res.json()
+    return await res.json()
   } catch (error) {
     console.error(`[pc] item ${id}: ${describeError(error)}`)
     return null

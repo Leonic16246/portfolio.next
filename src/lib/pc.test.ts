@@ -20,6 +20,18 @@ function mockFetch(response: { ok?: boolean; status?: number; body?: unknown }) 
   return fetchMock
 }
 
+function mockUnparseableBody() {
+  const fetchMock = vi.fn().mockResolvedValue({
+    ok: true,
+    status: 200,
+    json: async () => {
+      throw new SyntaxError('Unexpected token < in JSON at position 0')
+    },
+  })
+  vi.stubGlobal('fetch', fetchMock)
+  return fetchMock
+}
+
 let errorSpy: ReturnType<typeof vi.spyOn>
 
 beforeEach(() => {
@@ -71,6 +83,11 @@ describe('getPCList', () => {
     await expect(getPCList()).resolves.toBeNull()
   })
 
+  it('returns null when a 200 carries a body that is not JSON', async () => {
+    mockUnparseableBody()
+    await expect(getPCList()).resolves.toBeNull()
+  })
+
   it('returns null when DOTNET_API_URL is unset', async () => {
     vi.stubEnv('DOTNET_API_URL', '')
     mockFetch({ body: [item] })
@@ -104,6 +121,11 @@ describe('getPCItem', () => {
 
   it('returns null when the request throws', async () => {
     vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('offline')))
+    await expect(getPCItem('0')).resolves.toBeNull()
+  })
+
+  it('returns null when a 200 carries a body that is not JSON', async () => {
+    mockUnparseableBody()
     await expect(getPCItem('0')).resolves.toBeNull()
   })
 
@@ -143,5 +165,11 @@ describe('failure reporting', () => {
     mockFetch({ status: 404 })
     await expect(getPCItem('999')).resolves.toBeNull()
     expect(errorSpy).not.toHaveBeenCalled()
+  })
+
+  it('names the parse failure when the body is not JSON', async () => {
+    mockUnparseableBody()
+    await getPCList()
+    expect(errorSpy).toHaveBeenCalledWith(expect.stringContaining('Unexpected token'))
   })
 })
