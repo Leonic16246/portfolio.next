@@ -14,7 +14,7 @@ export function CardCorners() {
 
 export default function Card({ children }: { children: ReactNode }) {
   return (
-    <div className="relative w-full rounded border-2 bg-neutral-950 border-white/5 transition hover:border-white/10 px-10 py-12">
+    <div className="relative w-full rounded border-2 bg-neutral-950 border-white/10 transition hover:border-white/15 px-6 py-10 md:px-10 md:py-12">
       <CardCorners />
       {children}
     </div>

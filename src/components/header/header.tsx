@@ -60,8 +60,8 @@ export default function Header() {
         sticky top-0 z-50
         bg-black border-b-2 border-white/10
         transition duration-250 ease-in-out
-        ${isVisible || menuOpen ? 'translate-y-0' : '-translate-y-full'}`
-      }
+        ${isVisible || menuOpen ? 'translate-y-0' : '-translate-y-full'}
+      `}
     >
       <div className="content-width flex items-center justify-between py-2">
 
@@ -86,7 +86,7 @@ export default function Header() {
               className={`
                 px-4 py-2 rounded-xl text-white/90 tracking-wider uppercase transition-colors duration-200
                 ${pathname === href
-                  ? ' bg-white/10'
+                  ? 'bg-white/10'
                   : 'hover:text-white hover:bg-white/5'}
               `}
             >
@@ -125,7 +125,7 @@ export default function Header() {
           onClick={() => setMenuOpen((open) => !open)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
-          className="md:hidden flex items-center text-white/80 hover:text-white transition-colors"
+          className="md:hidden flex items-center justify-center w-11 h-11 -mr-3 text-white/80 hover:text-white transition-colors"
         >
           <FontAwesomeIcon icon={menuOpen ? faXmark : faBars} size="xl" />
         </button>
@@ -134,7 +134,7 @@ export default function Header() {
 
       {/* Mobile dropdown panel */}
       {menuOpen && (
-        <div className="drop-down md:hidden border-t-2 border-white/25 bg-black">
+        <div className="drop-down absolute top-full inset-x-0 md:hidden border-t-2 border-white/25 bg-black">
           <div className="overflow-hidden">
             <div className="content-width flex flex-col">
               {navLinks.map(({ href, label }) => (
@@ -143,7 +143,7 @@ export default function Header() {
                   href={href}
                   onClick={() => setMenuOpen(false)}
                   className={`
-                   p-4 my-2 block rounded-xl tracking-wider uppercase transition-colors duration-150
+                    px-4 py-3 my-1 block rounded-xl tracking-wider uppercase transition-colors duration-150
                     ${pathname === href
                       ? 'bg-white/10 text-white'
                       : 'text-white/80 hover:text-white hover:bg-white/5'}
@@ -154,12 +154,12 @@ export default function Header() {
               ))}
 
               {/* Social links */}
-              <div className="border-t border-white/25 flex items-center p-4 gap-4 text-white/80">
+              <div className="border-t border-white/25 flex items-center px-1.5 py-2 gap-1 text-white/80">
                 <a
                   href="https://github.com/Leonic16246"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
+                  className="p-2.5 hover:text-white transition-colors"
                   aria-label="GitHub"
                 >
                   <FontAwesomeIcon icon={faGithub} size="2xl" />
@@ -168,7 +168,7 @@ export default function Header() {
                   href="https://www.linkedin.com/in/leonic-lee"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
+                  className="p-2.5 hover:text-white transition-colors"
                   aria-label="LinkedIn"
                 >
                   <FontAwesomeIcon icon={faLinkedin} size="2xl" />

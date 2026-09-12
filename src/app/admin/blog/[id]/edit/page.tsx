@@ -33,7 +33,7 @@ export default async function AdminEditPost({ params }: PageProps) {
         <h1 className="text-5xl md:text-8xl font-bold tracking-tight text-white/90 leading-none">
           Edit Post
         </h1>
-        <p className="mt-4 font-geist-mono text-lg tracking-[0.2em] uppercase text-white/70 break-words">
+        <p className="mt-4 font-geist-mono text-base md:text-lg tracking-[0.2em] uppercase text-white/70 break-words">
           /blog/{post.slug}
         </p>
       </Card>

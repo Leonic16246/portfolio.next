@@ -37,11 +37,11 @@ export default async function BlogPage() {
               <Card>
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                   <div className="flex flex-col gap-4">
-                    <h2 className="text-4xl font-bold tracking-tight text-white/90 group-hover:text-white transition-colors">
+                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white/90 group-hover:text-white transition-colors">
                       {post.title}
                     </h2>
                     {post.excerpt && (
-                      <p className="text-xl text-white/80 leading-relaxed">{post.excerpt}</p>
+                      <p className="text-lg md:text-xl text-white/80 leading-relaxed">{post.excerpt}</p>
                     )}
                   </div>
                   <time className="shrink-0 font-geist-mono text-sm tracking-widest uppercase text-white/70">

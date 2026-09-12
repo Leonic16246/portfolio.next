@@ -21,11 +21,8 @@ export default function Contact() {
 
         {/* Header card */}
         <Card>
-          <p className="text-7xl tracking-tight text-white/80">Get in</p>
-          <h1 className="text-7xl tracking-tight text-white/90">Touch.</h1>
-          <p className="mt-4 text-xl text-white/70">
-            Feel free to reach out through any of the following:
-          </p>
+          <p className="text-5xl md:text-7xl font-semibold tracking-tight text-white/80">Get in</p>
+          <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-white/90">Touch.</h1>
         </Card>
 
         {/* Contact cards */}
@@ -46,8 +43,8 @@ export default function Contact() {
               />
 
               <div className="flex flex-col">
-                <span className="font-geist-mono text-xl tracking-wide uppercase text-white/60">{label}</span>
-                <span className="text-white/80 text-lg group-hover:text-white/90 transition-colors duration-200 truncate">
+                <span className="font-geist-mono text-lg md:text-xl tracking-wide uppercase text-white/60">{label}</span>
+                <span className="text-white/80 text-base md:text-lg group-hover:text-white/90 transition-colors duration-200 truncate">
                   {value}
                 </span>
               </div>

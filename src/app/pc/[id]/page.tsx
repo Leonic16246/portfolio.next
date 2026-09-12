@@ -32,24 +32,24 @@ export default async function PCDetail({ params }: { params: Promise<{ id: strin
 
         {/* Header card */}
         <Card>
-          <h1 className="text-6xl font-bold tracking-tight text-white/90">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white/90">
             {item.name || 'Unnamed'}
           </h1>
-          <p className="mt-4 font-geist-mono text-lg uppercase text-white/70">
+          <p className="mt-4 font-geist-mono text-base md:text-lg uppercase text-white/70">
             PC #{item.pcId}
           </p>
         </Card>
 
         {/* Specs card */}
         <Card>
-          <h2 className="text-4xl font-bold text-white/90">Specs</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white/90">Specs</h2>
           <div className="mt-6 space-y-6">
             {specs.map(({ label, value }) => (
               <div key={label} className="border-white/10">
                 <p className="font-geist-mono text-sm tracking-wider uppercase text-white/90">
                   {label}
                 </p>
-                <p className="text-lg text-white/80">{value || 'N/A'}</p>
+                <p className="text-base md:text-lg text-white/80">{value || 'N/A'}</p>
               </div>
             ))}
           </div>

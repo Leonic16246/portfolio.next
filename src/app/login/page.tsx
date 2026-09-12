@@ -18,8 +18,8 @@ export default function LoginPage() {
         {/* Login card */}
         <Card>
           <div className="flex flex-col max-w-2xl">
-              <p className="text-7xl font-light tracking-tight text-white/80 leading-none">Welcome</p>
-              <h1 className="text-7xl font-bold tracking-tight text-white/90 leading-none">Back</h1>
+              <p className="text-5xl md:text-7xl font-light tracking-tight text-white/80 leading-none">Welcome</p>
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white/90 leading-none">Back</h1>
 
               <form action={formAction} className="mt-8 flex flex-col gap-6">
                 {error && (

@@ -62,7 +62,7 @@ export default async function BlogPost({ params }: PageProps) {
 
         {/* Header card */}
         <Card>
-          <h1 className="text-6xl font-bold tracking-tight text-white/90 max-w-3xl">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white/90 max-w-3xl">
             {post.title}
           </h1>
           {post.excerpt && (

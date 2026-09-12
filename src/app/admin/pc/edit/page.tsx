@@ -274,7 +274,7 @@ export default function EditPC() {
   return (
     <>
         <div className="mb-8 flex justify-between items-center">
-          <h1 className="text-4xl font-bold tracking-tight text-white/90">
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-white/90">
             Edit PC Components 
           </h1>
           <button

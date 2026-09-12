@@ -128,7 +128,7 @@ export default function SubmitPC() {
     return (
         <div className="relative w-full rounded border-2 border-white/5 bg-neutral-950 px-10 py-12">
                     <div className="mb-8">
-                        <h1 className="text-4xl font-bold tracking-tight text-white/90">
+                        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-white/90">
                             Submit PC entry
                         </h1>
                         <p className="mt-2 text-white/60">

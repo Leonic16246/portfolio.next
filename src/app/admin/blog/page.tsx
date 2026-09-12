@@ -23,7 +23,7 @@ export default async function AdminPost() {
             <h1 className="text-5xl md:text-8xl font-bold tracking-tight text-white/90 leading-none">
               Posts
             </h1>
-            <p className="mt-4 font-geist-mono text-lg tracking-[0.2em] uppercase text-white/70">
+            <p className="mt-4 font-geist-mono text-base md:text-lg tracking-[0.2em] uppercase text-white/70">
               {count} post{count !== 1 ? 's' : ''}
             </p>
           </div>
@@ -60,7 +60,7 @@ export default async function AdminPost() {
                 {posts!.map((post) => (
                   <tr key={post.id} className="border-b border-white/10 last:border-b-0">
                     <td className="py-4 pr-6 break-words">
-                      <p className="text-lg text-white/90">{post.title}</p>
+                      <p className="text-base md:text-lg text-white/90">{post.title}</p>
                       <p className="font-geist-mono text-sm text-white/50">/{post.slug}</p>
                     </td>
                     <td className="py-4 pr-6">

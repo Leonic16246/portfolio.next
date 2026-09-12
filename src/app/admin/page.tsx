@@ -47,7 +47,7 @@ export default async function AdminDashboard() {
             <p className="font-geist-mono text-sm tracking-widest uppercase text-white/70">
               {label}
             </p>
-            <p className="mt-4 text-6xl font-bold tracking-tight text-white/90 leading-none">
+            <p className="mt-4 text-4xl md:text-6xl font-bold tracking-tight text-white/90 leading-none">
               {value}
             </p>
           </Card>

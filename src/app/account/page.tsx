@@ -96,12 +96,12 @@ export default function Account() {
                     <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                         {/* Left: text content */}
                         <div className="flex flex-col">
-                            <p className="text-7xl font-light tracking-tight text-white/80 leading-none">My</p>
-                            <h1 className="text-7xl font-bold tracking-tight text-white/90 leading-none">Account</h1>
-                            <h2 className="mt-4 font-geist-mono text-lg tracking-[0.2em] uppercase text-white/70 break-all">
+                            <p className="text-5xl md:text-7xl font-light tracking-tight text-white/80 leading-none">My</p>
+                            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white/90 leading-none">Account</h1>
+                            <h2 className="mt-4 font-geist-mono text-base md:text-lg tracking-[0.2em] uppercase text-white/70 break-all">
                                 {user.email}
                             </h2>
-                            <h3 className="mt-4 text-xl text-white/80 leading-relaxed">
+                            <h3 className="mt-4 text-lg md:text-xl text-white/80 leading-relaxed">
                                 Manage your account settings and preferences.
                             </h3>
                         </div>
@@ -119,7 +119,7 @@ export default function Account() {
 
                 {/* Account details card */}
                 <Card>
-                    <h2 className="text-6xl font-bold tracking-tight text-white/90">Details</h2>
+                    <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white/90">Details</h2>
 
                     <div className="mt-8 flex flex-col gap-6">
                         {/* Email */}
@@ -128,7 +128,7 @@ export default function Account() {
                                 Email Address
                             </span>
                             <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
-                                <span className="text-xl text-white/90 break-all">{user.email}</span>
+                                <span className="text-lg md:text-xl text-white/90 break-all">{user.email}</span>
                                 <div className="flex items-center gap-2">
                                     <div className="w-2 h-2 rounded-full bg-white/60" />
                                     <span className="font-geist-mono text-sm tracking-wider uppercase text-white/70">
@@ -152,7 +152,7 @@ export default function Account() {
                                 <span className="font-geist-mono text-sm tracking-widest uppercase text-white/70">
                                     Member Since
                                 </span>
-                                <p className="mt-3 text-xl text-white/90">
+                                <p className="mt-3 text-lg md:text-xl text-white/90">
                                     {new Date(user.created_at).toLocaleDateString('en-US', {
                                         year: 'numeric',
                                         month: 'long',

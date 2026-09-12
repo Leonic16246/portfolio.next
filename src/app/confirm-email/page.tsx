@@ -10,12 +10,12 @@ export default function ConfirmEmail() {
         {/* Confirmation card */}
         <Card>
           <div className="flex flex-col">
-            <p className="text-7xl font-light tracking-tight text-white/80 leading-none">Check your</p>
-            <h1 className="text-7xl font-bold tracking-tight text-white/90 leading-none">Inbox</h1>
-            <h2 className="mt-4 font-geist-mono text-lg tracking-[0.2em] uppercase text-white/70">
+            <p className="text-5xl md:text-7xl font-light tracking-tight text-white/80 leading-none">Check your</p>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white/90 leading-none">Inbox</h1>
+            <h2 className="mt-4 font-geist-mono text-base md:text-lg tracking-[0.2em] uppercase text-white/70">
               Confirmation sent
             </h2>
-            <h3 className="mt-4 text-xl text-white/80 leading-relaxed">
+            <h3 className="mt-4 text-lg md:text-xl text-white/80 leading-relaxed">
               We&apos;ve sent you a confirmation email. Follow the link inside to activate
               your account, then log in.
             </h3>

@@ -87,12 +87,12 @@ export default function Projects() {
 
         {/* Header card */}
         <Card>
-          <p className="text-5xl md:text-8xl font-light tracking-tight text-white/80 leading-none">My</p>
-          <h1 className="text-5xl md:text-8xl font-bold tracking-tight text-white/90 leading-none">Projects</h1>
+          <p className="text-5xl md:text-7xl font-semibold tracking-tight text-white/80">My</p>
+          <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-white/90">Projects</h1>
         </Card>
 
         {/* Projects grid */}
-        <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
           {projectsData.project.map((project: ProjectType, i: number) => (
             <div
               key={i}
@@ -113,8 +113,8 @@ export default function Projects() {
 
               {/* Content */}
               <div className="flex flex-col flex-1 px-5 py-5 gap-3">
-                <h3 className="text-3xl font-bold text-white/90">{project.title}</h3>
-                <p className="text-lg text-white/80 tracking-wide flex-1">{project.desc}</p>
+                <h3 className="text-3xl font-semibold text-white/90">{project.title}</h3>
+                <p className="text-base md:text-lg text-white/80 tracking-wide flex-1">{project.desc}</p>
                 <div className="flex flex-wrap gap-2 pt-2">
                   {project.skills.map((tech: string, j: number) => (
                     <span

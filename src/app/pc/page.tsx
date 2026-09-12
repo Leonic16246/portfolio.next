@@ -60,7 +60,7 @@ export default async function PC({
         <Card>
           <p className="text-5xl md:text-8xl font-light tracking-tight text-white/80 leading-none">PC</p>
           <h1 className="text-5xl md:text-8xl font-bold tracking-tight text-white/90 leading-none">Builds</h1>
-          <p className="mt-4 font-geist-mono text-lg tracking-[0.2em] uppercase text-white/70">
+          <p className="mt-4 font-geist-mono text-base md:text-lg tracking-[0.2em] uppercase text-white/70">
             {failed ? 'Unavailable' : `${sorted.length} build${sorted.length !== 1 ? 's' : ''}`}
           </p>
         </Card>
@@ -98,14 +98,14 @@ export default async function PC({
                 <tbody>
                   {sorted.map((item) => (
                     <tr key={item.pcId} className="border-b border-white/10 last:border-b-0">
-                      <td className="py-4 pr-6 text-lg text-white/90 break-words">
+                      <td className="py-4 pr-6 text-base md:text-lg text-white/90 break-words">
                         <Link href={`/pc/${item.pcId}`} className="hover:text-white transition-colors">
                           {item.name || '—'}
                         </Link>
                       </td>
-                      <td className="py-4 pr-6 text-lg text-white/80 break-words">{item.cpu || '—'}</td>
-                      <td className="py-4 pr-6 text-lg text-white/80 break-words">{item.gpu || '—'}</td>
-                      <td className="py-4 text-lg text-white/80 break-words">{item.note || '—'}</td>
+                      <td className="py-4 pr-6 text-base md:text-lg text-white/80 break-words">{item.cpu || '—'}</td>
+                      <td className="py-4 pr-6 text-base md:text-lg text-white/80 break-words">{item.gpu || '—'}</td>
+                      <td className="py-4 text-base md:text-lg text-white/80 break-words">{item.note || '—'}</td>
                     </tr>
                   ))}
                 </tbody>
