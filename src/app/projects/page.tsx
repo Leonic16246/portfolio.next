@@ -1,5 +1,6 @@
 'use client'
 
+import Card from '@/components/card/card'
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -80,31 +81,22 @@ export default function Projects() {
   }
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="min-h-screen py-8">
 
-      <div className="flex flex-col items-center gap-8 mx-auto">
+      <div className="flex flex-col items-center gap-8 content-width">
 
         {/* Header card */}
-        <div
-          className="fade-in relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12"
-          style={{ animationDelay: '0.2s' }}
-        >
-          <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-          <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-          <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-          <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
-
-          <p className="text-5xl md:text-8xl font-light tracking-tight text-white/80 leading-none">My</p>
-          <h1 className="text-5xl md:text-8xl font-bold tracking-tight text-white/90 leading-none">Projects</h1>
-        </div>
+        <Card>
+          <p className="text-5xl md:text-7xl font-semibold tracking-tight text-white/80">My</p>
+          <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-white/90">Projects</h1>
+        </Card>
 
         {/* Projects grid */}
-        <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
           {projectsData.project.map((project: ProjectType, i: number) => (
             <div
               key={i}
-              className="fade-in rounded-lg border border-white/10 bg-neutral-950 overflow-hidden transition hover:border-white/20 duration-200 flex flex-col"
-              style={{ animationDelay: `${0.3 + i * 0.08}s` }}
+              className="rounded-lg border border-white/10 bg-neutral-950 overflow-hidden transition hover:border-white/20 duration-200 flex flex-col"
             >
 
               {/* Image */}
@@ -121,8 +113,8 @@ export default function Projects() {
 
               {/* Content */}
               <div className="flex flex-col flex-1 px-5 py-5 gap-3">
-                <h3 className="text-3xl font-bold text-white/90">{project.title}</h3>
-                <p className="text-lg text-white/80 tracking-wide flex-1">{project.desc}</p>
+                <h3 className="text-3xl font-semibold text-white/90">{project.title}</h3>
+                <p className="text-base md:text-lg text-white/80 tracking-wide flex-1">{project.desc}</p>
                 <div className="flex flex-wrap gap-2 pt-2">
                   {project.skills.map((tech: string, j: number) => (
                     <span
@@ -139,7 +131,7 @@ export default function Projects() {
                       href={project.source}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-xl border border-white/10 px-5 py-3 text-md font-geist-mono tracking-wide uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90 inline-flex items-center gap-2"
+                      className="rounded-xl border border-white/10 px-5 py-3 text-base font-geist-mono tracking-wide uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90 inline-flex items-center gap-2"
                     >
                       Source Code <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                     </a>

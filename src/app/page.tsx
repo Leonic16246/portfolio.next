@@ -1,3 +1,4 @@
+import Card from '@/components/card/card'
 import Link from 'next/link'
 import Image from 'next/image'
 import logo from '../../public/images/CherryTreeGlyph.png'
@@ -8,44 +9,39 @@ import skills from '../../public/data/skills.json'
 
 export default function Home() {
   return (
-    <div className="min-h-screen p-8">
+    <div className="min-h-screen py-8">
 
-      <div className="flex flex-col items-center gap-8 mx-auto"> {/* gap between cards */}
+      <div className="flex flex-col items-center gap-8 content-width"> {/* gap between cards */}
 
         {/* Hero card */}
-        <div className="fade-in relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12" style={{ animationDelay: '0.2s' }}>
-          <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-          <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-          <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-          <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
-
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+        <Card>
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
             {/* Left: text content */}
             <div className="flex flex-col">
-              <p className="text-8xl font-light tracking-tight text-white/80 leading-none">
+              <p className="text-5xl md:text-7xl font-semibold tracking-tight text-white/80">
                 Hi, I'm
               </p>
-              <h1 className="text-8xl font-bold tracking-tight text-white/90 leading-none">
+              <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-white/90">
                 Leon Lee
               </h1>
-              <h2 className="mt-4 font-geist-mono text-lg tracking-[0.2em] uppercase text-white/70">
+              <h2 className="mt-8 font-geist-mono text-base md:text-lg tracking-[0.1em] uppercase text-white/70">
                 Software Engineering Student
               </h2>
-              <h3 className="mt-4 text-xl text-white/80 leading-relaxed">
+              <h3 className="mt-4 text-lg md:text-xl text-white/80 leading-relaxed">
                 Welcome to my portfolio.
               </h3>
-              <div className="mt-8 flex items-center gap-4">
+              <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link
                   href="/files/Leon_Lee_CV_2026.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border-2 bg-white/90 px-6 py-2.5 text-center text-black transition hover:bg-white/75 active:scale-95"
+                  className="rounded-xl border border-white/25 px-6 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
                 >
                   View CV
                 </Link>
                 <Link
                   href="/contact"
-                  className="rounded-full border-2 border-white/25 px-6 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
+                  className="rounded-xl border border-white/25 px-6 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
                 >
                   Get in touch
                 </Link>
@@ -53,51 +49,41 @@ export default function Home() {
             </div>
 
             {/* Right: logo */}
-            <div className="">
+            <div className="hidden md:block">
               <Image
                 src={logo}
                 alt="glyph"
                 width={384}
                 height={384}
                 priority
-                className="mr-12 opacity-90 hover:opacity-100 transition"
+                className="w-96 h-auto mr-12 opacity-90 hover:opacity-100 transition"
               />
             </div>
           </div>
-        </div>
+        </Card>
 
         {/* About Me card */}
-        <div className="fade-in relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12" style={{ animationDelay: '0.3s' }}>
-          <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-          <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-          <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-          <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
-
+        <Card>
           <Link href="/about">
-            <h2 className="text-6xl font-bold tracking-tight text-white/90">About Me</h2>
+            <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-white/90">About Me</h2>
           </Link>
 
-          <p className="mt-4 text-xl leading-relaxed text-white/80">
+          <p className="mt-4 text-lg md:text-xl leading-relaxed text-white/80">
             I am a software engineering student seeking a full-time software development role to gain real-world experience and advance my career. Highly motivated to learn, passionate about problem solving, and able to keep up with industry tech. I enjoy going through the software development lifecycle on my own projects. Meeting user needs is always satisfying to me.
           </p>
-        </div>
+        </Card>
 
         {/* Skill cards */}
-        <div className="fade-in relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12" style={{ animationDelay: '0.4s' }}>
-          <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-          <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-          <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-          <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
-
-          <h2 className="text-6xl font-bold tracking-tight text-white/90">Skills</h2>
+        <Card>
+          <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-white/90">Skills</h2>
           {skills.map((group) => (
             <div key={group.label} className="flex flex-col gap-2">
-              <span className="font-geist-mono text-lg tracking-widest uppercase text-white/80 mt-4">{group.label}</span>
+              <span className="font-geist-mono text-base md:text-lg tracking-widest uppercase text-white/80 mt-4">{group.label}</span>
               <div className="flex flex-wrap gap-4">
                 {group.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-4 py-2 rounded-xl border border-white/10 font-geist-mono  text-md text-white/80 hover:text-white/90 hover:border-white/20 transition mt-2"
+                    className="px-4 py-2 rounded-xl border border-white/10 font-geist-mono  text-base text-white/80 hover:text-white/90 hover:border-white/20 transition mt-2"
                   >
                     {skill}
                   </span>
@@ -105,17 +91,12 @@ export default function Home() {
               </div>
             </div>
           ))}
-        </div>
+        </Card>
 
         {/* Project cards */}
-        <div className="fade-in relative w-full rounded-lg border bg-neutral-950 border-white/10 transition hover:border-white/20 px-10 py-12" style={{ animationDelay: '0.5s' }}>
-          <span className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/25" />
-          <span className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/25" />
-          <span className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/25" />
-          <span className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/25" />
-
+        <Card>
           <Link href="/projects">
-            <h2 className="text-6xl font-bold tracking-tight text-white/90">Projects</h2>
+            <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-white/90">Projects</h2>
           </Link>
 
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -126,7 +107,7 @@ export default function Home() {
               >
 
                 {/* Image */}
-                <div className="relative h-96 bg-neutral-900 overflow-hidden">
+                <div className="relative h-64 md:h-96 bg-neutral-900 overflow-hidden">
                   <Image
                     src={project.imgsrc}
                     alt={`${project.title} preview`}
@@ -139,13 +120,13 @@ export default function Home() {
 
                 {/* Content */}
                 <div className="flex flex-col flex-1 px-5 py-5 gap-3">
-                  <h3 className="text-4xl font-bold text-white/90">{project.title}</h3>
-                  <p className="text-lg text-white/80 leading-relaxed tracking-wide flex-1">{project.desc}</p>
+                  <h3 className="text-3xl md:text-4xl font-semibold text-white/90">{project.title}</h3>
+                  <p className="text-base md:text-lg text-white/80 leading-relaxed tracking-wide flex-1">{project.desc}</p>
                   <div className="flex flex-wrap gap-2 pt-2">
                     {project.skills.map((tech, j) => (
                       <span
                         key={j}
-                        className="px-4 py-2 rounded-xl border border-white/10 transition hover:border-white/20 hover:text-white/90 font-geist-mono text-md text-white/80"
+                        className="px-4 py-2 rounded-xl border border-white/10 transition hover:border-white/20 hover:text-white/90 font-geist-mono text-base text-white/80"
                       >
                         {tech}
                       </span>
@@ -157,7 +138,7 @@ export default function Home() {
                         href={project.source}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-xl border border-white/10 px-5 py-3 text-md font-geist-mono tracking-wide uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90 inline-flex items-center gap-2"
+                        className="rounded-xl border border-white/10 px-5 py-3 text-base font-geist-mono tracking-wide uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90 inline-flex items-center gap-2"
                       >
                         Source Code <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                       </a>
@@ -171,12 +152,12 @@ export default function Home() {
           <div className="mt-8">
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-md font-geist-mono tracking-wider uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-base font-geist-mono tracking-wider uppercase text-white/80 transition hover:bg-white/5 hover:border-white/20 hover:text-white/90"
             >
               View all projects <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
             </Link>
           </div>
-        </div>
+        </Card>
       </div>
     </div>
   )

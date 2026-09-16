@@ -29,7 +29,7 @@ export default function DeleteButton({ postId }: { postId: string }) {
   return (
     <button
       onClick={handleDelete}
-      className="text-red-600 hover:text-red-900"
+      className="font-geist-mono text-sm tracking-widest uppercase text-red-400/80 hover:text-red-400 transition-colors"
     >
       Delete
     </button>

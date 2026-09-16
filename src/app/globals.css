@@ -14,18 +14,13 @@
   --color-slate: #1d1d1d;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+.content-width {
+  margin-inline: auto;
+  width: 87.5%;
 }
 
-.fade-in {
-  animation: fadeIn 2s ease-out both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .fade-in { animation: none; }
-}
+@media (min-width: 735px)  { .content-width { width: 692px; } }
+@media (min-width: 1069px) { .content-width { width: 980px; } }
 
 @keyframes dropDown {
   from { grid-template-rows: 0fr; opacity: 0; }

@@ -2,12 +2,11 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { faUser, faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useEffect, useRef, useState } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
-import { createBrowserClient } from '@supabase/ssr'
+import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import logo from '../../../public/images/CherryTreeGlyph.png'
 
 const navLinks = [
@@ -17,47 +16,14 @@ const navLinks = [
 ]
 
 export default function Header() {
-  const [email, setEmail] = useState<string | null>(null)
-  const [loading, setLoading] = useState(true)
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [userMenuOpen, setUserMenuOpen] = useState(false)
-  const userMenuRef = useRef<HTMLDivElement>(null)
-  const router = useRouter()
   const pathname = usePathname()
 
-  // Close both menus whenever the route changes
+  // Close the mobile menu whenever the route changes
   useEffect(() => {
     setMenuOpen(false)
-    setUserMenuOpen(false)
-  }, [pathname])
-
-  // Close the user menu when clicking outside of it
-  useEffect(() => {
-    if (!userMenuOpen) return
-    const handleClickOutside = (e: MouseEvent) => {
-      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
-        setUserMenuOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [userMenuOpen])
-
-  useEffect(() => {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY as string
-    const supabase = createBrowserClient(supabaseUrl, supabaseKey)
-
-    const fetchUser = async () => {
-      setLoading(true)
-      const { data: { user } } = await supabase.auth.getUser()
-      setEmail(user?.email || null)
-      setLoading(false)
-    }
-
-    fetchUser()
   }, [pathname])
 
   useEffect(() => {
@@ -88,37 +54,24 @@ export default function Header() {
     }
   }, [lastScrollY])
 
-  const handleLogout = async () => {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY as string
-    const supabase = createBrowserClient(supabaseUrl, supabaseKey)
-
-    await supabase.auth.signOut()
-    setEmail(null)
-    setMenuOpen(false)
-    setUserMenuOpen(false)
-    router.push('/')
-    router.refresh()
-  }
-
   return (
     <header
       className={`
-        fixed top-0 left-0 right-0 z-50
-        bg-neutral backdrop-blur-xs border-b border-white/25
+        sticky top-0 z-50
+        bg-black border-b-2 border-white/10
         transition duration-250 ease-in-out
-        ${isVisible || menuOpen ? 'translate-y-0' : '-translate-y-full'}`
-      }
+        ${isVisible || menuOpen ? 'translate-y-0' : '-translate-y-full'}
+      `}
     >
-      <div className="flex items-center justify-between px-[2rem] lg:px-[6rem] py-[0.1rem] fade-in" style={{ animationDelay: '0.1s' }}>
+      <div className="content-width flex items-center justify-between py-2">
 
         {/* Logo */}
         <Link href="/" className="shrink-0">
           <Image
             src={logo}
             alt="Logo"
-            width={56}
-            height={56}
+            width={48}
+            height={48}
             className="cursor-pointer opacity-90 hover:opacity-100 transition-opacity"
             priority
           />
@@ -133,7 +86,7 @@ export default function Header() {
               className={`
                 px-4 py-2 rounded-xl text-white/90 tracking-wider uppercase transition-colors duration-200
                 ${pathname === href
-                  ? ' bg-white/10'
+                  ? 'bg-white/10'
                   : 'hover:text-white hover:bg-white/5'}
               `}
             >
@@ -144,47 +97,6 @@ export default function Header() {
 
         {/* Social icons */}
         <div className="hidden md:flex items-center gap-8 text-white/80">
-
-
-          {/* Always rendered to prevent layout shift for user icon */}
-          <div ref={userMenuRef} className={`relative ${loading || !email ? 'invisible' : ''}`}>
-            <button
-              onClick={() => setUserMenuOpen((o) => !o)}
-              aria-haspopup="true"
-              aria-expanded={userMenuOpen}
-              aria-label="Account menu"
-              className="hover:text-white transition-colors cursor-pointer"
-            >
-              <FontAwesomeIcon icon={faUser} size="2xl" />
-            </button>
-
-            <div
-              className={`absolute right-0 top-full mt-2 w-44 bg-neutral-950 ring-1 ring-white/10 rounded-xl shadow-2xl transition-all duration-200 z-50
-                ${userMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
-            >
-              <ul className="flex flex-col py-2">
-                <li className="px-4 py-2 font-geist-mono text-[10px] tracking-wider uppercase text-white/50 truncate">
-                  {email}
-                </li>
-                <li>
-                  <Link
-                    href="/account"
-                    className="block px-4 py-2 text-white/75 hover:text-white hover:bg-white/5 transition-colors"
-                  >
-                    Profile
-                  </Link>
-                </li>
-                <li>
-                  <button
-                    onClick={handleLogout}
-                    className="block w-full text-left px-4 py-2 text-white/75 hover:text-white hover:bg-white/5 transition-colors"
-                  >
-                    Log out
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </div>
 
           <a
             href="https://github.com/Leonic16246"
@@ -213,7 +125,7 @@ export default function Header() {
           onClick={() => setMenuOpen((open) => !open)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
-          className="md:hidden flex items-center text-white/80 hover:text-white transition-colors"
+          className="md:hidden flex items-center justify-center w-11 h-11 -mr-3 text-white/80 hover:text-white transition-colors"
         >
           <FontAwesomeIcon icon={menuOpen ? faXmark : faBars} size="xl" />
         </button>
@@ -222,16 +134,16 @@ export default function Header() {
 
       {/* Mobile dropdown panel */}
       {menuOpen && (
-        <div className="drop-down md:hidden border-t border-white/25 bg-black/50">
+        <div className="drop-down absolute top-full inset-x-0 md:hidden border-t-2 border-white/25 bg-black">
           <div className="overflow-hidden">
-            <div className="px-[2rem] flex flex-col">
+            <div className="content-width flex flex-col">
               {navLinks.map(({ href, label }) => (
                 <Link
                   key={href}
                   href={href}
                   onClick={() => setMenuOpen(false)}
                   className={`
-                   p-4 my-2 block rounded-xl tracking-wider uppercase transition-colors duration-150
+                    px-4 py-3 my-1 block rounded-xl tracking-wider uppercase transition-colors duration-150
                     ${pathname === href
                       ? 'bg-white/10 text-white'
                       : 'text-white/80 hover:text-white hover:bg-white/5'}
@@ -242,12 +154,12 @@ export default function Header() {
               ))}
 
               {/* Social links */}
-              <div className="border-t border-white/25 flex items-center p-4 gap-4 text-white/80">
+              <div className="border-t border-white/25 flex items-center px-1.5 py-2 gap-1 text-white/80">
                 <a
                   href="https://github.com/Leonic16246"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
+                  className="p-2.5 hover:text-white transition-colors"
                   aria-label="GitHub"
                 >
                   <FontAwesomeIcon icon={faGithub} size="2xl" />
@@ -256,34 +168,12 @@ export default function Header() {
                   href="https://www.linkedin.com/in/leonic-lee"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
+                  className="p-2.5 hover:text-white transition-colors"
                   aria-label="LinkedIn"
                 >
                   <FontAwesomeIcon icon={faLinkedin} size="2xl" />
                 </a>
               </div>
-
-              {/* Account*/}
-              {email && (
-                <div className="border-t border-white/25 flex flex-col p-4 gap-4">
-                  <span className="font-geist-mono text-sm tracking-wide text-white/80 truncate">
-                    {email}
-                  </span>
-                  <Link
-                    href="/account"
-                    onClick={() => setMenuOpen(false)}
-                    className="block rounded-xl text-white/80 hover:text-white hover:bg-white/5 transition-colors"
-                  >
-                    Profile
-                  </Link>
-                  <button
-                    onClick={handleLogout}
-                    className="block w-full text-left rounded-xl text-white/80 hover:text-white hover:bg-white/5 transition-colors"
-                  >
-                    Log out
-                  </button>
-                </div>
-              )}
             </div>
           </div>
         </div>

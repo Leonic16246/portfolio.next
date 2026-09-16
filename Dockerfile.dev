@@ -1,0 +1,33 @@
+# ============================================
+# Development Dockerfile for Next.js
+# ============================================
+ARG NODE_VERSION=24.14.0-slim
+FROM node:${NODE_VERSION} AS dev
+
+WORKDIR /app
+
+# Copy package-related files first to leverage Docker's caching mechanism
+COPY package.json package-lock.json .npmrc* ./
+
+# Install all dependencies, including devDependencies
+RUN --mount=type=cache,target=/root/.npm \
+    npm ci --no-audit --no-fund
+
+# Copy application source code
+# (bind-mounted over at runtime by compose — this is just a fallback
+#  so the image is runnable on its own)
+COPY . .
+
+# Poll the filesystem: inotify events don't cross the bind mount boundary
+# on Docker Desktop for Windows/macOS, so HMR won't fire without this
+ENV WATCHPACK_POLLING=true
+ENV CHOKIDAR_USEPOLLING=true
+ENV HOSTNAME="0.0.0.0"
+ENV PORT=3001
+
+RUN chown -R node:node /app
+USER node
+
+EXPOSE 3001
+
+CMD ["npm", "run", "dev"]
