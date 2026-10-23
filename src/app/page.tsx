@@ -35,15 +35,15 @@ export default function Home() {
                   href="/files/Leon_Lee_CV_2026.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-xl border border-white/25 px-6 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
+                  className="rounded-lg border border-white/25 px-5 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
                 >
                   View CV
                 </Link>
                 <Link
                   href="/contact"
-                  className="rounded-xl border border-white/25 px-6 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
+                  className="rounded-lg border border-white/25 px-5 py-2.5 text-center text-white/90 transition hover:bg-white/5 hover:border-white/50 active:scale-95"
                 >
-                  Get in touch
+                  Contact Me
                 </Link>
               </div>
             </div>
@@ -65,7 +65,7 @@ export default function Home() {
         {/* About Me card */}
         <Card>
           <Link href="/about">
-            <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-white/90">About Me</h2>
+            <h2 data-nosnippet className="text-4xl md:text-6xl font-semibold tracking-tight text-white/90">About Me</h2>
           </Link>
 
           <p className="mt-4 text-lg md:text-xl leading-relaxed text-white/80">
@@ -121,7 +121,7 @@ export default function Home() {
                 {/* Content */}
                 <div className="flex flex-col flex-1 px-5 py-5 gap-3">
                   <h3 className="text-3xl md:text-4xl font-semibold text-white/90">{project.title}</h3>
-                  <p className="text-base md:text-lg text-white/80 leading-relaxed tracking-wide flex-1">{project.desc}</p>
+                  <p className="text-base md:text-lg text-white/80">{project.desc}</p>
                   <div className="flex flex-wrap gap-2 pt-2">
                     {project.skills.map((tech, j) => (
                       <span

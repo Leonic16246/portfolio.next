@@ -12,14 +12,17 @@ import "./globals.css";
 config.autoAddCss = false
 
 export const metadata: Metadata = {
-  metadataBase: new URL((process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000')),
-  title: "Leon Lee - Software Engineer",
-  description: "Portfolio of Leon Lee",
+  metadataBase: new URL((process.env.NEXT_PUBLIC_SITE_URL ?? 'https://leonlee.dev')),
+  title: "Leon Lee",
+  description: "Software Engineering Student",
   openGraph: {
-    title: "Leon Lee - Software Engineer",
-    description: "Software engineering student",
+    title: "Leon Lee",
+    description: "Leon Lee - Software Engineering Student",
     url: "https://leonlee.dev",
     images: ["/images/CherryTreeGlyph.png"],
+  },
+  twitter: {
+    card: "summary",
   },
 };
 

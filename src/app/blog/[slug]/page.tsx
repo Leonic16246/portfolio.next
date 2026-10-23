@@ -23,9 +23,19 @@ export async function generateMetadata({ params }: PageProps) {
 
   if (!post) return { title: 'Post Not Found' }
 
+  const description = post.excerpt || post.title
+
+  // A child's openGraph replaces the root one wholesale, so the image has to be repeated here.
   return {
     title: post.title,
-    description: post.excerpt || post.title,
+    description,
+    openGraph: {
+      title: post.title,
+      description,
+      url: `/blog/${slug}`,
+      type: 'article',
+      images: ['/images/CherryTreeGlyph.png'],
+    },
   }
 }
 
